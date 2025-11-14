@@ -1,25 +1,41 @@
-// src/app/page.tsx
+// Professional Homepage with Dual-Funnel Strategy
+
 import { Header } from "@/components/layout/Header"; 
-import { HeroSection } from "@/components/layout/HeroSection"; 
-import { FeatureGrid } from "@/components/layout/FeatureGrid"; // <-- Import the new component
-import { Footer } from "@/components/layout/Footer"; 
-import { InteractiveButton } from "@/components/features/interactive-button";
+import { HeroSection } from "@/components/layout/HeroSection";
+import { TrustBar } from "@/components/layout/TrustBar";
+import { FeatureGrid } from "@/components/layout/FeatureGrid";
+import { TestimonialsSection } from "@/components/layout/TestimonialsSection";
+import { ProcessCallout } from "@/components/layout/ProcessCallout";
+import { InsuranceAndServiceHub } from "@/components/layout/InsuranceAndServiceHub";
+import { LocationAndCTA } from "@/components/layout/LocationAndCTA";
+import { Footer } from "@/components/layout/Footer";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen"> 
+    <div className="flex flex-col min-h-screen bg-white"> 
       <Header /> 
       
       <main className="flex-grow"> 
+        {/* 1. Hero Section with Dual CTAs */}
         <HeroSection /> 
         
-        {/* 1. The Feature Grid Section */}
-        <FeatureGrid /> 
+        {/* 2. Trust Bar (Immediately below the fold for max trust) */}
+        <TrustBar />
 
-        <div className="flex flex-col items-center p-24 space-y-4">
-          <h2 className="text-3xl font-semibold mb-4">Core Boilerplate Functionality</h2>
-          <InteractiveButton /> 
-        </div>
+        {/* 3. Feature Grid Section */}
+        <FeatureGrid /> 
+        
+        {/* 4. Testimonials Section (Social Proof) */}
+        <TestimonialsSection />
+        
+        {/* 5. Process Transparency Block */}
+        <ProcessCallout />
+        
+        {/* 6. Insurance & Service Hub */}
+        <InsuranceAndServiceHub />
+        
+        {/* 7. Location and Final CTA */}
+        <LocationAndCTA />
         
       </main>
       

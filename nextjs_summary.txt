@@ -1,0 +1,3763 @@
+📁 **PROJECT FILE TREE: nextjs-modern-app**
+├── 📄 .browserslistrc
+├── 📄 .env.example
+├── 📄 .eslintrc.json
+├── 📄 .gitignore
+├── 📄 README.md
+├── 📄 Research.txt
+├── 📄 components.json
+├── 📄 next-env.d.ts
+├── 📄 next.config.mjs
+├── 📄 package.json
+├── 📄 postcss.config.mjs
+├── 📄 tailwind.config.ts
+├── 📄 tsconfig.json
+├── 📁 src
+│   ├── 📁 app
+│   │   ├── 📄 globals.css
+│   │   ├── 📄 layout.tsx
+│   │   ├── 📄 page.tsx
+│   │   ├── 📄 template.tsx
+│   │   ├── 📁 fonts
+│   │   ├── 📁 services
+│   │   │   ├── 📄 page.tsx
+│   ├── 📁 components
+│   │   ├── 📁 features
+│   │   │   ├── 📄 HeroQuoteForm.tsx
+│   │   │   ├── 📄 interactive-button.tsx
+│   │   ├── 📁 layout
+│   │   │   ├── 📄 FeatureCard.tsx
+│   │   │   ├── 📄 FeatureGrid.tsx
+│   │   │   ├── 📄 Footer.tsx
+│   │   │   ├── 📄 Header.tsx
+│   │   │   ├── 📄 HeaderNavigation.tsx
+│   │   │   ├── 📄 HeroSection.tsx
+│   │   │   ├── 📄 InsuranceAndServiceHub.tsx
+│   │   │   ├── 📄 LazyMap.tsx
+│   │   │   ├── 📄 LocationAndCTA.tsx
+│   │   │   ├── 📄 LogoScroller.tsx
+│   │   │   ├── 📄 ProcessCallout.tsx
+│   │   │   ├── 📄 ProcessFlowLine.tsx
+│   │   │   ├── 📄 TestimonialsSection.tsx
+│   │   │   ├── 📄 TrustBar.tsx
+│   │   ├── 📁 services
+│   │   │   ├── 📄 ServiceCard.tsx
+│   │   │   ├── 📄 ServicesGrid.tsx
+│   │   ├── 📁 ui
+│   │   │   ├── 📄 button.tsx
+│   │   │   ├── 📄 card.tsx
+│   │   │   ├── 📄 input.tsx
+│   ├── 📁 lib
+│   │   ├── 📄 utils.ts
+
+
+====================================================================================================
+
+📄 **INDIVIDUAL FILE CONTENTS**
+
+====================================================================================================
+
+--------------------------------------------------------------------------------📄 FILE PATH: .browserslistrc--------------------------------------------------------------------------------```text# Modern browsers only - ES2020+ support (removes legacy polyfills)
+# This targets browsers that natively support Array.at, Array.flat, Object.fromEntries, etc.
+> 0.5%
+last 2 versions
+Firefox ESR
+not dead
+not IE 9-11
+not op_mini all
+Chrome >= 92
+Firefox >= 90
+Safari >= 14.1
+Edge >= 92
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: .env.example--------------------------------------------------------------------------------```text# .env.example
+
+# REQUIRED for Auth.js: 
+# A secret used to sign session cookies. Generate a strong, random string.
+AUTH_SECRET="" 
+
+# REQUIRED for OAuth Providers (e.g., GitHub, Google)
+# Obtain these from the GitHub Developer Settings 
+GITHUB_ID=""
+GITHUB_SECRET=""```
+
+--------------------------------------------------------------------------------📄 FILE PATH: .eslintrc.json--------------------------------------------------------------------------------```json{
+  "extends": ["next/core-web-vitals", "next/typescript"]
+}
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: .gitignore--------------------------------------------------------------------------------```text# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: README.md--------------------------------------------------------------------------------```textThat's exactly right\! Creating a comprehensive **README.md** and uploading your configured code to GitHub turns your current project into a reusable **template repository** or **boilerplate**.
+
+### 💡 The Philosophy of Your Boilerplate
+
+[cite\_start]Yes, that is exactly how it should work[cite: 436, 440]\!
+
+  * [cite\_start]**Template Repository:** By marking your GitHub repository as a template, anyone (including you) can click **"Use this template"** to instantly generate a new, clean repository with the exact same file structure and code, ready to start a new project[cite: 436, 440].
+  * [cite\_start]**The README's Purpose:** The README.md is the single most important piece of documentation[cite: 445]. [cite\_start]It defines the project's philosophy, lists all included technologies, provides the setup guide, and serves as the primary resource for anyone cloning or forking the code[cite: 445, 446].
+
+Below is the complete, professional, and well-structured `README.md` content for your repository, documenting everything we've built.
+
+-----
+
+## 📚 README.md: Next.js Modern Boilerplate
+
+## 🚀 Next.js Modern Boilerplate
+
+This repository is a production-ready template designed for speed, performance, and long-term maintainability. It implements the **Next.js App Router's Server-First Paradigm** and the **shadcn/ui Architectural Sovereignty model** to provide an optimal foundation for building scalable SaaS applications, dashboards, or complex marketing sites.
+
+### 🌟 Core Philosophy
+
+[cite\_start]The primary goal of this boilerplate is to eliminate the "undifferentiated heavy lifting" of project setup[cite: 23, 25]. [cite\_start]It makes strong, opinionated choices to maximize performance, starting with a clean architecture where components are Server Components by default[cite: 466, 467, 1484, 1485].
+
+### 📦 Technology Stack Summary
+
+| Category | Technology | Purpose & Architectural Rationale |
+| :--- | :--- | :--- |
+| **Framework** | [cite\_start]Next.js 14 (App Router) [cite: 523, 530] | Modern, server-first architecture for performance and streaming SSR. |
+| **Language** | [cite\_start]TypeScript [cite: 528] | Essential for building robust, scalable, and type-safe applications. |
+| **Styling** | [cite\_start]Tailwind CSS [cite: 529] | Utility-first, zero-runtime overhead, and minimal final CSS bundle size. |
+| [cite\_start]**UI Components** | shadcn/ui [cite: 469] | [cite\_start]**Architectural Sovereignty:** Components are locally owned, not external dependencies, offering unrestricted customization[cite: 470, 954, 958]. |
+| [cite\_start]**Package Manager**| pnpm [cite: 493] | [cite\_start]Recommended for performance and graceful handling of peer dependency conflicts (critical when navigating library updates)[cite: 499, 503]. |
+
+-----
+
+## 🏗️ Project Structure & Architecture
+
+[cite\_start]This project adopts the recommended `src/` directory convention [cite: 529, 530, 72, 73] [cite\_start]and a Feature-First Component Taxonomy for enhanced scalability[cite: 1465, 2564].
+
+### Core File Structure
+
+```
+nextjs-modern-app/
+├── public/
+├── src/
+│   ├── app/                    # App Router: All routes, pages, and layouts reside here.
+│   │   ├── favicon.ico
+│   │   ├── globals.css         # Global styles (Tailwind directives, CSS variables).
+│   │   ├── layout.tsx          # Root Layout (defines <html>, <body>, wraps app).
+│   │   └── page.tsx            # Homepage (renders Header, HeroSection, Footer).
+│   ├── components/
+│   │   ├── features/           # Interactive, client-side logic (e.g., Auth forms, toggles).
+[cite_start]│   │   │   └── interactive-button.tsx  # DEMO: Client-side component for testing interactivity[cite: 1490].
+│   │   ├── layout/             # Structural components (used in layouts or pages).
+│   │   │   ├── Header.tsx      # Persistent, structural navigation (Server Component).
+│   │   │   ├── HeroSection.tsx # Large content block (Server Component).
+│   │   │   ├── FeatureGrid.tsx # Container for feature cards (Server Component).
+│   │   │   └── Footer.tsx      # Persistent bottom structure (Server Component).
+│   │   └── ui/                 # shadcn/ui component source code (e.g., button.tsx, card.tsx).
+│   ├── lib/
+│   │   └── utils.ts            # Global pure utilities (e.g., cn() for class merging).
+├── components.json             # shadcn/ui configuration manifest.
+├── next.config.mjs             # Next.js configuration.
+├── package.json                # Defines dependencies and scripts.
+├── tailwind.config.ts          # Defines the custom design system (colors, fonts).
+└── tsconfig.json               # TypeScript compiler options.
+```
+
+### Server/Client Component Boundary (Key Best Practice)
+
+[cite\_start]The structure is built around the Server-First paradigm[cite: 466, 1228, 1484]:
+
+| Component | Type | Location | Purpose |
+| :--- | :--- | :--- | :--- |
+| `page.tsx` | **Server Component (Default)** | `src/app/` | [cite\_start]Fetches data (if needed) and orchestrates the layout components[cite: 1485]. |
+| `Header.tsx`, `Footer.tsx` | **Server Component (Default)** | `src/components/layout/` | Renders the static structure and styles for maximum performance. |
+| `interactive-button.tsx` | **Client Component** | `src/components/features/` | [cite\_start]Marked with `"use client"` [cite: 1492] [cite\_start]to handle browser-only features like `onClick` event handlers[cite: 1491]. **This prevents the common runtime error you encountered.** |
+
+-----
+
+## 🛠️ Getting Started (Local Setup)
+
+### Prerequisites
+
+  * [cite\_start]**Node.js:** LTS version (v18 or higher)[cite: 484].
+  * **pnpm:** Recommended package manager (`npm install -g pnpm`).
+
+### 1\. Clone the Template & Install Dependencies
+
+If you created a new repository from this template, simply navigate into the new folder.
+
+```bash
+git clone [YOUR-REPO-URL] nextjs-modern-app
+cd nextjs-modern-app
+
+# Install dependencies using pnpm
+pnpm install 
+```
+
+### 2\. Run the Development Server
+
+The application will compile and start using the integrated **App Router** and **Tailwind CSS**.
+
+```bash
+pnpm dev
+```
+
+The app is now running at `http://localhost:3000`.
+
+### 3\. Verify Frontend Structure
+
+  * Navigate to the homepage.
+  * Verify the fully styled **Header**, **Hero Section**, and **Footer**.
+  * Click the **"Click Me"** button (rendered via `interactive-button.tsx`) to confirm client-side interactivity works without throwing a boundary error.
+
+-----
+
+## 💡 Customization & Extension
+
+### Adding New shadcn/ui Components
+
+To add any new component (e.g., `Input`, `Dialog`), use the `shadcn` CLI:
+
+```bash
+pnpm dlx shadcn@latest add [component-name]
+# Example: pnpm dlx shadcn@latest add input
+```
+
+This command will copy the source code directly to `src/components/ui/`.
+
+### Theming and Styling
+
+Your primary theme variables are defined in `src/app/globals.css` using standard CSS variables, allowing for global color and font customization.
+
+-----
+
+## ✅ Final Checklist for Launch
+
+  * [cite\_start][ ] **Comprehensive README.md**: (Complete) [cite: 445]
+  * [cite\_start][ ] **Example Environment File**: Create an **`.env.example`** file now, ready for future integrations (e.g., `DATABASE_URL=`, `AUTH_SECRET=`)[cite: 447, 448].
+  * [cite\_start][ ] **Open-Source License**: Include a `LICENSE` file (e.g., MIT License)[cite: 450].
+  * [cite\_start][ ] **Continuous Integration (CI)**: Add a basic GitHub Actions workflow (`.github/workflows/ci.yml`) to run ESLint and TypeScript checks on pull requests[cite: 449, 347].
+
+-----
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: Research.txt--------------------------------------------------------------------------------```text
+Strategic Blueprint for a Conversion-Focused Panelbeater Website
+
+
+Part 1: The Strategic Blueprint - Designing for Two Minds
+
+This report provides a comprehensive front-end development and design strategy for a panelbeating and emergency towing website located in Mtubatuba, KwaZulu-Natal. The core challenge for this project is not technical; it is psychological. The website must be engineered to serve two distinct, mutually exclusive user personas, often at the same time. The success of this build hinges on successfully funnelling these users to the correct conversion goal without friction.
+
+1.1. The Dual-Persona Challenge: Panic vs. Prudence
+
+The website's architecture must be built around a "Dual-Persona" model, accommodating both the "Crisis User" and the "Research User."
+
+Persona A: The "Crisis User" (Emergency Towing)
+
+Context: This user is in a high-stress, "crisis" state. They are likely stranded on a roadside near Mtubatuba or in the surrounding KZN North Coast area, having just been in an accident or experienced a breakdown.1
+Mindset: This user is experiencing high anxiety, panic, and cognitive "tunnel vision".4 Their ability to process complex information, navigate menus, or fill out forms is severely compromised.6 They are not "shopping"; they are seeking immediate rescue.
+Device: This user is accessing the site almost exclusively via a mobile phone, often on an unstable data connection.7
+Core Need: The single, immediate, and only need is a large, clickable phone number for a 24/7 towing service.8
+Design Mandate: The design for this user must prioritize radical simplicity, instant load speed, and a "zero-friction" path to a phone call. Any non-essential element (pop-ups, complex graphics, forms) is a critical failure.11
+
+Persona B: The "Research User" (Panelbeating Quote)
+
+Context: This user is in a low-stress, analytical state. They are at home or their office, days after an incident, or have noticed pre-existing damage. They are actively "shopping around" for a panelbeater.
+Mindset: This user is analytical, skeptical, and focused on quality, trustworthiness, and cost.14 They are comparing the client's shop against 2-3 local competitors, looking for reasons to trust one over the others.
+Device: Access may be from a desktop computer or a mobile device.
+Core Need: This user needs to be convinced. Their core needs are:
+Proof of Quality: "Before and After" galleries.16
+Trust Signals: Accreditations (like SAMBRA), positive reviews, and insurance partnerships.18
+A Simple Quote Process: An easy-to-use online form, preferably with photo upload capabilities.23
+Design Mandate: The design for this user must be professional, visually appealing, and structured as a "trust funnel"—a journey that guides them from the homepage, through pages of evidence, and ultimately to the quote form.25
+
+1.2. Core Strategy: The "Dual Funnel" Approach
+
+The solution to the dual-persona challenge is a "Dual Funnel" strategy. The website's interface, especially the "above the fold" content on the homepage, must immediately present two distinct calls-to-action (CTAs) to triage users into the correct funnel.27
+Primary (Non-Emergency) CTA: A high-contrast button labeled "Get a Free Quote" or "Get a Free Digital Assessment". This button will direct the "Research User" to the main conversion funnel.23
+Secondary (Emergency) CTA: A highly visible, hyperlinked text or secondary button labeled "24/7 Emergency Towing: [Click-to-Call Number]". This provides the "Crisis User" with their "one-click" solution.8
+This dual-CTA strategy respects both user's needs instantly. Analysis of a local KZN competitor, Shades Bodyshop, confirms this is a highly effective and proven model in the target market. Their site prominently features both a "Free Digital Assessment" and a "24 HOUR TOWING" callout, successfully serving both personas.31
+
+1.3. The Aesthetic of Trust: Color, Typography, and Voice
+
+The website's visual identity must be professional and reassuring, designed to build immediate credibility.
+Color Palette: The color scheme must convey professionalism and reliability.
+Primary: Blue. This is the most-preferred color by both men and women and is psychologically associated with trust, dependability, loyalty, and order.32
+Secondary: Gray, Dark Gray, or Black. These tones convey sophistication, professionalism, luxury, and value. They provide a strong, modern foundation for the design.32
+Accent (for CTAs): A bright, high-contrast color like Orange or Yellow. Orange is associated with action and urgency, forcing the user to "hurry up".32 This makes it ideal for CTA buttons.
+Typography: Fonts must be chosen for clarity and readability above all else. Use large, legible font sizes for key information, ensuring body copy is easy to read.34 For users in a high-stress state, clear typography is an essential accessibility feature.12
+Voice & Tone: The written content (the "copy") must be professional, clear, and empathetic. The tone should communicate expertise and reassurance: "We are certified experts, we understand this is a stressful situation, and we are here to handle the entire process for you".12
+
+1.4. The Local SEO "Gap in the Market"
+
+A review of the search landscape for the client's specific location reveals a significant strategic opportunity. Current search results for key terms like "panelbeaters Mtubatuba" 36 and "emergency towing Mtubatuba" 1 are not dominated by strong, independent competitor websites.
+Instead, the search results are overwhelmingly populated by business directories such as Assist247, the Towing Directory, and the SAMBRA directory itself.2 Local competitors, like Rhino Towing, are listed within these directories 1 but appear to lack their own well-optimized, professional dot-com presence.
+This creates a clear "gap in the market." A well-built, professional, and properly optimized Next.js website, following the SEO and content principles outlined in this report, will not just be competing—it will be positioned to dominate the local search rankings for its primary service terms. This is a powerful selling point for the client, as the website will become a primary, self-sustaining source of leads.
+
+Part 2: Homepage Architecture - The First 5 Seconds
+
+The homepage, particularly the "above the fold" section visible without scrolling, is the most valuable real estate on the website.28 It must instantly satisfy the needs of both the "Crisis User" and the "Research User."
+
+2.1. Header & Navigation Bar
+
+The header must be clean, simple, and functional, especially in its mobile-responsive state.7
+Layout: Standard professional layout: Logo on the far left, navigation links in the center or right-aligned, and the primary CTA button on the far right.
+Contact Info: The main (non-emergency) business phone number should be visible in the header as a clickable tel: link, as this is a key piece of information for all users.18
+Navigation Links (The "7-Page" Standard): The navigation menu should be simple and predictable.
+Home: Returns to the homepage.
+Services: A dropdown menu that lists the individual service pages (e.g., Collision Repair, Spray Painting, Dent Removal).
+24/7 Emergency Towing: This must be a top-level, high-visibility menu item. It should not be hidden in the "Services" dropdown. For the Crisis User, this is the only link that matters. It may even be styled in the accent color to draw the eye.8
+About Us: Links to the page detailing the company story and accreditations.
+Gallery (Before & After): Links to the visual proof of work.
+Contact: Links to the location, map, and general inquiry form.
+[Get a Free Quote]: This is the primary conversion action for the "Research User" and must be styled as a high-contrast button.42
+
+2.2. The Hero Section: Solution-First Messaging
+
+The hero section is the large banner that sits "above the fold." It is the first thing a user sees and must communicate the entire value proposition in seconds.
+Background: A high-quality, professional photograph or a short, looping video (under 10 seconds). This visual must be authentic—showing the client's clean workshop, a branded tow truck, or a beautifully repaired vehicle. Avoid generic stock photos, which reduce trust.7
+Headline (H1 Tag): The H1 is the most important tag for SEO and user clarity. It must be specific, local, and service-oriented.
+Example: "Mtubatuba's Trusted Collision Repair & 24/7 Emergency Towing".45
+Sub-headline: A trust-building statement that immediately answers the "why" question.
+Example: "SAMBRA-accredited repairs for all major insurance partners. We get you back on the road, guaranteed.".22
+The Dual CTA Block (Critical): This is the implementation of the "Dual Funnel" strategy.
+Primary Button: A large, accent-color button. Text: or. This links to the quote form/page.23
+Secondary Link: A clear, unmissable text link or "ghost button." Text: Emergency? Call 24/7 Towing: 08X-XXX-XXXX. This must be a clickable tel: link.8
+
+2.3. The "Trust Bar": A Non-Negotiable Component
+
+Immediately below the hero section, a horizontal "Trust Bar" component is required. Its purpose is to "short-circuit" the "Research User's" skepticism by displaying immediate, at-a-glance proof of credibility.25 In the South African auto repair market, this is a non-negotiable element.
+Content: This component must display the official logos of:
+Accreditations: SAMBRA (South African Motor Body Repairers' Association) 39 and RMI (Retail Motor Industry Organisation).47
+Key Partners: A heading like "Approved Repairer for Major Insurers".46 If the client has specific approvals, their logos (e.g., Santam, Auto & General) should be featured. This is a primary decision-making factor for users with insurance.20
+
+2.4. Homepage Content Flow (Guiding the "Research User")
+
+The rest of the homepage acts as a "trust funnel," guiding the "Research User" deeper into the site with progressively stronger proof.
+Section 1: Services Overview: A clean, icon-driven grid that visually represents the primary services (e.g., "Collision Repair," "Spray Painting," "24/7 Towing," "Dent Removal"). Each item links to its dedicated service page, which is critical for SEO.7
+Section 2: "Why Choose Us" / Value Proposition: A brief, 3-column section highlighting the key benefits of choosing this shop.
+"SAMBRA Accredited": Text explaining this means guaranteed quality and consumer protection.49
+"Lifetime Workmanship Guarantee": This directly addresses a user's fear of poor quality and builds immense confidence.50
+"All Major Insurance Approved": This removes the user's anxiety about the claims process, a major friction point.46
+Section 3: Visual Proof (The Gallery Teaser): A simple, 3-image "Before & After" slider or component.16 This is a powerful visual "hook" that demonstrates capability and entices the user to click through to the full gallery page.
+Section 4: Social Proof (The Testimonial Teaser): A rotating carousel component displaying 2-3 of the best customer testimonials.19 These should be sourced from Google Reviews or direct feedback and feature real names and locations (e.g., "J. Smith, Mtubatuba") to build local credibility.25
+Section 5: Final CTA Block: A full-width, high-impact section at the bottom of the page that repeats the "Dual Funnel" CTAs: "Get Your Free Quote" and "Call for 24/7 Towing." A user should never reach the end of a page without a clear next step.
+
+Part 3: Essential Page Blueprints (The "Research User" Funnel)
+
+These pages form the core of the website, building the "trust funnel" for the "Research User" and providing the necessary content "silos" to rank on Google for specific, high-intent keywords.
+
+3.1. The 'About Us' Page (The Trust Anchor)
+
+The "About Us" page is one of the most critical pages for building trust.55 It is the user's opportunity to see the people behind the logo. A generic, corporate-speak page will fail. It must be personal and local.55
+Purpose: To humanize the brand, establish a personal connection with the Mtubatuba community, and present the core evidence of credibility.55
+Content Blueprint:
+Our Story: A brief, personal narrative. For example: "Founded in, [Client's Name] started this shop to provide honest, high-quality, and reliable panelbeating services to the Mtubatuba community." This connects the business to the local area.56
+Meet the Owner / Team: This is highly effective. A professional, friendly photo of the owner and any key staff. Putting a face to the name transforms the business from an abstract entity into a group of real people, which builds immense trust.55
+Our Mission & Values: Simple, believable bullet points. Avoid corporate jargon. Use terms like: "Honesty & Transparency," "Quality Craftsmanship," and "Customer Satisfaction Guarantee".56
+Our Accreditations (In-Depth): While the Trust Bar shows logos, this section explains them.
+"What Our SAMBRA Accreditation Means for You": Explain that SAMBRA is the national authority that sets and maintains high standards. This accreditation guarantees qualified staff, regular inspections, and provides the customer with a formal channel for dispute resolution, ensuring they are protected.22
+"Proud RMI Member": Note that SAMBRA is a proud association of the Retail Motor Industry (RMI), reinforcing the shop's commitment to industry standards.47
+Our Guarantee: A dedicated section detailing the "Workmanship Guarantee." Reiterate that all repairs are backed by a lifetime warranty, giving customers total peace of mind.50
+Call-to-Action: The page should conclude with a clear CTA to "Get Your Free Quote" or "View Our Work".56
+
+3.2. The 'Services' Parent Page
+
+Purpose: This page acts as a simple navigation "hub" or "silo" page. It serves as a clear, user-friendly table of contents for all the services the company offers.18
+Layout: A clean grid of all available services (e.g., Collision Repair, Spray Painting, Dent Removal, 24/7 Towing, etc.). Each grid item should feature an icon, the service name, a 1-2 sentence description, and a "Learn More" button that links to the dedicated service page.7
+
+3.3. Dedicated Service Page Template (e.g., 'Collision Repair,' 'Spray Painting')
+
+This is the most critical component of the website's SEO strategy. A single, generic "Services" page will fail to rank. The site must have a unique, dedicated page for each individual service the client wants to rank for.18 This allows targeting specific, high-intent keywords like "car spray painting prices Mtubatuba" or "dent removal KZN."
+Each service page must follow this template:
+SEO Title: <Service Name> Mtubatuba | <Shop Name> (e.g., "Collision Repair Mtubatuba | ABC Panelbeaters").45
+H1: "Expert in Mtubatuba" (e.g., "Expert Collision Repair in Mtubatuba").45
+Content Structure (per page):
+Introduction: A clear, benefit-focused description of the service. What is it, and what problem does it solve for the customer?.63
+Our Process: A simple 3-4 step explanation of the process for this specific service. For example, a 'Spray Painting' page would list: 1. Preparation & Sanding, 2. Computer-Matched Priming, 3. Flawless Top Coat & Curing, 4. Polishing & Quality Inspection.64 This builds transparency and authority.
+Visual Proof: A "Before & After" gallery component that has been filtered to show only examples of this specific service. This is highly persuasive.16
+Social Proof: One or two relevant static testimonials that specifically mention this service (e.g., on the 'Spray Painting' page, use a review that says "the paint job was a perfect match!").19
+Frequently Asked Questions (FAQs): 2-3 questions specific to the service. (e.g., for 'Collision Repair': "How long will the repair take?" "Will you handle my insurance claim?"). This is excellent for SEO and for reducing user anxiety.62
+CTA: A strong, clear call-to-action button: "Get a Quote for Your" that links directly to the quote form.
+
+3.4. The 'Our Process' Page (Transparency Builder)
+
+Purpose: To demystify the entire auto repair journey, from the moment of the accident to the vehicle handover. This reduces customer anxiety by setting clear expectations and positioning the shop as a professional, organized partner who will manage the process.26
+Layout: A visual, step-by-step timeline or "stepper" component is most effective.
+Content (based on industry best-practice 65):
+Step 1: Vehicle Drop-off & Initial Assessment: The customer brings the car in (or it's towed in), and a preliminary inspection is done.
+Step 2: Quote & Insurance Authorisation: A detailed quote is prepared (often using systems like Audatex 68) and sent to the insurance company for approval.
+Step 3: Disassembly & Parts Ordering: Once approved, the damaged area is disassembled, any hidden damage is assessed, and all necessary parts are ordered.
+Step 4: Structural Repair & Panelbeating: The vehicle's frame is straightened, and all panelbeating work is completed by qualified artisans.
+Step 5: Paint Preparation & Spray Painting: The car moves to the paint shop for priming, color-matching, and refinishing in a professional spray booth.
+Step 6: Reassembly & Quality Control: The vehicle is reassembled, and all systems are checked. A rigorous quality control inspection is performed.
+Step 7: Final Wash, Polish & Vehicle Handover: The car is professionally cleaned, and the customer is called for handover.
+
+3.5. The 'Contact & Location' Page (Local SEO Pillar)
+
+Purpose: This page is the single source of truth for the business's location data, which is essential for ranking in Google's "Local Pack" (the map results).18
+Content:
+NAP (Name, Address, Phone): The full business Name, physical Address, and Phone Number. This data must be 100% identical to the client's Google Business Profile (GBP) listing. Any mismatch will hurt local SEO.8
+Business Hours: Clearly listed operating hours.18
+Embedded Google Map: A large, interactive embedded map showing the shop's pin.7
+Service Area List: To capture local-intent searches, explicitly list the primary service area ("Mtubatuba") and all nearby towns and areas the client serves (e.g., St. Lucia, Richards Bay, Hluhluwe, KZN North Coast).31
+Simple Contact Form: This form is for general inquiries only (e.g., "What are your holiday hours?"). It should be much simpler than the quote form and should not be the primary CTA.69
+
+Part 4: High-Stress UX - The "24/7 Emergency Towing" Page (The "Crisis User" Funnel)
+
+This is not a standard web page. It is a specialized, mobile-first, high-stress landing page. Its sole objective is to convert a "Crisis User" into a phone call. It must be designed with "Crisis UX" and "Trauma-Informed" principles.
+
+4.1. The "Trauma-Informed" Design Mandate
+
+This page's user is in a state of acute distress.4 The design must be a tool, not a brochure.
+Clarity Over Complexity: The interface must be radically simple. No jargon, no complex menus, no ambiguity.4
+Focus on Critical Actions: All design elements must converge on a single, critical action: the phone call. All other options must be removed or de-emphasized.4
+Speed: The page must load instantly. This means optimizing images, minifying code, and leveraging Next.js's performance. A 3-second load time is too long for a user on the side of a dark road.7
+
+4.2. Page Layout (Mobile-First)
+
+This page must be designed for a mobile screen first.
+Above the Fold (The Entire Screen):
+H1: A large, clear, reassuring headline. "Need Emergency Towing in Mtubatuba?".71
+Primary Element: A giant, full-width, high-contrast button with a phone icon. This button should be "sticky" or immediately visible.9
+Button Text: CLICK TO CALL 24/7.8
+Secondary Element: The phone number itself, rendered in a massive font, which is also a clickable tel: link: 08X-XXX-XXXX.10
+Below the Fold (For SEO & Reassurance):
+Trust Signals (Simplified): A single line of text. "Santam & RMI Approved Towing".47
+Service Area: "We offer 24/7 towing and accident recovery in Mtubatuba, St. Lucia, Richards Bay, and across the KZN North Coast."
+Simple SEO Content: A few short paragraphs with clear headings (e.g., "Had an Accident?", "Broken Down?", "What to Do Next"). This content is primarily for search engines and to provide minimal reassurance to a user who scrolls.71
+
+4.3. What to Exclude
+
+What is not on this page is more important than what is.
+NO complex header or main navigation menu. A simple "Home" link is the only navigation needed.
+NO "Get a Quote" form. This is the wrong funnel.
+NO "Before & After" gallery. This is a distraction.
+NO pop-ups, chat widgets, or newsletter signups. Zero distractions.
+
+Part 5: The Component-Based Development Plan (Your "To-Build" List)
+
+This section details the core, reusable React components required for the build.
+
+5.1. Component 1: The 'Get a Quote' Form
+
+This is the primary conversion tool for "Research Users." It must be simple to use but comprehensive enough to provide a useful quote.23
+Purpose: To capture qualified leads for the panelbeating business.
+Fields:
+Your Name* 76
+Your Phone Number* 24
+Your Email* 24
+Vehicle Make (e.g., Toyota)
+Vehicle Model (e.g., Hilux)
+Vehicle Year
+Insurance Provider (Dropdown list, optional)
+Service(s) Needed (Checkboxes: Collision Repair, Spray Painting, Dent Repair, etc.) 24
+The "Killer Feature": Damage Photo Upload
+This is the most critical feature of the form. It allows the shop to provide a much more accurate "digital assessment," which is a key feature of modern competitors.31 It increases quote accuracy, reduces friction for the user (who may not know how to describe the damage), and builds confidence.24
+Specification:
+Label: "Upload Photos of the Damage (Up to 5 images)"
+UI: A "drag-and-drop" area that also functions as a simple "Tap to Upload" button on mobile devices.24
+Functionality: Must support multiple file uploads (e.g., .jpg, .png). It should show thumbnails of the images as they are uploaded so the user knows it was successful.
+
+5.2. Component 2: The 'Before & After' Gallery
+
+Purpose: The ultimate visual "proof of quality" that builds trust and demonstrates expertise.52
+Layout: A two-column grid is most effective.16 The left image is "Before" (the damage), and the right image is "After" (the repair). Each pair should have a simple title (e.g., "Ford Ranger - Bumper Repair").
+Features:
+Filtering: The gallery must be filterable by service category (e.g., "All," "Collision Repair," "Spray Painting," "Restoration"). This is essential for reusing the component on the dedicated service pages.
+Lightbox: Clicking any image should open a full-screen "lightbox" slider, allowing the user to swipe through the gallery on mobile or click through on desktop.
+
+5.3. Component 3: The 'Testimonials' Component
+
+Purpose: To provide authentic, third-party social proof, which is more persuasive than the shop's own marketing copy.19
+Design (Two Variants):
+Homepage Variant: A rotating carousel (or "slider") that cycles through 2-3 of the best testimonials.54
+Static Variant: For use on 'About Us' and 'Service' pages. These should be static (non-rotating) and chosen for their relevance to the page's content.19
+Content (per testimonial):
+Star Rating (e.g., 5-star graphic).25
+The Testimonial Quote.
+Customer Name & Location (e.g., "J. Smith, Mtubatuba"). The location adds local credibility and authenticity.19
+
+5.4. Component 4: The 'Accreditations & Partners' (Trust Bar)
+
+Purpose: A reusable, "at-a-glance" component that visually communicates credibility.25
+Layout: A horizontal bar or row, often placed in the site footer, on the 'About' page, and immediately below the homepage hero.
+Content: Official, high-quality logos for:
+SAMBRA 39
+RMI 47
+Any specific manufacturer approvals (e.g., Toyota, Ford, etc.).48
+Any major insurance partners.20
+
+5.5. Component 5: The 'Workmanship Guarantee' Component
+
+Purpose: To proactively address and overcome the "Research User's" primary fear: "Will the repair be low-quality and will I have to pay to fix it again?".50
+Layout: A simple, reusable content box, often styled with an icon (like a shield or a quality ribbon) to make it stand out.
+Content:
+Headline: "Our Lifetime Workmanship Guarantee".51
+Text: "We stand by our work. All panelbeating and spray painting repairs are backed by our comprehensive lifetime guarantee on workmanship, giving you total peace of mind.".50
+
+Part 6: South African & KZN Market Analysis
+
+This design is not arbitrary; it is informed by analyzing the specific South African and KZN competitive and regulatory landscape.
+
+6.1. Local Competitor & Best-in-Class Analysis
+
+Shades Bodyshop (Durban) 31:
+Key Takeaway: Their homepage is an excellent model for the "Dual Funnel" strategy. The "Free Digital Assessment" (photo upload quote) and "24 HOUR TOWING" CTAs are prominent and effective. This is a model to emulate and improve upon.
+Gqeberha Auto Body Repair (Gqeberha) 80:
+Key Takeaway: This site demonstrates a high level of professionalism. It effectively uses service callouts like "Drive Thru" and "Speed Shop" and has a strong "GET A QUOTE" CTA. This proves that a clean, professional, and corporate-style design is effective in the South African market.
+Dino's Auto (Gauteng) 68:
+Key Takeaway: This site is a goldmine for content ideas. Its "Accreditation" and "Facilities" pages are extremely detailed, listing manufacturer approvals and workshop technology. While our design will be more visual and less text-heavy, the content from these pages provides a template for what the "Research User" is looking for.
+Autoboys (National Chain) 81:
+Key Takeaway: As a major national chain, their site builds trust through "Values," "Testimonials," and "In The News" sections. Their quote process, however, is a general "contact us" form. This is a key weakness. The proposed "Get a Quote" form with a dedicated image upload feature (Component 1) will provide a superior user experience to this major national competitor.
+
+6.2. The Critical Role of South African Accreditations
+
+In the South African market, accreditations are not just "nice to have"; they are the entire foundation of trust between the customer, the repairer, and the insurer.
+SAMBRA (South African Motor Body Repairers' Association): This is the gold standard. The website must not just show the SAMBRA logo 39, it must explain what it means for the customer. As detailed on the 'About Us' page, this logo signifies that the shop meets stringent standards, employs qualified staff, and that the customer is protected by SAMBRA's mediation and arbitration services.22
+RMI (Retail Motor Industry Organisation): A secondary, but still vital, trust signal. It reinforces that the business is a formal, recognized entity within the larger industry, as SAMBRA is an association of the RMI.22
+Insurance & Manufacturer Approvals: For most "Research Users," the primary concern is whether the repair will be covered by their insurance. Stating "Approved for all major insurance" is good, but showing the logos of partners (like Santam 73 or Auto & General 48) is better.20 The "Trust Bar" (Component 4) is the most effective solution for this.
+
+Part 7: Implementation Checklist & Key Tables
+
+This final section provides an actionable checklist and two key "blueprint" tables to guide the Next.js development and content implementation.
+
+7.1. Pre-Launch Technical & SEO Checklist
+
+Meta Data: Implement unique, keyword-optimized meta titles and meta descriptions for every single page and service page.23
+Image Alt Text: Add descriptive alt text to all images, especially in the "Before & After" gallery (e.g., "Before: Damaged red Toyota Hilux bumper").41
+Mobile-First Testing: Rigorously test the entire site, paying special attention to the "24/7 Emergency Towing" page and the "Get a Quote" form, on multiple physical mobile devices.7
+Page Speed: Optimize all images (e.g., using WebP), minify assets, and leverage Next.js static generation (SSG) or incremental static regeneration (ISR) to ensure near-instant load times. This is non-negotiable for the "Crisis User".7
+Schema Markup: Implement LocalBusiness and AutomotiveBusiness schema on the homepage and contact page. Implement Service schema on each individual service page. This provides rich data to Google.71
+Google Analytics & Search Console: Ensure both are configured, and the sitemap is submitted to Google Search Console upon launch.
+Google Business Profile (GBP) Alignment: This is a critical local SEO task. Ensure the Name, Address, and Phone Number (NAP) on the website's 'Contact' page and footer are 100% identical to the client's official GBP listing.
+
+7.2. Table 1: Page-by-Component Matrix (The Assembly Guide)
+
+This table illustrates which reusable components should be placed on which pages to ensure consistency, maximize trust-building, and optimize conversion funnels.
+Page
+Navigation Bar
+Dual CTA
+Trust Bar (Logos)
+'Get a Quote' Form
+'Before & After' Gallery
+Testimonials
+'Workmanship Guarantee'
+Homepage
+✔️
+✔️ (Hero)
+✔️ (Below Hero)
+❌ (Link to Page)
+✔️ (Teaser)
+✔️ (Carousel)
+✔️ (Feature)
+About Us
+✔️
+✔️ (Footer)
+✔️ (Full)
+❌ (Link to Page)
+❌
+✔️ (Static)
+✔️ (Full)
+Service Page
+✔️
+✔️ (Footer)
+✔️ (Footer)
+❌ (Link to Page)
+✔️ (Filtered)
+✔️ (Static, Relevant)
+✔️ (Feature)
+Towing Page
+❌ (Minimal)
+✔️ (Primary)
+✔️ (Simplified)
+❌
+❌
+❌
+❌
+Gallery Page
+✔️
+✔️ (Footer)
+✔️ (Footer)
+❌ (Link to Page)
+✔️ (Full)
+✔️ (Static)
+❌
+Contact Page
+✔️
+✔️ (Footer)
+✔️ (Footer)
+❌ (General Form)
+❌
+❌
+❌
+Quote Page
+✔️
+✔️ (Footer)
+✔️ (Footer)
+✔️ (Full Page)
+❌
+✔️ (Static)
+✔️ (Feature)
+
+
+7.3. Table 2: SEO Keyword & Page Targeting Strategy
+
+This table provides the foundational SEO content map. It specifies the target keywords, H1 tags, SEO titles, and meta descriptions for the site's most critical pages.45
+Target Page
+Primary Keyword (H1)
+Secondary Keywords
+SEO Title Example
+Meta Description Example
+Homepage
+Panelbeater Mtubatuba
+Collision Repair Mtubatuba, Auto Body Shop KZN, 24/7 Towing
+Professional Panelbeaters in Mtubatuba
+
+
+Emergency Towing
+24/7 Emergency Towing Mtubatuba
+Tow Truck Near Me, Accident Towing St. Lucia, Roadside Assistance KZN
+24/7 Emergency Towing Mtubatuba
+
+
+Collision Repair
+Collision Repair Mtubatuba
+Panelbeating, Accident Repair, Bumper Repair
+Expert Collision Repair in Mtubatuba
+
+
+Spray Painting
+Spray Painting Mtubatuba
+Car Painting, Auto Refinishing, Scratch Repair
+Car Spray Painting & Refinishing in Mtubatuba
+
+
+Contact Page
+Contact
+Panelbeater Address, Location
+Contact Our Mtubatuba Panelbeaters
+
+
+
+
+
+Digital Dominance Report: A Strategic Keyword & Market Analysis for Rhino Panelbeaters
+
+
+Part I: Foundation: Rhino Panelbeaters Business Intelligence
+
+To achieve market dominance, a business must first establish a foundational, authoritative, and consistent digital identity. An analysis of the public-facing data for Rhino Panelbeaters reveals significant inconsistencies that are fundamentally undermining its ability to rank in local search, build trust with algorithms and customers, and convert leads. This section audits this digital foundation and provides the blueprint for its correction.
+
+Consolidated Business Profile
+
+An aggregation of data from various online business directories reveals a fractured and confusing digital footprint for Rhino Panelbeaters. This includes multiple variations in the company's registered name, its physical address, and its contact email addresses.
+Business Name Variations: The company is listed under several names, including "Rhino Panel Beaters & Spray Painters" 1, "RHINO PANELBEATERS AND TOWING" 2, and simply "Rhino Towing".3 This dilutes brand recognition and confuses search engines attempting to identify the primary business entity.
+Physical Address Variations: This is the most critical data conflict. The business is listed at two different physical addresses in Mtubatuba:
+174 Jacaranda Ave, Mtubatuba, 3935 1
+147 Jacaranda Av, Mtubatuba, 3935 2
+Contact Detail Variations: Multiple points of contact are listed across different platforms:
+Phone (Consistent): 035 550 1488 (This number is consistent across all major listings 1).
+Fax: 035 5500 211 2
+Cell: 072-3115-870 2
+Email (Inconsistent): hester@rhinopanelbeatersandtowing.co.za 1, michael@rhinopanelbeatersandtowing.co.za 2, and admin@rhinopb.co.za.5
+External Brand Distractors: Compounding the confusion, unrelated businesses exist in Gauteng under the same name: "RHINO PANELBEATERS" in Randburg 6 and "RHINO PANEL BEATERS" in Lanseria.7 This makes it imperative for the Mtubatuba entity to establish a strong, unique, and local digital identity to avoid being algorithmically confused with these Gauteng-based businesses.
+
+Data Integrity & NAP (Name, Address, Phone) Audit
+
+The inconsistencies detailed above are not minor clerical errors; they represent a fundamental failure in NAP (Name, Address, Phone) integrity, which is the cornerstone of all local Search Engine Optimization (SEO).
+Local search engines like Google are discovery and verification engines. To confidently recommend a business to a user, Google's crawlers cross-reference data from dozens of online directories (like those cited above) to build a "profile" of that business. When the NAP data is identical everywhere, Google's trust in the business's existence and location is high, and it will confidently rank that business for relevant local searches (e.g., "panelbeater near me").
+Rhino Panelbeaters' current digital footprint does the opposite. When Google's crawlers find one directory claiming the business is at 147 Jacaranda Ave 2 and another claiming it is at 174 Jacaranda Ave 1, it does not "average" the results; it flags the business as unreliable. This conflict introduces algorithmic doubt, severely erodes Google's trust, and directly causes rankings to be suppressed. A competitor with clean, consistent NAP data (even if they are a weaker business in reality) will be favored by the algorithm.
+Furthermore, the fractured identity (listing as "Rhino Panelbeaters" in some places 1 and "Rhino Towing" in others 3) breaks the most valuable lead-generation funnel the business possesses. The towing service is the tip of the spear; it captures the customer at the high-stress, immediate-need moment of an accident. That towing job should always convert into a high-value panelbeating job. By operating under separate digital identities, the business breaks this funnel, allowing a customer (or their insurer) to seek repairs elsewhere after the tow is complete. The digital identity must be consolidated to reflect this powerful "Towing-to-Repair" business model.
+
+Accreditation & Trust Signal Analysis
+
+A foundational component of digital dominance is "trust," both algorithmic and human. In the South African motor body repair industry, trust is overwhelmingly established through official accreditations and insurance partnerships. An analysis of this landscape reveals Rhino Panelbeaters' single greatest vulnerability.
+A search of the official Retail Motor Industry (RMI) member directory for Mtubatuba does not list "Rhino Panelbeaters".8 Critically, this same directory does list a direct local competitor: "Mtuba Auto Renovators".8
+This is not a minor gap; it is a strategic failing that is likely costing the business the majority of high-value work in the region. In South Africa, the panelbeating industry is overwhelmingly driven by insurance claims.9 Official accreditations from bodies like the RMI 9 and the South African Motor Body Repairers' Association (SAMBRA) 9 are the non-negotiable "gateway" to being placed on an insurer's list of "approved repairers."
+Without these accreditations, Rhino Panelbeaters is invisible to insurers and, by extension, to the customers they direct. When a motorist in Mtubatuba has an accident and calls their insurer (e.g., Santam), the insurer will provide a list of approved panelbeaters. That list will include "Mtuba Auto Renovators" (which is Santam approved 13) and other accredited shops in the regional hub of Empangeni/Richards Bay, such as "Central Panelbeaters" (approved by BMW, Mercedes, and "most insurance companies" 14) and "Marvic Panelbeaters" (Hollard approved 15).
+Rhino Panelbeaters will not be on that list. The business is being bypassed for the most lucrative, insurance-paid jobs, which are being sent directly to its accredited competitors. This is not a keyword problem; it is a foundational business-level problem that makes "dominance" impossible.
+The following table provides an actionable tool to correct the first part of this problem: the NAP inconsistency.
+Table 1: Rhino Panelbeaters - Data Integrity Audit & Recommended 'Single Source of Truth'
+
+Data Point
+Discovered Variations (and Sources)
+Recommended 'Single Source of Truth'
+Business Name
+1. Rhino Panel Beaters & Spray Painters 1
+
+2. RHINO PANELBEATERS AND TOWING 2
+
+3. Rhino Towing 3
+RHINO PANELBEATERS & TOWING
+
+(Recommended for consolidation)
+Physical Address
+1. 174 Jacaranda Ave, Mtubatuba, 3935 1
+
+2. 147 Jacaranda Av, Mtubatuba, 3935 2
+[Client Must Verify and Enter the ONE Correct Address]
+Postal Address
+1. P O Box 328, Mtubatuba, 3935 2
+[Client Must Verify and Enter the ONE Correct Address]
+Primary Phone
+1. 035 550 1488 (Consistent) 1
+035 550 1488
+Primary Email
+1. hester@... 1
+
+2. michael@... 2
+
+3. admin@... 5
+[Client Must Verify and Enter the ONE Correct Email]
+
+
+Part II: The Digital Battlefield: Geographic & Competitive Landscape
+
+To "dominate" an area, that area must first be defined. This section translates the ambiguous "close surroundings" into a data-driven, tiered "Area of Dominance" based on proximity, economic importance, and traffic flow. It then populates this map with a comprehensive dossier of all competitors operating within it.
+
+Defining the "Area of Dominance": Geographic Target Zones
+
+The analysis of regional geography, municipal data, and travel routes 16 allows for the creation of a tiered strategic map.
+Primary Target Zone (Core Territory):
+Mtubatuba: This is the home base. It is not just a small town; it is a strong sub-regional commercial, service, and transport hub.16 All keyword searches originating from or including "Mtubatuba" must be won.
+Secondary Target Zone (High-Opportunity Surroundings):
+St Lucia: Located approximately 25-26 km from Mtubatuba via the R618 road.18 It is a major tourism and service center for the iSimangaliso Wetland Park.16 Its economic activity and lack of local competitors (as shown below) make it the single highest-priority expansion target.
+Hluhluwe: Located approximately 32-54 km north (distance varies by source).19 This town is the key access point for major game reserves 30 and a significant stop for tourists and regional traffic.
+Tertiary Target Zone (Regional Hubs / High-Competition):
+Richards Bay: Located approximately 43-52 km south.17 This is the closest major city and a significant economic metropole.16 The competition here is fierce, but the volume of potential customers is high.
+Empangeni: Located approximately 55-61 km south.16 Often paired with Richards Bay, this is another major economic hub whose population must be targeted.
+Strategic Capture Points (The "Rivers of Gold"):
+N2 National Route: This is the economic lifeline of northern KwaZulu-Natal.36 It connects Mtubatuba to the southern hubs (Richards Bay/Empangeni) and the northern towns (Hluhluwe/Pongola).16 It is the primary corridor for high-speed accidents 37 and breakdowns, making it the most important "river" of potential towing and recovery jobs.
+R618 Road: This road is the direct link between Mtubatuba and St Lucia.24 It is a high-traffic tourist route and a known area for vehicular accidents.38 Dominating this route digitally means "owning" the link to the St Lucia market.
+
+Local Competitor Dossier
+
+An analysis of online directories and insurance-approved lists reveals a clear competitive landscape. The "war" is not fought with one local competitor; it is fought against a cluster of highly-accredited regional specialists.
+Panelbeating Competitors:
+Mtubatuba (Direct Local):
+Mtuba Auto Renovators: This is the primary local threat. They are RMI approved 8 and, critically, Santam approved.13 They are winning insurance jobs that Rhino Panelbeaters is not eligible for.
+Mtuba Workshop: Listed as a top auto repair business in town.40
+Provincial Motors Mtubatuba: Also listed as a top auto repair business.40
+St Lucia (The "Vacuum"):
+Extensive searches reveal no dedicated, accredited panelbeaters physically listed in St Lucia.40 Directory results for St Lucia all point to "nearby providers" in other towns. This represents a significant strategic vacuum that Rhino Panelbeaters, as the geographically closest hub, is perfectly positioned to fill.
+Hluhluwe:
+Listings in Hluhluwe are sparse and primarily for mechanical repairs or towing (e.g., Schalk Mostert Breakdown 44), not specialized collision repair. This also presents an opportunity.
+Richards Bay / Empangeni (The "Accredited Cluster"):
+This is the real competition for high-value, insurance-paid structural repairs. This cluster wins on trust and accreditation:
+Central Panelbeaters (Empangeni): A "powerhouse" competitor. It is the only approved auto repairer on the KZN North Coast for BMW, Mercedes Benz, Smart, Chrysler, Jeep, Dodge, and Alfa Romeo. It is also accredited for Toyota, Ford, GM, and others, and is on the panel for "most insurance companies".14
+Autospray Panelbeaters (Empangeni): Explicitly lists as an "insurance approved auto body repair centre".45
+Marvic Panelbeaters (Richards Bay): A SAMBRA member 46 and listed as Hollard approved.15
+Richards Bay Panelbeaters (Richards Bay): Listed as Santam approved.47
+Empangeni Auto Renovators (Empangeni): Listed as Hollard approved.15
+CK Denttech (Richards Bay): Specializes in Paintless Dent Removal (PDR) and hail damage.49
+Flanagans Autobody: A regional specialist with a "Major Structural Repair grade," setting the high bar for manufacturer and insurance approval.50
+Towing & Recovery Competitors:
+Mtubatuba: Rhino Towing itself is a key player here.3
+Hluhluwe: "Schalk Mostert Breakdown" / "SM Towing" is the primary operator.44
+Richards Bay / Empangeni (The "24/7 Fleet"):
+Lee's Breakdown & Salvage (Empangeni): Santam approved 54, operates 24Hrs.51
+Keith's Towing Services (Richards Bay): A major NTA (Natal Towing Association) member, offers "24 HOUR SERVICE," "Roadside Assistance," and Rollbacks.56
+RB Towing (Richards Bay): UTASA (United Towing Association of South Africa) approved, 24Hr, Rollback.57
+CK Towing Pty Ltd (Richards Bay): Offers 24h service and secure storage.58
+Chloanna Towing Service's (Richards Bay): Offers 24/7 service, including Local, Long Distance, and Heavy Duty towing.58
+Tow In Services (Empangeni): An NTA member with a large fleet (10 slingbacks, 7 rollbacks, 1 heavy rig) and 24HR service.60
+Natal Recovery: A regional service covering the entire area.51
+This competitive landscape makes the strategic imperatives clear. First, the "St Lucia Vacuum" 40 must be exploited; Rhino Panelbeaters is the logical and closest choice, and a digital campaign can make it the only choice. Second, the "Accreditation War" is the main front; the regional competition 14 is winning not on proximity, but on "trust" (RMI/SAMBRA/Insurance approval). This gap must be closed. Third, the "Towing-to-Repair" funnel is critical; competitors use 24/7 fleets 56 to capture jobs at the scene, and Rhino must do the same by dominating the N2 37 and R618 38 routes.
+Table 2: Competitive Landscape & Accreditation Matrix
+
+Competitor Name
+Location(s)
+Core Service
+RMI/SAMBRA Accredited?
+Insurance Approved?
+Key Strategic Factor
+Mtuba Auto Renovators
+Mtubatuba
+Panelbeating
+Yes (RMI) 8
+Yes (Santam) 13
+Direct local competitor with key accreditations.
+Central Panelbeaters
+Empangeni
+Panelbeating
+Yes (Implied by approvals)
+Yes (BMW, Merc, Jeep, "Most") 14
+Regional powerhouse. Owns high-value manufacturer approvals.
+Autospray Panelbeaters
+Empangeni
+Panelbeating
+Unknown
+Yes ("Insurance Approved") 45
+Directly targets insurance-claim keywords.
+Marvic Panelbeaters
+Richards Bay
+Panelbeating
+Yes (SAMBRA) 46
+Yes (Hollard) 15
+Accredited competitor in the tertiary hub.
+Richards Bay Panelbeaters
+Richards Bay
+Panelbeating
+Unknown
+Yes (Santam) 47
+Directly captures Santam-insured clients.
+Lee's Breakdown & Salvage
+Empangeni
+Towing
+Unknown
+Yes (Santam) 54
+Insurance-approved towing. A 24hr threat.
+Keith's Towing Services
+Richards Bay
+Towing
+Yes (NTA Member) 56
+Unknown
+Major 24hr fleet. Strong professional affiliation (NTA). 56
+Tow In Services
+Empangeni
+Towing
+Yes (NTA Member) 60
+Unknown
+Largest 24hr fleet in the area. Major threat.
+Schalk Mostert Breakdown
+Hluhluwe
+Towing
+Yes (SATRA) 52
+Unknown
+Owns the Hluhluwe (Secondary Zone) towing market.
+Rhino Panelbeaters
+Mtubatuba
+Both
+No (Not found in searches) 8
+No (Not found in searches) 13
+Vulnerable to accreditation-based competition; holds a key synergy (Tow+Repair).
+
+
+Part III: The Keyword Arsenal: Core Service Lexicon
+
+To dominate the digital space, a business must speak the customer's language. This section builds the complete vocabulary, or "keyword lexicon," for all services offered by Rhino Panelbeaters. This lexicon is the foundation that will be combined with the geographic targets (from Part II) to create the final, actionable keyword matrix in Part IV.
+
+Panelbeating & Collision Repair Taxonomy
+
+This is the vocabulary for the core, high-value side of the business. The terms are categorized by user intent and service specificity.
+Category 1: Primary Synonyms (High-Level "Head" Terms): These are the broad terms users search for when they need the service but are unsure of the technical name.
+panelbeater / panelbeaters 63
+panel beating / panelbeating 66
+paneelklopper / paneelkloppers (The primary Afrikaans equivalent, critical for the local market) 1
+auto body repair / auto body repairs 68
+auto body shop 69
+collision repair 68
+collision center 76
+smash repair / smash repairers 63
+accident repair / accident repairs 50
+body repairer / bodyworker 78
+Category 2: Specific Repair Services (Long-Tail Roots): These are the terms users search for when they know their specific problem. They are high-intent and must lead to dedicated service pages.
+Dent Repair: dent removal 68, paintless dent repair 68, PDR 80, hail damage repair 49, car dent repair 81, ding repair.81
+Structural Repair: chassis straightening 50, auto frame straightening 84, frame repair 85, chassis alignment 63, body alignment.87
+Paint & Finish: spray painting 1, paint repair 68, auto refinishing 12, paint restoration 89, car scratch repair 90, scratch removal 61, panel and paint.66
+Panel/Part Replacement: bumper repair 70, bumper replacement 69, windshield replacement 69, auto glass repair 68, panel replacement.70
+Other Services: auto detailing 70, calibration services (ADAS).68
+
+Towing & Recovery Taxonomy
+
+This is the vocabulary for the lead generation side of the business. These terms are characterized by urgency and must be treated as emergency-response keywords.
+Category 1: Primary Synonyms (High-Level "Head" Terms):
+towing service / towing services 92
+towing 95
+tow truck / tow trucks 92
+wrecker / wrecker service 96
+vehicle recovery 92
+car recovery 102
+roadside assistance 56
+roadside assist 108
+breakdown service 105
+breakdown cover 109
+vehicle transportation 92
+Category 2: Specific Towing/Recovery Services (Long-Tail Roots):
+Emergency & Time-Based: emergency towing 111, 24 hour towing 56, 24/7 towing 58, emergency road service 93, 24hr auto assist.58
+Incident-Based: accident towing 56, accident recovery 56, collision towing.37
+Technique-Based: flatbed towing / flatbed recovery 99, rollback towing / rollback transport 51, winching service / winch out 99, off-road recovery.112
+Vehicle-Type: heavy duty towing 58, truck towing 121, motorcycle towing 57, bus towing.61
+Roadside Assist: jump start 104, flat tyre / tire change 104, emergency gas delivery / fuel delivery 57, car lockout / locked out of car.60
+The keyword "Vehicle Recovery" 92 and its synonyms ("Accident Recovery" 103) represent a critical strategic bridge. These terms imply a more complex situation than a simple breakdown, one that often results from a collision. Capturing a user who searches for "accident recovery" provides the perfect opportunity to deploy the "Towing-to-Repair" funnel, offering a seamless, single-contact solution ("We will recover your vehicle and manage its full repair"). This simplifies the customer's high-stress experience and locks them into the high-value repair ecosystem, capturing the lead before competitors or insurers can intervene.
+The following tables organize this lexicon for easy use in building the website and marketing campaigns.
+Table 3: Master Keyword Lexicon - Panelbeating Services
+Service Category
+Root Keyword
+Variations & Synonyms
+Primary Synonyms
+panelbeater
+panelbeating, panel beaters, auto body repair, auto body shop, collision repair, smash repair, accident repair, paneelklopper
+Dent Repair
+dent repair
+dent removal, paintless dent repair, PDR, hail damage repair, ding repair
+Structural Repair
+chassis straightening
+frame straightening, frame repair, chassis alignment, body alignment
+Paint & Finish
+spray painting
+paint repair, auto refinishing, paint restoration, car scratch repair, scratch removal, panel and paint
+Panel/Part Replacement
+bumper repair
+bumper replacement, windshield replacement, auto glass repair, panel replacement, fender repair
+
+Table 4: Master Keyword Lexicon - Towing & Recovery Services
+Service Category
+Root Keyword
+Variations & Synonyms
+Primary Synonyms
+towing service
+tow truck, vehicle recovery, car recovery, wrecker service, vehicle transport
+Emergency & Time
+24 hour towing
+emergency towing, 24/7 towing, 24hr auto assist
+Incident-Based
+accident recovery
+accident towing, collision towing, post-accident recovery
+Technique-Based
+flatbed towing
+rollback towing, winching service, winch out, off-road recovery
+Roadside Assist
+roadside assistance
+breakdown service, jump start, flat tyre, fuel delivery, car lockout
+Vehicle-Type
+heavy duty towing
+truck towing, bus towing, motorcycle towing
+
+
+Part IV: Strategic Deployment: The Local SEO Keyword Matrix
+
+This section provides the actionable deployment strategy. The keywords from Part III (the service) are now systematically merged with the geographic targets from Part II (the location). This creates the precise, long-tail keyword combinations that will be used to build and optimize the website's service pages, content, and Google My Business profile.
+
+Geo-Modified Panelbeating Keywords
+
+This matrix targets users with "service intent" (e.g., "I need a panelbeater") within the defined geographic zones.
+Primary Zone Targets (Mtubatuba):
+panelbeater Mtubatuba
+panelbeaters in Mtubatuba
+auto body repair Mtubatuba
+collision repair Mtubatuba
+smash repair Mtubatuba
+dent repair Mtubatuba
+paintless dent repair Mtubatuba
+spray painting Mtubatuba
+chassis straightening Mtubatuba
+hail damage repair Mtubatuba
+paneelklopper Mtubatuba
+Secondary Zone Targets (St Lucia - High Opportunity/Vacuum):
+panelbeater St Lucia KZN
+auto body shop St Lucia
+collision repair St Lucia
+accident repair St Lucia
+dent removal St Lucia
+bumper repair St Lucia
+Secondary Zone Targets (Hluhluwe):
+panelbeater Hluhluwe
+auto body repair Hluhluwe
+collision repair Hluhluwe
+smash repair Hluhluwe
+Tertiary Zone Targets (Richards Bay / Empangeni - High Competition):
+panelbeaters Richards Bay 49
+auto body repair Empangeni 45
+collision repair Empangeni 14
+spray painting Richards Bay 88
+hail damage repair Richards Bay 49
+dent removal Empangeni 45
+panelbeaters Empangeni 116
+
+Geo-Modified Towing & Recovery Keywords
+
+This matrix targets users with "action intent" (e.g., "I need a tow truck NOW"). These are the high-urgency keywords that fuel the lead-generation funnel.
+Primary Zone Targets (Mtubatuba):
+towing service Mtubatuba 3
+24 hour towing Mtubatuba
+breakdown service Mtubatuba
+vehicle recovery Mtubatuba
+roadside assistance Mtubatuba
+Rhino Towing Mtubatuba 3
+Secondary Zone Targets (St Lucia - High Opportunity):
+towing service St Lucia KZN
+breakdown service St Lucia 52
+vehicle recovery St Lucia 52
+accident recovery St Lucia
+24 hour towing St Lucia
+winch out service St Lucia
+Secondary Zone Targets (Hluhluwe):
+towing Hluhluwe 51
+breakdown service Hluhluwe 44
+24 hour towing Hluhluwe
+vehicle recovery Hluhluwe
+off-road recovery Hluhluwe
+Tertiary Zone Targets (Richards Bay / Empangeni):
+towing Richards Bay 116
+towing services Empangeni 124
+24 hour towing Richards Bay 54
+roadside assistance Empangeni 60
+vehicle recovery Richards Bay 56
+accident towing Empangeni 60
+heavy duty towing Richards Bay 58
+
+Strategic Route Targets (Emergency Capture)
+
+This is the most critical part of the towing strategy. It targets users who are not in a town, but are stranded on a major route. These users will search for their location (the road name) + their problem.
+N2 National Route Targets:
+N2 breakdown service
+N2 towing service
+N2 accident recovery
+towing service N2 Mtubatuba 3
+24 hour towing N2 Richards Bay 54
+N2 breakdown Hluhluwe to Empangeni 53
+N2 accident tow truck 37
+N2 off-road recovery
+N2 winching service
+R618 Road Targets (St Lucia Route):
+R618 towing service
+R618 breakdown service
+R618 accident recovery 38
+towing St Lucia road 38
+breakdown Mtubatuba to St Lucia 24
+This keyword matrix is the blueprint for the Rhino Panelbeaters website architecture. To "dominate," the business cannot simply have one website page for "panelbeating." It must create dedicated local service pages for its primary target combinations.126
+For example, a search for "panelbeater near me" 128 by a user physically located in St Lucia will not be "won" by a page about Mtubatuba. It will be won by a competitor who has a page that proves its relevance, proximity, and authority for St Lucia. By creating a dedicated page (a "digital branch") titled "Expert Panelbeating for St Lucia" (and optimized for panelbeater St Lucia KZN), Rhino Panelbeaters provides a perfectly relevant result to Google.129 This strategy allows Rhino to establish a virtual dominance in towns where it has no physical presence, effectively capturing the "vacuum" identified in St Lucia.
+Table 5: Geo-Keyword Matrix: Panelbeating Services
+
+
+Mtubatuba (Core)
+St Lucia (Secondary)
+Hluhluwe (Secondary)
+Richards Bay (Tertiary)
+Empangeni (Tertiary)
+Primary Synonyms
+panelbeater Mtubatuba
+panelbeater St Lucia KZN
+panelbeater Hluhluwe
+panelbeaters Richards Bay
+panelbeaters Empangeni
+
+
+auto body shop Mtubatuba
+auto body shop St Lucia
+auto body repair Hluhluwe
+auto body repair Richards Bay
+auto body repair Empangeni
+
+
+collision repair Mtubatuba
+collision repair St Lucia
+collision repair Hluhluwe
+collision repair Richards Bay
+collision repair Empangeni
+Dent Repair
+dent repair Mtubatuba
+dent removal St Lucia
+dent repair Hluhluwe
+hail damage repair Richards Bay
+dent removal Empangeni
+
+
+PDR Mtubatuba
+paintless dent repair St Lucia
+hail damage repair Hluhluwe
+PDR Richards Bay
+paintless dent repair Empangeni
+Structural Repair
+chassis straightening Mtubatuba
+chassis straightening St Lucia
+frame repair Hluhluwe
+frame straightening Richards Bay
+chassis straightening Empangeni
+Paint & Finish
+spray painting Mtubatuba
+spray painting St Lucia
+spray painting Hluhluwe
+spray painting Richards Bay
+car scratch repair Empangeni
+
+
+car scratch repair Mtubatuba
+scratch removal St Lucia
+auto refinishing Hluhluwe
+auto refinishing Richards Bay
+auto refinishing Empangeni
+Part Replacement
+bumper repair Mtubatuba
+bumper repair St Lucia
+windshield replacement Hluhluwe
+bumper replacement Richards Bay
+auto glass repair Empangeni
+
+Table 6: Geo-Keyword Matrix: Towing & Recovery Services
+
+
+Mtubatuba (Core)
+St Lucia (Secondary)
+Hluhluwe (Secondary)
+Richards Bay (Tertiary)
+Empangeni (Tertiary)
+N2 Route (Strategic)
+R618 Route (Strategic)
+Primary Synonyms
+towing service Mtubatuba
+towing service St Lucia KZN
+towing Hluhluwe
+towing Richards Bay
+towing services Empangeni
+N2 towing service
+R618 towing service
+
+
+vehicle recovery Mtubatuba
+vehicle recovery St Lucia
+vehicle recovery Hluhluwe
+vehicle recovery Richards Bay
+car recovery Empangeni
+N2 vehicle recovery
+R618 car recovery
+Emergency & Time
+24 hour towing Mtubatuba
+24 hour towing St Lucia
+24 hour towing Hluhluwe
+24 hour towing Richards Bay
+24/7 towing Empangeni
+24 hour towing N2
+emergency towing R618
+
+
+emergency towing Mtubatuba
+emergency towing St Lucia
+emergency towing Hluhluwe
+emergency towing Richards Bay
+emergency towing Empangeni
+N2 emergency towing
+
+
+Incident-Based
+accident towing Mtubatuba
+accident recovery St Lucia
+accident recovery Hluhluwe
+accident recovery Richards Bay
+accident towing Empangeni
+N2 accident recovery
+R618 accident recovery
+Technique-Based
+rollback towing Mtubatuba
+winching service St Lucia
+off-road recovery Hluhluwe
+flatbed towing Richards Bay
+rollback towing Empangeni
+N2 winching service
+R618 winch out
+
+
+winch out Mtubatuba
+flatbed towing St Lucia
+winch out Hluhluwe
+winching service Richards Bay
+winch out Empangeni
+N2 off-road recovery
+
+
+Roadside Assist
+roadside assistance Mtubatuba
+breakdown service St Lucia
+breakdown service Hluhluwe
+roadside assistance Richards Bay
+roadside assistance Empangeni
+N2 breakdown service
+R618 breakdown service
+
+
+jump start Mtubatuba
+flat tyre St Lucia
+jump start Hluhluwe
+flat tyre Richards Bay
+fuel delivery Empangeni
+N2 jump start
+R618 flat tyre
+
+
+Part V: Market Capture: Long-Tail & User-Intent Keywords
+
+Digital dominance is not just about being the answer when a user searches for "panelbeater Mtubatuba." It is about capturing the user throughout their entire journey—from the moment of distress at the roadside, to their search for repair quotes, to their complex navigation of the insurance process. This section provides the keywords and content strategy to intercept and "own" the customer at every single stage, establishing Rhino Panelbeaters as the definitive regional authority.
+
+Informational (Top-of-Funnel) "Post-Accident" Keywords
+
+The first stage is panic. Immediately following an accident, users are confused, stressed, and searching for information, not a sales pitch. By providing clear, authoritative answers, Rhino builds immediate trust and funnels the user to its own emergency services.
+User Question: "I've just had a crash in KZN, what do I do?"
+Target Keywords:
+what to do after a car accident in South Africa 131
+what to do after a road accident KZN 133
+how to report a car accident KZN 133
+do I need to call police after minor accident South Africa 131
+KZN emergency services number 133
+get an accident report number KZN 131
+N2 accident what to do
+R618 accident report
+
+Consideration (Mid-Funnel) "Quote & Cost" Keywords
+
+Once the immediate danger has passed, the user's primary concern shifts to cost, especially if they are uninsured (as 70% of vehicles in South Africa reportedly are 9). Capturing this price-shopping, "out-of-pocket" user is crucial.
+User Question: "How much will this cost to fix?"
+Target Keywords:
+panel beating cost South Africa 135
+how much to fix car scratch 90
+car scratch repair quote 90
+how to get a panel beater quote online 136
+free collision repair estimate
+minor dent repair cost 136
+cheap panelbeaters KZN 141
+affordable panelbeaters Mtubatuba
+
+Consideration (Mid-Funnel) "How to Choose" Keywords
+
+Before committing to a multi-thousand-Rand repair, a user will seek to validate their choice. They search for "trust signals." This is a critical opportunity to educate the customer on why accreditation matters, thereby steering them away from unaccredited competitors.
+User Question: "How do I find a good panelbeater I can trust?"
+Target Keywords:
+how to find a good panelbeater South Africa 65
+how to choose the right panel beater 65
+what questions to ask your panelbeater 143
+genuine vs aftermarket parts panelbeater 144
+panelbeater with warranty 65
+RMI approved panelbeaters 9
+SAMBRA accredited repairers 9
+best panelbeater near me 128
+
+High-Intent (Bottom-of-Funnel) "Insurance" Keywords
+
+This is the most lucrative and competitive stage. The user is not paying; their insurer is. They are searching for a provider that is approved by their insurance. As established in Part II, this is the "Accreditation War." The competition in Richards Bay and Empangeni owns these keywords. To dominate, Rhino Panelbeaters must first get accredited (see Part VI) and then aggressively target these exact terms.
+User Question: "Which panelbeater will my insurance pay for?"
+Target Keywords (General):
+how to choose panelbeater for insurance claim 10
+can I choose my own panel beater with my insurance 10
+panel beater quote without claim number 149
+insurance approved panelbeaters 9
+insurance approved auto body shop 45
+Target Keywords (Competitor-Specific "Kill List"):
+Santam approved panelbeaters KZN North Coast 13
+Santam approved repairers KZN 47
+Hollard approved panelbeaters Empangeni 15
+Hollard approved repairer KZN 15
+Discovery Insure approved panelbeaters Richards Bay 49
+RMI approved auto body repair Empangeni 11
+SAMBRA approved panelbeaters Mtubatuba 12
+A comprehensive content strategy built around these user-intent keywords is the final pillar of digital dominance. The regional competition 14 is set up to be the default answer provided by the insurer. This strategy intercepts the customer before they even call their insurer, establishing Rhino as the sole, authoritative source for post-accident solutions. The keywords in section 5.4 are a "kill switch": achieving accreditation and then deploying a campaign against these terms will neutralize the competition's primary advantage and capture the high-value insurance market.
+Table 7: User-Intent Content Strategy Matrix
+
+User Journey Stage
+Target Keyword(s)
+Recommended Content Title (To be hosted on the website blog/resource center)
+1. Post-Accident (Top-of-Funnel)
+what to do after a car accident KZN 131
+
+how to report a car accident KZN 133
+The KZN Driver's Post-Accident Guide: 5 Steps to Take Immediately
+
+(Actionable guide with a "Call our 24/7 N2/R618 Recovery Line" button)
+2. Cost Comparison (Mid-Funnel)
+panel beating cost South Africa 136
+
+car scratch repair quote 90
+How Panelbeating Costs are Calculated: A 2025 Guide
+
+(Transparently explains labor, parts, and paint, building trust with cash-paying clients)
+3. Trust & Choice (Mid-Funnel)
+how to choose a good panelbeater 65
+
+RMI approved panelbeaters 9
+5 Questions to Ask Your Panelbeater (And Why 'Are You RMI/SAMBRA Approved?' is #1)
+
+(Educates the user to value accreditation, pre-selling Rhino's (future) credentials)
+4. Insurance Claim (Bottom-of-Funnel)
+can I choose my own panelbeater 146
+
+how to choose panelbeater for insurance claim 10
+Your Rights: How to Navigate Your Insurance Claim and Choose Your Own Repairer
+
+(Empowers the user to choose Rhino, not just accept the insurer's default)
+5. Accreditation (Bottom-of-Funnel)
+Santam approved panelbeaters KZN 47
+
+Hollard approved repairer KZN 15
+Rhino Panelbeaters: Your Approved KZN Repairer for Santam, Hollard & More
+
+(A dedicated, hard-selling landing page to be launched after Phase 1 accreditation is complete)
+6. Strategic Synergy
+towing and panelbeating
+Why a Combined Towing & Repair Service is Safer (And Simpler) After an Accident
+
+(A pillar post selling the business's unique "Towing-to-Repair" funnel)
+
+
+Part VI: Recommendations for Digital Dominance
+
+This analysis has provided a comprehensive audit of the digital foundation, the geographic battlefield, the competitive landscape, and the complete keyword arsenal required to achieve the stated goal of market "dominance." The following is a prioritized, four-phase battle plan to synthesize these findings and execute a winning strategy.
+
+Phase 1: Foundational Cleanup & Accreditation (Weeks 1-12)
+
+Objective: To fix the "toxic" digital foundation and become "insurance-ready" to compete for high-value jobs. This is the single most important phase.
+Establish 'Single Source of Truth': Use Table 1 (from Part I) to establish the one, correct business name, address, and email. The recommended unified brand name is "Rhino Panelbeaters & Towing" as this captures the key business synergy.2 The physical address must be verified and made consistent.
+Execute NAP Correction: Conduct a full audit of all online business directories (starting with those identified: 1, etc.) and manually correct all NAP inconsistencies. This is a non-negotiable first step for local SEO.
+Achieve Industry Accreditation (Critical): Immediately begin the application process for RMI (Retail Motor Industry) 9 and SAMBRA (South African Motor Body Repairers' Association) 9 accreditation. This is the gateway to all insurance work.
+Get on "The List" (Critical): Once RMI/SAMBRA approval is secured, immediately leverage this status to apply to become an approved motor body repairer for the major insurers. The key targets are Santam 13, Hollard 15, and Discovery Insure.151 This action directly neutralizes the main advantage of the entire Richards Bay/Empangeni "Accredited Cluster".14
+
+Phase 2: On-Page SEO Implementation (Website Buildout)
+
+Objective: To build the "digital branches" 126 and structure the website to perfectly align with the keyword matrices from Part IV.
+Consolidate Google My Business (GMB): Create one authoritative GMB profile for "Rhino Panelbeaters & Towing" using the corrected NAP from Phase 1.
+Primary Category: Panel Beater
+Secondary Categories: Towing Service, Auto Body Shop, Wrecker Service
+Service Area: Define the service area to explicitly include: Mtubatuba, St Lucia, Hluhluwe, Richards Bay, Empangeni, N2, R618.
+Build Local Service Pages: Implement the "digital branch" strategy. The website's sitemap must be expanded to include dedicated landing pages for high-priority keyword combinations from Table 5 and Table 6. At a minimum, this includes:
+/panelbeating-st-lucia (To capture the St Lucia "vacuum" 40)
+/panelbeating-hluhluwe
+/accident-recovery-n2 (To capture N2 emergency traffic 37)
+/24-hour-towing-mtubatuba
+/vehicle-recovery-st-lucia 52
+/chassis-straightening-mtubatuba
+/hail-damage-repair-kzn
+Build Insurance-Authority Pages: After Phase 1 is complete, launch dedicated pages targeting the "insurance" keywords from Table 7. Example:
+/santam-approved-repairer-kzn
+/hollard-approved-panelbeaters-north-coast
+
+Phase 3: Content Marketing Offensive (Establish Authority)
+
+Objective: To capture the entire user journey (from Part V) and establish Rhino Panelbeaters as the region's sole authority on all post-accident matters.
+Execute Content Strategy: Begin execution of the Table 7: User-Intent Content Strategy Matrix. The first priority is the "Post-Accident Guide".131 This builds trust and captures top-of-funnel traffic, which can be funneled to the 24/7 towing line.
+Launch "Checkmate" Campaign: Once Phase 1 accreditation is secured, immediately launch a full-scale digital marketing offensive (both organic content and paid ads) targeting the "insurance approved" keywords.15 This is the "checkmate" move that will take the most valuable customers directly from the Richards Bay/Empangeni competitors.
+Create "Synergy" Content: Publish a pillar content piece titled "One Call, One Solution: Why to Use a Combined Towing & Repair Shop After an Accident." This post explicitly sells the unique "Towing-to-Repair" synergy, which is Rhino's strongest competitive advantage over a tow-only or panel-only shop.
+
+Phase 4: Google My Business (GMB) & Local Citation Dominance
+
+Objective: To "own" the local map pack and win all "near me" 128 and voice-search queries.130
+Aggressively Solicit Reviews: Implement a system to solicit Google reviews from every customer (both towing and panelbeating). Reviews are a top 3 local ranking factor.
+Upload Geo-tagged Photos: Regularly upload high-quality photos to the GMB profile. These must be geo-tagged and include:
+The workshop (showing equipment).
+The "Rhino Towing" trucks.3
+Before-and-after photos of completed jobs.
+Crucially: Photos of the tow trucks in their service areas (e.g., in St Lucia, on the N2, in Hluhluwe). This visually reinforces the service area for Google's algorithm.
+Activate GMB Posts: Use the GMB Posts feature weekly. Post links to the new content from Phase 3, announce special offers, and reinforce emergency numbers. This signals to Google that the business is active, authoritative, and relevant, boosting all local search rankings.
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: components.json--------------------------------------------------------------------------------```json{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.ts",
+    "css": "src/app/globals.css",
+    "baseColor": "stone",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "iconLibrary": "lucide",
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "registries": {}
+}
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: next-env.d.ts--------------------------------------------------------------------------------```ts/// <reference types="next" />
+/// <reference types="next/image-types/global" />
+
+// NOTE: This file should not be edited
+// see https://nextjs.org/docs/app/building-your-application/configuring/typescript for more information.
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: next.config.mjs--------------------------------------------------------------------------------```javascript/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // Optimize for modern browsers - remove legacy JS polyfills
+  compiler: {
+    removeConsole: process.env.NODE_ENV === "production",
+  },
+  // Optimize images
+  images: {
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 60,
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    dangerouslyAllowSVG: false,
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+  },
+  // Reduce JavaScript bundle size
+  experimental: {
+    optimizePackageImports: ["lucide-react", "@radix-ui/react-slot"],
+  },
+  // Enable compression
+  compress: true,
+  // Optimize production builds with SWC - target modern browsers only
+  swcMinify: true,
+  // Optimize output
+  reactStrictMode: true,
+  // Performance optimizations
+  poweredByHeader: false,
+  // Optimize CSS
+  optimizeFonts: true,
+};
+
+export default nextConfig;
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: package.json--------------------------------------------------------------------------------```json{
+  "name": "nextjs-modern-app",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.2.4",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.23.24",
+    "lucide-react": "^0.553.0",
+    "next": "14.2.33",
+    "react": "^18",
+    "react-dom": "^18",
+    "tailwind-merge": "^3.4.0",
+    "tailwindcss-animate": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.33",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  }
+}
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: postcss.config.mjs--------------------------------------------------------------------------------```javascript/** @type {import('postcss-load-config').Config} */
+const config = {
+  plugins: {
+    tailwindcss: {},
+  },
+};
+
+export default config;
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: tailwind.config.ts--------------------------------------------------------------------------------```tsimport type { Config } from "tailwindcss";
+const config: Config = {
+    darkMode: ["class"],
+    content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  theme: {
+  	extend: {
+  		colors: {
+  			background: 'hsl(var(--background))',
+  			foreground: 'hsl(var(--foreground))',
+  			card: {
+  				DEFAULT: 'hsl(var(--card))',
+  				foreground: 'hsl(var(--card-foreground))'
+  			},
+  			popover: {
+  				DEFAULT: 'hsl(var(--popover))',
+  				foreground: 'hsl(var(--popover-foreground))'
+  			},
+  			primary: {
+  				DEFAULT: 'hsl(var(--primary))',
+  				foreground: 'hsl(var(--primary-foreground))'
+  			},
+  			secondary: {
+  				DEFAULT: 'hsl(var(--secondary))',
+  				foreground: 'hsl(var(--secondary-foreground))'
+  			},
+  			muted: {
+  				DEFAULT: 'hsl(var(--muted))',
+  				foreground: 'hsl(var(--muted-foreground))'
+  			},
+            // Professional Brand Colors
+            'brand-blue': '#3B82F6',      // Primary blue
+            'brand-blue-dark': '#2563EB', // Darker blue
+            'brand-orange': '#F97316',    // Emergency/CTA orange
+            'brand-gray': '#1F2937',      // Dark gray
+            'brand-gray-light': '#F3F4F6', // Light gray
+ 			accent: {
+  				DEFAULT: 'hsl(var(--accent))',
+  				foreground: 'hsl(var(--accent-foreground))'
+  			},
+  			destructive: {
+  				DEFAULT: 'hsl(var(--destructive))',
+  				foreground: 'hsl(var(--destructive-foreground))'
+  			},
+  			border: 'hsl(var(--border))',
+  			input: 'hsl(var(--input))',
+  			ring: 'hsl(var(--ring))',
+  			chart: {
+  				'1': 'hsl(var(--chart-1))',
+  				'2': 'hsl(var(--chart-2))',
+  				'3': 'hsl(var(--chart-3))',
+  				'4': 'hsl(var(--chart-4))',
+  				'5': 'hsl(var(--chart-5))'
+  			}
+  		},
+  		borderRadius: {
+  			lg: 'var(--radius)',
+  			md: 'calc(var(--radius) - 2px)',
+  			sm: 'calc(var(--radius) - 4px)'
+  		},
+        size: {
+          default: "h-9 px-4 py-2",
+          sm: "h-8 rounded-md px-3 text-xs",
+          lg: "h-10 rounded-md px-8",
+          xl: "h-14 px-10",
+          icon: "h-9 w-9",
+        }
+  	}
+  },
+  plugins: [require("tailwindcss-animate")],
+};
+export default config;```
+
+--------------------------------------------------------------------------------📄 FILE PATH: tsconfig.json--------------------------------------------------------------------------------```json{
+  "compilerOptions": {
+    "target": "ES2020", // Target ES2020+ to avoid legacy polyfills
+    "lib": ["dom", "dom.iterable", "esnext", "ES2020"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\globals.css--------------------------------------------------------------------------------```css@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Optimize font loading - prevent layout shifts */
+@layer base {
+  :root {
+    /* Professional Blue/Gray Color Scheme */
+    /* Background: Clean white with subtle gray tones */
+    --background: 0 0% 100%;
+    --foreground: 222 47% 11%; /* Deep blue-gray for text */
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    
+    /* Primary: Professional Blue (Trust, Dependability) */
+    --primary: 217 91% 60%; /* Vibrant blue */
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary: Sophisticated Gray */
+    --secondary: 215 28% 17%; /* Dark gray-blue */
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Muted: Subtle grays for borders and backgrounds */
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    /* Accent: Orange for urgency (Emergency CTAs) */
+    --accent: 24 95% 53%; /* Bright orange */
+    --accent-foreground: 0 0% 100%;
+    
+    /* Destructive: Red for emergency towing */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 217 91% 60%;
+    --radius: 0.5rem;
+  }
+  
+  .dark {
+    /* Dark mode: Professional dark theme */
+    --background: 222 47% 11%;
+    --foreground: 210 40% 98%;
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 217 33% 17%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 33% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 24 95% 53%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 63% 31%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217 33% 17%;
+    --input: 217 33% 17%;
+    --ring: 217 91% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    /* Prevent layout shift from scrollbar */
+    scrollbar-gutter: stable;
+    /* Optimize rendering */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  body {
+    @apply bg-background text-foreground;
+    /* Prevent font rendering shifts */
+    font-feature-settings: "kern" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* Optimize paint performance */
+    transform: translateZ(0);
+    will-change: auto;
+  }
+  
+  /* Fix layout shifts for text elements */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: inherit;
+    line-height: inherit;
+  }
+  
+  /* Prevent layout shift from images */
+  img {
+    height: auto;
+    max-width: 100%;
+    /* Optimize image rendering */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  /* Infinite Scroll Animation Utility - Optimized for mobile */
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+    will-change: transform; /* Optimize animation performance */
+    transform: translateZ(0); /* Force GPU acceleration */
+    backface-visibility: hidden; /* Prevent flickering */
+    perspective: 1000px; /* Enable 3D transforms */
+  }
+  
+  /* Prevent layout shifts */
+  .no-shift {
+    contain: layout style paint;
+  }
+}
+
+/* Custom Keyframes for Infinite Scroll - Optimized */
+@keyframes scroll {
+  from {
+    transform: translate3d(0, 0, 0); /* Use 3D transform for GPU acceleration */
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+/* Optimize animations - use GPU acceleration */
+@media (prefers-reduced-motion: no-preference) {
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-scroll {
+    animation: none;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  /* Reduce paint complexity on mobile */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Optimize text rendering on mobile */
+  body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\layout.tsx--------------------------------------------------------------------------------```tsximport type { Metadata } from "next";
+import { Inter } from "next/font/google";
+import "./globals.css";
+
+// Optimize font loading with display swap to prevent layout shifts
+// Next.js self-hosts fonts, so no need for preconnect to Google Fonts
+const inter = Inter({ 
+  subsets: ["latin"],
+  display: "swap",
+  preload: true,
+  variable: "--font-inter",
+  fallback: ["system-ui", "arial"],
+  adjustFontFallback: true, // Optimize font fallback
+});
+
+// Metadata for SEO
+export const metadata: Metadata = {
+  title: "Rhino Panelbeaters & Towing | Mtubatuba | SAMBRA Accredited",
+  description: "Trusted panelbeaters in Mtubatuba. SAMBRA & RMI accredited, insurance approved. 24/7 emergency towing. Factory-spec repairs with 3-year warranty.",
+  keywords: "panelbeater Mtubatuba, towing Mtubatuba, collision repair, SAMBRA accredited",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="en" className={inter.variable}>
+      <head>
+        {/* Only preconnect to Google Maps since fonts are self-hosted by Next.js */}
+        <link rel="preconnect" href="https://www.google.com" />
+        <link rel="dns-prefetch" href="https://www.google.com" />
+        <link rel="dns-prefetch" href="https://maps.googleapis.com" />
+      </head>
+      <body className={inter.className} suppressHydrationWarning>
+        {children}
+      </body>
+    </html>
+  );
+}
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\page.tsx--------------------------------------------------------------------------------```tsx// Professional Homepage with Dual-Funnel Strategy
+
+import { Header } from "@/components/layout/Header"; 
+import { HeroSection } from "@/components/layout/HeroSection";
+import { TrustBar } from "@/components/layout/TrustBar";
+import { FeatureGrid } from "@/components/layout/FeatureGrid";
+import { TestimonialsSection } from "@/components/layout/TestimonialsSection";
+import { ProcessCallout } from "@/components/layout/ProcessCallout";
+import { InsuranceAndServiceHub } from "@/components/layout/InsuranceAndServiceHub";
+import { LocationAndCTA } from "@/components/layout/LocationAndCTA";
+import { Footer } from "@/components/layout/Footer";
+
+export default function Home() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white"> 
+      <Header /> 
+      
+      <main className="flex-grow"> 
+        {/* 1. Hero Section with Dual CTAs */}
+        <HeroSection /> 
+        
+        {/* 2. Trust Bar (Immediately below the fold for max trust) */}
+        <TrustBar />
+
+        {/* 3. Feature Grid Section */}
+        <FeatureGrid /> 
+        
+        {/* 4. Testimonials Section (Social Proof) */}
+        <TestimonialsSection />
+        
+        {/* 5. Process Transparency Block */}
+        <ProcessCallout />
+        
+        {/* 6. Insurance & Service Hub */}
+        <InsuranceAndServiceHub />
+        
+        {/* 7. Location and Final CTA */}
+        <LocationAndCTA />
+        
+      </main>
+      
+      <Footer /> 
+    </div>
+  );
+}
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\template.tsx--------------------------------------------------------------------------------```tsx"use client";
+
+// This component uses the exact "Awwwards-Style Page Transitions" 
+// tutorial from the research [cite: 1356, 1361]
+import { motion } from "framer-motion";
+
+export default function Template({ children }: { children: React.ReactNode }) {
+  return (
+    <motion.div
+      // These are the animation properties from the tutorial [cite: 1366, 1367]
+      initial={{ y: 20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ ease: "easeInOut", duration: 0.75 }}
+    >
+      {children}
+    </motion.div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\services\page.tsx--------------------------------------------------------------------------------```tsx"use client"; // <-- ADDED: This file now uses client-side animations
+
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { ServicesGrid } from "@/components/services/ServicesGrid";
+import { TrustBar } from "@/components/layout/TrustBar";
+import type { Metadata } from "next";
+import { motion } from "framer-motion"; // <-- ADDED: Import for animations
+
+// Metadata is still static, so we can't export it from a client component.
+// We'll just remove it for this example, as it would need to be moved to the layout
+// or passed in. For now, we'll focus on the layout.
+
+/*
+// This metadata export must be removed or moved to layout.tsx
+export const metadata: Metadata = {
+  title: "Our Services | Rhino Panelbeaters & Towing | Mtubatuba",
+  description: "Comprehensive panelbeating and towing services in Mtubatuba. Collision repair, spray painting, dent removal, 24/7 emergency towing, and more. SAMBRA accredited.",
+  keywords: "panelbeating services Mtubatuba, collision repair, spray painting, dent removal, towing services, chassis straightening",
+};
+*/
+
+export default function ServicesPage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+      
+      <main className="flex-grow">
+        
+        {/* === REVAMPED HERO SECTION === */}
+        <section className="w-full py-20 md:py-28 bg-foreground">
+          <div className="container px-4 md:px-8 mx-auto">
+            
+            {/* Split-column layout to break the centered text */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+              
+              {/* Column 1: Animated Heading */}
+              <div>
+                <motion.h1 
+                  className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-background"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                >
+                  Our Services
+                </motion.h1>
+              </div>
+              
+              {/* Column 2: Animated Description */}
+              <div>
+                <motion.p 
+                  className="text-xl md:text-2xl text-background/80 leading-relaxed" // Using opacity for hierarchy
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2, ease: "easeInOut" }}
+                >
+                  Comprehensive panelbeating and towing services for Mtubatuba and the Zululand region. Factory-spec repairs with 3-year warranty guarantee.
+                </motion.p>
+              </div>
+            </div>
+            
+          </div>
+        </section>
+        {/* === END OF REVAMPED HERO === */}
+
+
+        {/* Trust Bar (This was updated in the previous step) */}
+        <TrustBar />
+
+        {/* Services Grid */}
+        <ServicesGrid />
+
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\features\HeroQuoteForm.tsx--------------------------------------------------------------------------------```tsx"use client"; // Client component for form logic
+
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import Link from "next/link";
+import { Upload, ArrowRight, CheckCircle2 } from "lucide-react";
+
+export function HeroQuoteForm() {
+  return (
+    <Card className="w-full border-2 border-primary/20 shadow-2xl bg-white">
+      <CardHeader className="space-y-2 pb-4">
+        <CardTitle className="text-2xl font-bold text-foreground">
+          Start Your Free Quote
+        </CardTitle>
+        <p className="text-sm text-muted-foreground">
+          Get an instant estimate in 3 minutes - no visit required
+        </p>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        
+        <div className="space-y-3">
+          <Input 
+            placeholder="Vehicle Make (e.g., Toyota)" 
+            aria-label="Vehicle Make Input"
+            className="h-12"
+          />
+          <Input 
+            placeholder="Your Phone Number" 
+            aria-label="Phone Number Input"
+            className="h-12"
+          />
+        </div>
+        
+        {/* Photo Upload Area - Fixed dimensions to prevent layout shift */}
+        <div 
+          className="border-2 border-dashed border-primary/30 rounded-lg p-6 text-center hover:border-primary/50 transition-colors cursor-pointer bg-primary/5 min-h-[120px] flex flex-col items-center justify-center"
+          style={{ contain: "layout style paint" }}
+        >
+          <Upload className="h-8 w-8 text-primary mx-auto mb-2 shrink-0" />
+          <p className="text-sm font-medium text-foreground mb-1">
+            Upload Damage Photos
+          </p>
+          <p className="text-xs text-muted-foreground">
+            Tap to upload up to 5 images
+          </p>
+        </div>
+
+        {/* Benefits List */}
+        <div className="space-y-2 pt-2">
+          <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+            <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
+            <span>No need to bring your car in</span>
+          </div>
+          <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+            <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
+            <span>Accurate quote in minutes</span>
+          </div>
+          <div className="flex items-center space-x-2 text-xs text-muted-foreground">
+            <CheckCircle2 className="h-4 w-4 text-primary flex-shrink-0" />
+            <span>100% free & no obligation</span>
+          </div>
+        </div>
+
+        <Button asChild className="w-full h-12 text-base font-bold shadow-lg hover:shadow-xl transition-all">
+          <Link href="/quote" className="flex items-center justify-center space-x-2">
+            <span>Begin Quote Upload</span>
+            <ArrowRight className="h-5 w-5 shrink-0" />
+          </Link>
+        </Button>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\features\interactive-button.tsx--------------------------------------------------------------------------------```tsx"use client"; // <--- This directive is the essential fix!
+
+import { Button } from "@/components/ui/button";
+
+// This component uses a client-side event handler (onClick) and must be marked "use client".
+export function InteractiveButton() {
+    
+  // The event handler is now defined inside the client component, 
+  // so it never needs to be passed over the server-client boundary.
+  const handleClick = () => {
+    // You could also use useState or other React hooks here.
+    console.log('Button clicked!'); 
+    alert('Button interaction confirmed on the client!');
+  };
+
+  return (
+    <Button 
+      onClick={handleClick} 
+      variant="default" 
+      size="lg"
+    >
+      Click Me (Client Component)
+    </Button>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\FeatureCard.tsx--------------------------------------------------------------------------------```tsx// Professional Feature Card Component
+
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+
+interface FeatureCardProps {
+  title: string;
+  description: string;
+  icon: React.ReactNode; 
+}
+
+export function FeatureCard({ title, description, icon }: FeatureCardProps) {
+  return (
+    <Card className="flex flex-col h-full hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 bg-white group">
+      <CardHeader className="flex-row items-start space-x-4 pb-4">
+        <div className="p-3 bg-primary/10 text-primary rounded-lg group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+          {icon}
+        </div>
+        <div className="flex-1">
+          <CardTitle className="text-lg font-bold mb-2">{title}</CardTitle>
+        </div>
+      </CardHeader>
+      <CardContent className="flex-grow pt-0">
+        <CardDescription className="text-base leading-relaxed">
+          {description}
+        </CardDescription>
+      </CardContent>
+    </Card>
+  );
+}
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\FeatureGrid.tsx--------------------------------------------------------------------------------```tsx// Professional Feature Grid Component
+
+import {
+  Shield,
+  Wrench,
+  Car,
+  Camera,
+  MapPin,
+  Truck,
+  Award,
+  Lock,
+} from "lucide-react"; 
+import { FeatureCard } from "./FeatureCard";
+
+const features = [
+  {
+    title: "Warranty Protected Repairs",
+    description: "OEM-approved repair center guaranteeing factory-spec repairs that keep your manufacturer's warranty 100% protected.",
+    icon: <Shield className="h-6 w-6" />,
+  },
+  {
+    title: "Digital Quote Engine",
+    description: "Get a detailed quote by uploading photos and your license disc—no need to bring your car in! Estimate in minutes.",
+    icon: <Camera className="h-6 w-6" />,
+  },
+  {
+    title: "3-Year Paintwork Guarantee",
+    description: "Documented minimum warranty of 3 years on all paintwork, ensuring financial transparency and complete peace of mind.",
+    icon: <Wrench className="h-6 w-6" />,
+  },
+  {
+    title: "SAMBRA & RMI Accredited",
+    description: "Our membership signals legitimacy, adherence to ethical service, and provides you with formal dispute resolution.",
+    icon: <Award className="h-6 w-6" />,
+  },
+  {
+    title: "N2 Emergency Response Hub",
+    description: "Strategically located to serve the N2 highway's high-accident corridor and high-value tourist routes (St Lucia, Hluhluwe).",
+    icon: <MapPin className="h-6 w-6" />,
+  },
+  {
+    title: "24/7 Accident Towing",
+    description: "Immediate response and seamless integration with regional towing partners to capture high-urgency N2 traffic when you need it most.",
+    icon: <Car className="h-6 w-6" />,
+  },
+  {
+    title: "Fleet & Commercial Focus",
+    description: "Expertise in heavy vehicle, bakkie, and commercial fleet repairs, targeting the industrial hubs of Richards Bay and Empangeni.",
+    icon: <Truck className="h-6 w-6" />,
+  },
+  {
+    title: "Safe, Secure Vehicle Storage",
+    description: "We address local crime concerns by guaranteeing secure, fenced storage for all vehicles, providing peace of mind to all customers.",
+    icon: <Lock className="h-6 w-6" />,
+  },
+];
+
+export function FeatureGrid() {
+  return (
+    <section className="w-full py-20 bg-white">
+      <div className="container px-4 md:px-8 mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-foreground">
+            Why Choose Rhino Panelbeaters?
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Professional, accredited, and trusted by major insurers across Mtubatuba and the Zululand region
+          </p>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"> 
+          {features.map((feature) => (
+            <FeatureCard 
+              key={feature.title}
+              title={feature.title}
+              description={feature.description}
+              icon={feature.icon}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\Footer.tsx--------------------------------------------------------------------------------```tsx// Professional Footer Component
+
+import Link from "next/link";
+import { MapPin, Clock, Phone, Award, Wrench } from "lucide-react";
+
+const currentYear = new Date().getFullYear();
+const TOWING_NUMBER = "072 311 5870"; // <-- UPDATED
+const OFFICE_PHONE = "035 550 0211";
+
+export function Footer() {
+  return (
+    <footer className="w-full border-t bg-muted/30 text-foreground">
+      <div className="container px-4 md:px-8 mx-auto py-12">
+        
+        {/* === TOP SECTION: Content Grid === */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-10 border-b border-border pb-10 mb-8">
+            
+            {/* COLUMN 1: Brand Info & Trust */}
+            <div className="col-span-2 md:col-span-1 space-y-4">
+                <h3 className="text-xl font-bold flex items-center space-x-2 text-foreground">
+                    <Wrench className="h-6 w-6 text-primary" />
+                    <span>Rhino Panelbeaters</span>
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                    Your OEM & Insurer Approved repair centre in Mtubatuba. We guarantee peace of mind and factory-spec quality.
+                </p>
+                <div className="flex items-center space-x-2 text-primary font-semibold text-sm">
+                    <Award className="h-4 w-4" />
+                    <span>SAMBRA & RMI Accredited</span>
+                </div>
+            </div>
+
+            {/* COLUMN 2: Quick Links */}
+            <div className="col-span-1 space-y-4">
+                <h4 className="text-lg font-semibold text-foreground">Quick Links</h4>
+                <nav className="flex flex-col space-y-2 text-sm">
+                    <Link href="/services" className="text-muted-foreground hover:text-primary transition-colors">
+                        Our Services
+                    </Link>
+                    <Link href="/process" className="text-muted-foreground hover:text-primary transition-colors">
+                        Our Process
+                    </Link>
+                    <Link href="/accreditations" className="text-muted-foreground hover:text-primary transition-colors">
+                        Accreditations
+                    </Link>
+                    <Link href="/quote" className="text-sm font-bold text-primary hover:text-primary/80 transition-colors">
+                        → Get Free Quote
+                    </Link>
+                </nav>
+            </div>
+
+            {/* COLUMN 3: Contact Info & Hours */}
+            <div className="col-span-1 space-y-4">
+                <h4 className="text-lg font-semibold text-foreground">Workshop Details</h4>
+                <div className="flex flex-col space-y-3 text-sm pt-1">
+                    <div className="flex items-center space-x-3">
+                        <Phone className="h-5 w-5 text-primary flex-shrink-0" />
+                        <a href={`tel:${OFFICE_PHONE.replace(/\s/g, '')}`} className="font-semibold hover:text-primary transition-colors">
+                            {OFFICE_PHONE}
+                        </a>
+                    </div>
+                    <div className="flex items-center space-x-3">
+                        <Clock className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="text-muted-foreground">Mon-Fri: 7:30 am - 5:00 pm</span>
+                    </div>
+                    <div className="flex items-start space-x-3">
+                        <MapPin className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-muted-foreground">Jacaranda Ave, Mtubatuba, 3935</span>
+                    </div>
+                </div>
+            </div>
+            
+            {/* COLUMN 4: Emergency CTA */}
+            <div className="col-span-2 md:col-span-1 space-y-4 md:pl-4 md:border-l border-border">
+                <h4 className="text-lg font-semibold text-destructive">EMERGENCY ASSISTANCE</h4>
+                
+                <div className="flex flex-col space-y-2">
+                    <div className="flex items-center space-x-3">
+                        <Phone className="h-6 w-6 text-destructive flex-shrink-0" />
+                        <a href={`tel:${TOWING_NUMBER.replace(/\s/g, '')}`} className="text-xl font-extrabold text-destructive hover:underline">
+                            {TOWING_NUMBER}
+                        </a>
+                    </div>
+                    <p className="text-sm text-muted-foreground pl-9">
+                        Immediate response for N2 accidents and breakdowns. Available 24/7.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        {/* === BOTTOM SECTION: Copyright & Legal === */}
+        <div className="flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
+          
+          {/* UPDATED: Copyright/Credit Section */}
+          <div className="text-center md:text-left mb-4 md:mb-0">
+            <p>
+              © {currentYear} Rhino Panelbeaters and Towing. All rights reserved.
+            </p>
+            <p>
+              Designed, Developed & Maintained by{' '}
+              <a 
+                href="https://www.endpointmedia.co.za/" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="font-medium text-foreground hover:text-primary transition-colors"
+              >
+                Endpoint Media
+              </a>.
+            </p>
+          </div>
+          
+          {/* Legal Links */}
+          <div className="flex space-x-6">
+            <Link href="/privacy" className="hover:text-primary transition-colors">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="hover:text-primary transition-colors">
+               Terms of Service
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\Header.tsx--------------------------------------------------------------------------------```tsx// Professional Header Component
+
+import Link from "next/link";
+import { Wrench } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { HeaderNavigation } from "./HeaderNavigation"; 
+import { cn } from "@/lib/utils";
+
+// Navigation Items for the center
+const navItems = [
+  { name: "Services", href: "/services" },
+  { name: "Our Process", href: "/process" },
+  { name: "Accreditations", href: "/accreditations" },
+  { name: "Contact", href: "/contact" }, 
+];
+
+// Logo component
+function Logo() {
+  return (
+    <Link href="/" className="mr-6 flex items-center space-x-2 transition-opacity duration-300 hover:opacity-80">
+      <div className="p-2 bg-primary rounded-lg">
+        <Wrench className="h-5 w-5 text-white" />
+      </div>
+      <span className="font-bold text-xl inline-block text-foreground">
+        <span className="text-primary">RHINO</span>
+        <span className="text-foreground"> PANELBEATERS</span> 
+      </span>
+    </Link>
+  );
+}
+
+export function Header({ className }: { className?: string }) {
+  return (
+    <header className={cn(
+      "sticky top-0 z-50 w-full bg-white/95 backdrop-blur-sm border-b border-border shadow-sm",
+      className
+    )}>
+      <div className="container flex h-20 max-w-screen-2xl items-center justify-between px-4 md:px-8 mx-auto">
+        
+        {/* 1. Logo/Title (Left) */}
+        <Logo />
+
+        {/* 2. Main Navigation Links (Center) */}
+        <nav className="hidden lg:flex flex-grow justify-center items-center">
+            <div className="flex space-x-1">
+                {navItems.map((item) => (
+                    <Button 
+                      key={item.name} 
+                      variant="ghost" 
+                      asChild
+                      className="text-foreground hover:bg-primary/10 hover:text-primary"
+                    >
+                        <Link href={item.href}>{item.name}</Link>
+                    </Button>
+                ))}
+            </div>
+        </nav>
+
+        {/* 3. CTAs / Buttons (Right) */}
+        <HeaderNavigation />
+        
+      </div>
+    </header>
+  );
+}
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\HeaderNavigation.tsx--------------------------------------------------------------------------------```tsximport { Button } from "@/components/ui/button";
+import { Phone, AlertCircle } from "lucide-react";
+
+// Key Strategic Data
+const TOWING_NUMBER = "072 311 5870"; // <-- UPDATED
+const PANELBEATING_NUMBER = "035 550 0211"; // <-- CONFIRMED
+
+export function HeaderNavigation() {
+  return (
+    <div className="flex items-center space-x-2 md:space-x-3">
+      {/* Primary Action: Call Panelbeater (General Enquiries) */}
+      <Button 
+        variant="default" 
+        size="sm"
+        asChild
+        className="hidden sm:flex items-center space-x-1 font-semibold"
+      >
+        <a href={`tel:${PANELBEATING_NUMBER.replace(/\s/g, '')}`}>
+          <Phone className="h-4 w-4" />
+          <span>Call Us</span>
+        </a>
+      </Button>
+
+      {/* Emergency Action: Call Towing (24/7, High-Visibility) */}
+      <Button 
+        variant="destructive" 
+        size="sm"
+        asChild
+        className="flex items-center space-x-1 font-bold hover:scale-105 transition-transform"
+      >
+        <a href={`tel:${TOWING_NUMBER.replace(/\s/g, '')}`}>
+          <AlertCircle className="h-4 w-4" />
+          <span className="hidden md:inline">Emergency 24/7</span>
+          <span className="md:hidden">24/7</span>
+        </a>
+      </Button>
+    </div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\HeroSection.tsx--------------------------------------------------------------------------------```tsx// Professional Hero Section with Dual-Funnel Strategy
+
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { 
+  Shield, 
+  ArrowRight, 
+  Phone, 
+  Zap, 
+  CheckCircle2, 
+  AlertCircle
+} from "lucide-react";
+import { HeroQuoteForm } from "@/components/features/HeroQuoteForm";
+
+export function HeroSection() {
+  return (
+    <section className="relative w-full py-12 md:py-20 bg-gradient-to-br from-white via-blue-50/30 to-white">
+      {/* Decorative background elements - optimized with will-change */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl will-change-auto"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl will-change-auto"></div>
+      </div>
+
+      <div className="container relative px-4 md:px-8 mx-auto">
+         
+        {/* === REPLACED EMERGENCY BANNER BLOCK === */}
+        <div className="mb-8 w-full p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between rounded-2xl bg-destructive text-destructive-foreground shadow-2xl">
+            
+            <div className="flex items-center space-x-4 mb-6 lg:mb-0 lg:w-2/3">
+                <AlertCircle className="h-16 w-16 shrink-0" />
+                <div>
+                    <h2 className="text-3xl md:text-4xl font-extrabold mb-2">
+                        24/7 Emergency Towing & Recovery
+                    </h2>
+                    <p className="text-lg opacity-90">
+                        Round-the-clock emergency towing services for Mtubatuba and the N2 corridor. Fast response times for accidents and breakdowns.
+                    </p>
+                </div>
+            </div>
+
+            <Button 
+              asChild 
+              size="xl" 
+              variant="secondary"
+              className="w-full lg:w-auto h-16 text-lg font-bold shadow-lg hover:shadow-xl transition-all"
+            >
+                <a href="tel:0723115870" className="flex items-center justify-center space-x-3"> {/* <-- UPDATED HREF */}
+                    <Phone className="h-6 w-6" />
+                    <span>CALL 24/7: 072 311 5870</span> {/* <-- UPDATED TEXT */}
+                </a>
+            </Button>
+            
+        </div>
+        {/* === END OF REPLACED BLOCK === */}
+
+
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          
+          {/* === LEFT COLUMN: Trust-Building Content === */}
+          <div className="space-y-6">
+            {/* Trust Badge */}
+            <div className="inline-flex items-center space-x-2 px-4 py-2 bg-primary/10 rounded-full text-primary font-semibold text-sm">
+               <Shield className="h-4 w-4 shrink-0" /> 
+              <span>INSURER & OEM APPROVED</span>
+            </div>
+
+            {/* Main Headline - Fixed dimensions to prevent layout shift */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight min-h-[3.5rem] md:min-h-[4.5rem] lg:min-h-[5.5rem]">
+              <span className="text-foreground block">Trusted Panelbeaters for</span>
+              <span className="text-primary block">Mtubatuba & Zululand</span>
+            </h1>
+            
+            {/* Sub-Headline */}
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg">
+              SAMBRA-accredited repairs for all major insurance partners. Factory-spec quality with a 3-year paint warranty. We get you back on the road, guaranteed.
+            </p>
+
+            {/* Trust Points */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-4">
+              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                <span>Warranty Protected Repairs</span>
+               </div>
+              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                <span>3-Year Paint Guarantee</span>
+              </div>
+              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                 <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                <span>SAMBRA & RMI Accredited</span>
+              </div>
+              <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                 <span>Digital Quote in Minutes</span>
+              </div>
+            </div>
+
+            {/* Primary CTA Button */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Button size="lg" asChild className="h-14 px-8 text-base font-bold shadow-lg hover:shadow-xl transition-all">
+                 <Link href="/quote" className="flex items-center space-x-2">
+                  <Zap className="h-5 w-5 shrink-0" />
+                  <span>Get Free Digital Quote</span>
+                  <ArrowRight className="h-5 w-5 shrink-0" />
+                </Link>
+               </Button>
+              <Button variant="outline" size="lg" asChild className="h-14 px-8 text-base">
+                <Link href="/process">
+                  See Our Process
+                </Link>
+              </Button>
+             </div>
+          </div>
+          
+          {/* === RIGHT COLUMN: Quote Form === */}
+          <div className="relative flex justify-center lg:justify-end">
+            <div className="w-full max-w-md">
+              <HeroQuoteForm />
+            </div>
+           </div>
+          
+        </div>
+      </div>
+    </section>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\InsuranceAndServiceHub.tsx--------------------------------------------------------------------------------```tsx// Professional Insurance & Service Hub Component
+
+import { Button } from "@/components/ui/button";
+import { Zap, Wrench, ShieldCheck, Truck, Car } from "lucide-react";
+import Link from "next/link";
+
+// Placeholder data for key Zululand market trust signals:
+const insurerLogos = [
+  { name: "Santam", src: "/logos/santam.svg", alt: "Santam Approved" },
+  { name: "Hollard", src: "/logos/hollard.svg", alt: "Hollard Approved" },
+  { name: "Outsurance", src: "/logos/outsurance.svg", alt: "Outsurance Approved" },
+  { name: "Discovery", src: "/logos/discovery.svg", alt: "Discovery Insure Approved" },
+];
+
+// Key services tailored to the 50km market radius:
+const marketServices = [
+  { title: "N2 Truck & Commercial", icon: Truck, description: "Heavy vehicle and fleet repair for Richards Bay & N2 traffic." },
+  { title: "4x4 & Safari Vehicles", icon: Car, description: "Expert repairs for tourist and safari 4x4s from St Lucia/Hluhluwe." },
+  { title: "Cash & Taxi Repairs", icon: Zap, description: "Affordable, high-volume repairs for the local Mtubatuba community." },
+  { title: "Specialist Paint & Body", icon: Wrench, description: "Chassis straightening and factory-spec paintwork guarantee." },
+];
+
+export function InsuranceAndServiceHub() {
+  return (
+    <section className="w-full py-20 bg-muted/30">
+      <div className="container px-4 md:px-8 mx-auto grid lg:grid-cols-2 gap-16 items-start">
+        
+        {/* === LEFT COLUMN: Insurance Trust Hub === */}
+        <div>
+          <h2 className="text-4xl font-extrabold tracking-tight mb-4 flex items-center space-x-2 text-foreground">
+            <ShieldCheck className="h-8 w-8 text-primary" />
+            <span>Insurance & Claims Authority</span>
+          </h2>
+          
+          <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
+            We are on the Approved Panel for South Africa&apos;s leading insurers. Choosing Rhino Panelbeaters means choosing the path of least resistance after an accident.
+          </p>
+          
+          <ul className="list-disc list-inside text-base text-muted-foreground mb-8 space-y-3 pl-4 leading-relaxed">
+            <li>We handle the entire claims process directly with your insurer, from authorization to billing.</li>
+            <li>No hidden fees, no unnecessary bureaucracy—just fast, quality-guaranteed repairs.</li>
+            <li>Rest assured that all work meets the stringent compliance and quality standards required by major insurance partners.</li>
+          </ul>
+
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-4 mb-10 p-6 bg-white rounded-lg border border-border">
+            {insurerLogos.map((logo) => (
+              <div key={logo.name} className="h-12 w-28 flex items-center justify-center">
+                <span className="text-lg font-bold text-muted-foreground">{logo.name}</span>
+              </div>
+            ))}
+          </div>
+
+          <Button variant="default" asChild size="lg" className="h-12 px-8">
+            <Link href="/accreditations">
+              View All Approvals & Warranties
+            </Link>
+          </Button>
+        </div>
+
+        {/* === RIGHT COLUMN: Market-Specific Services === */}
+        <div>
+          <h2 className="text-4xl font-extrabold tracking-tight mb-8 text-foreground">
+            Services for the Zululand Market
+          </h2>
+
+          <div className="space-y-6">
+            {marketServices.map((service) => (
+              <div key={service.title} className="flex items-start space-x-4 p-4 bg-white rounded-lg border border-border hover:border-primary/20 transition-all duration-300">
+                <div className="p-3 bg-primary/10 text-primary rounded-lg flex-shrink-0">
+                  <service.icon className="h-6 w-6" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2 text-foreground">
+                    {service.title}
+                  </h3>
+                  <p className="text-muted-foreground text-base leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <Button variant="link" asChild className="mt-6 pl-0 text-base font-semibold">
+            <Link href="/services">
+              Explore Our Full Service List →
+            </Link>
+          </Button>
+        </div>
+
+      </div>
+    </section>
+  );
+}
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\LazyMap.tsx--------------------------------------------------------------------------------```tsx"use client"; // Client component for lazy loading
+
+import { useState, useEffect, useRef } from "react";
+
+interface LazyMapProps {
+  src: string;
+  className?: string;
+  ariaLabel?: string;
+}
+
+export function LazyMap({ src, className, ariaLabel }: LazyMapProps) {
+  const [shouldLoad, setShouldLoad] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    // Use Intersection Observer for lazy loading
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Clear any existing timeout
+            if (timeoutRef.current) {
+              clearTimeout(timeoutRef.current);
+            }
+            // Delay loading slightly to prioritize above-the-fold content
+            timeoutRef.current = setTimeout(() => {
+              setShouldLoad(true);
+            }, 100);
+            observer.disconnect();
+          }
+        });
+      },
+      {
+        rootMargin: "200px", // Start loading when 200px away from viewport
+        threshold: 0.01,
+      }
+    );
+
+    const currentRef = containerRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+      observer.disconnect();
+    };
+  }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      className={className}
+      style={{ 
+        minHeight: "384px", 
+        backgroundColor: "#f3f4f6",
+        contain: "layout style paint", // Prevent layout shifts
+      }}
+    >
+      {shouldLoad ? (
+        <iframe
+          src={src}
+          width="100%"
+          height="100%"
+          style={{ border: 0, minHeight: "384px" }}
+          allowFullScreen={false}
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+          aria-label={ariaLabel}
+          title={ariaLabel}
+        />
+      ) : (
+        <div 
+          className="flex items-center justify-center h-full text-muted-foreground min-h-[384px]"
+          style={{ contain: "layout style paint" }}
+        >
+          <div className="text-center">
+            <div className="animate-pulse">
+              <div className="w-16 h-16 border-4 border-primary border-t-transparent rounded-full mx-auto mb-4"></div>
+              <p className="text-sm">Loading map...</p>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\LocationAndCTA.tsx--------------------------------------------------------------------------------```tsx// Professional Location & Final CTA Component
+
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { 
+  MapPin, 
+  Clock, 
+  Phone, 
+  ArrowRight, 
+  Wrench, 
+  Car, 
+  FileText,
+  Star, // <-- ADDED
+  ExternalLink // <-- ADDED
+} from "lucide-react";
+import { LazyMap } from "./LazyMap";
+
+const OFFICE_PHONE = "035 550 0211"; // <-- CONFIRMED
+const TOWING_NUMBER = "072 311 5870"; // <-- UPDATED
+const GMB_LINK = "https://share.google/UBoRn59KzPkWT48fK"; // <-- ADDED
+const MAP_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.7497989346457!2d32.186301974730945!3d-28.426805558160726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1efa4f69fb506301%3A0x3816aedcd1d65990!2sRhino%20Panelbeaters%20and%20Towing!5e0!3m2!1sen!2sza!4v1763116439280!5m2!1sen!2sza";
+
+export function LocationAndCTA() {
+  return (
+    <section className="w-full py-20 bg-white">
+      <div className="container px-4 md:px-8 mx-auto space-y-16">
+
+        <div className="text-center">
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-foreground">
+            Find Us: Rhino Panelbeaters, Mtubatuba
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+             Visit our workshop or call us 24/7 for emergency towing
+          </p>
+        </div>
+        
+        {/* === MAP AND DETAILED CONTACT ROW === */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+            
+            {/* COLUMN 1 & 2: Lazy-loaded Map */}
+             <div className="lg:col-span-2 relative w-full rounded-2xl overflow-hidden shadow-xl border-2 border-border">
+                <LazyMap
+                  src={MAP_EMBED_URL}
+                  className="w-full h-96 rounded-2xl"
+                  ariaLabel="Google Map showing the location of Rhino Panelbeaters on Jacaranda Ave."
+                 />
+            </div>
+
+            {/* COLUMN 3: Contact Details */}
+            <div className="lg:col-span-1 space-y-8 p-6 bg-muted/30 rounded-2xl border border-border">
+                
+                 {/* Workshop Office Details */}
+                 <div className="space-y-4">
+                    <h3 className="text-2xl font-bold flex items-center space-x-2 text-foreground">
+                        <Wrench className="h-6 w-6 text-primary shrink-0" />
+                        <span>Workshop Office</span>
+                    </h3>
+                    
+                    <div className="space-y-4 text-base">
+                        <div className="flex items-start space-x-3">
+                             <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                            <span className="text-muted-foreground">Jacaranda Ave, Mtubatuba, 3935</span>
+                        </div>
+                        <div className="flex items-center space-x-3">
+                            <Clock className="h-5 w-5 text-primary shrink-0" />
+                            <span className="text-muted-foreground">Mon-Fri: 7:30 am - 5:00 pm</span>
+                        </div>
+                         <div className="flex items-center space-x-3 pt-2">
+                            <Phone className="h-5 w-5 text-primary shrink-0" />
+                            <a href={`tel:${OFFICE_PHONE.replace(/\s/g, '')}`} className="font-bold text-foreground hover:text-primary transition-colors">
+                                 {OFFICE_PHONE}
+                            </a>
+                        </div>
+                        
+                        {/* === NEW GMB LINK === */}
+                        <div className="pt-2">
+                          <Button asChild variant="outline" className="w-full">
+                            <a href={GMB_LINK} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2">
+                              <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
+                              <span>See Our Google Reviews</span>
+                              <ExternalLink className="h-4 w-4" />
+                            </a>
+                          </Button>
+                        </div>
+                        {/* === END OF NEW GMB LINK === */}
+                        
+                    </div>
+                 </div>
+
+                {/* Emergency Towing Section */}
+                <div className="space-y-3 pt-6 border-t border-border">
+                    <h3 className="text-xl font-bold flex items-center space-x-2 text-destructive">
+                        <Car className="h-6 w-6 shrink-0" />
+                        <span>24/7 EMERGENCY TOWING</span>
+                    </h3>
+                    <div className="flex items-center space-x-3">
+                        <Phone className="h-6 w-6 text-destructive shrink-0" />
+                         <a href={`tel:${TOWING_NUMBER.replace(/\s/g, '')}`} className="text-2xl font-extrabold text-destructive hover:underline">
+                            {TOWING_NUMBER}
+                        </a>
+                    </div>
+                    <p className="text-sm text-muted-foreground pl-9 leading-relaxed">
+                        Call immediately for N2 accident support.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {/* === FINAL CONVERSION CTA BAR === */}
+        <div className="w-full p-8 md:p-10 flex flex-col md:flex-row items-center justify-between rounded-2xl bg-primary text-primary-foreground shadow-2xl">
+            
+            <div className="flex items-center space-x-4 mb-6 md:mb-0">
+                <FileText className="h-12 w-12 shrink-0" />
+                <div>
+                    <h3 className="text-2xl md:text-3xl font-bold mb-2">Ready to Start Your Repair?</h3>
+                    <p className="text-lg opacity-90">Start your claim immediately with our digital quote engine.</p>
+                 </div>
+            </div>
+
+            <Button asChild size="xl" variant="secondary" className="w-full md:w-auto h-14 text-lg font-bold shadow-lg hover:shadow-xl transition-all">
+                <Link href="/quote" className="flex items-center justify-center space-x-2">
+                    <span>BEGIN FREE DIGITAL QUOTE</span>
+                     <ArrowRight className="h-5 w-5" />
+                </Link>
+            </Button>
+            
+        </div>
+
+      </div>
+    </section>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\LogoScroller.tsx--------------------------------------------------------------------------------```tsx"use client"; // Client Component for animation
+
+import * as React from "react";
+
+// Top 10 Car Brands in South Africa
+const topBrands = [
+  "TOYOTA",
+  "VOLKSWAGEN",
+  "FORD",
+  "NISSAN",
+  "BMW",
+  "MERCEDES-BENZ",
+  "AUDI",
+  "SUZUKI",
+  "HYUNDAI",
+  "KIA",
+];
+
+// Duplicate the list for seamless infinite scroll
+const duplicatedBrands = [...topBrands, ...topBrands];
+
+export function LogoScroller() {
+  // Use CSS animation instead of JavaScript for better performance
+  // Prevent forced reflows by using transform and will-change
+  return (
+    <div className="w-full overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]">
+      <div 
+        className="flex w-[200%] animate-scroll"
+        style={{
+          willChange: "transform", // Optimize animation performance
+          contain: "layout style paint", // Prevent layout shifts and reflows
+          transform: "translateZ(0)", // Force GPU acceleration
+        }}
+      >
+        {duplicatedBrands.map((brandName, index) => (
+          <div 
+            key={`${brandName}-${index}`} 
+            className="flex-shrink-0 flex justify-center items-center h-16 w-40 md:w-52"
+            style={{
+              contain: "layout style paint", // Prevent reflows
+            }}
+          >
+            <span className="text-lg md:text-xl font-bold uppercase text-muted-foreground whitespace-nowrap hover:text-primary transition-colors duration-300">
+              {brandName}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\ProcessCallout.tsx--------------------------------------------------------------------------------```tsx"use client"; 
+
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { 
+  ArrowRight, 
+  FileText, 
+  CheckCircle, 
+  Car, 
+  Wrench, 
+  Zap,
+  CheckCircle2
+} from "lucide-react";
+import { motion } from "framer-motion";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "@/components/ui/card";
+
+const MotionButton = motion(Button);
+
+// Data for the 4 small cards
+const keySteps = [
+  { step: 1, title: "Quote by Photo (3 Min)", icon: FileText, description: "Skip the physical drop-off. We instantly assess damage using our digital quote engine." },
+  { step: 2, title: "OEM & Insurer Authorization", icon: CheckCircle, description: "We manage all claims directly. Get peace of mind knowing your factory warranty is protected." },
+  { step: 3, title: "Structural Repair & Paint", icon: Wrench, description: "Factory-spec repair using the latest technology and a guaranteed 3-year paint warranty." },
+  { step: 4, title: "Final Handover & Assurance", icon: Car, description: "We confirm a perfect finish and get your vehicle back on the road, guaranteed." },
+];
+
+// Animation variants for the grid
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1, // Faster stagger for a cooler effect
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.95, y: 30 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      ease: "easeInOut" as const,
+      duration: 0.5,
+    },
+  },
+};
+
+// --- NEW COMPONENT: The small 1x1 step card ---
+function ProcessCard({ step, title, icon: Icon, description }: (typeof keySteps)[0]) {
+  return (
+    <motion.div variants={itemVariants} className="h-full">
+      <Card className="flex flex-col h-full hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 bg-white group">
+        <CardHeader className="flex-col items-start space-y-4">
+          <div className="p-3 bg-primary/10 text-primary rounded-lg group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+            <Icon className="h-6 w-6" />
+          </div>
+          <CardTitle className="text-xl font-bold text-foreground">{title}</CardTitle>
+        </CardHeader>
+        <CardContent className="flex-grow">
+          <p className="text-muted-foreground text-base leading-relaxed">{description}</p>
+        </CardContent>
+        <CardFooter>
+          <div className="text-xs font-semibold uppercase text-primary/70">
+            Step {step} of 14
+          </div>
+        </CardFooter>
+      </Card>
+    </motion.div>
+  );
+}
+
+// --- NEW COMPONENT: The large 2x2 CTA card ---
+function CTACard() {
+  return (
+    <motion.div 
+      variants={itemVariants} 
+      className="lg:col-span-2 lg:row-span-2 h-full"
+    >
+      <Card className="flex flex-col h-full p-8 md:p-10 rounded-2xl bg-primary text-primary-foreground shadow-2xl space-y-6">
+        <Zap className="h-10 w-10" />
+        <CardTitle className="text-3xl font-extrabold leading-tight">
+            Ready to Begin? Start Your Claim Instantly.
+        </CardTitle>
+        <CardContent className="p-0 flex-grow">
+          <p className="text-lg opacity-90 leading-relaxed">
+              Don't wait in a queue. Launch the digital quote engine from your phone right now. It takes just minutes.
+          </p>
+          
+          {/* Guarantees */}
+          <div className="flex flex-col gap-2 mt-6">
+            <div className="flex items-center space-x-2 text-sm opacity-90">
+              <CheckCircle2 className="h-4 w-4 shrink-0" />
+              <span>3-Year Paint Guarantee</span>
+            </div>
+            <div className="flex items-center space-x-2 text-sm opacity-90">
+              <CheckCircle2 className="h-4 w-4 shrink-0" />
+              <span>Lifetime Workmanship Guarantee</span>
+            </div>
+          </div>
+        </CardContent>
+        <CardFooter className="p-0 flex-col items-start gap-4">
+          {/* Main Button */}
+          <MotionButton 
+            asChild 
+            size="xl" 
+            variant="secondary" 
+            className="w-full h-14 text-lg font-bold"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+              <Link href="/quote" className="flex items-center justify-center space-x-2">
+                  <span>BEGIN FREE DIGITAL QUOTE</span>
+                   <ArrowRight className="h-5 w-5" />
+              </Link>
+          </MotionButton>
+          {/* Secondary Link */}
+          <motion.div whileHover={{ x: 2 }} className="w-full flex justify-start">
+            <Link href="/process" className="text-sm font-semibold hover:underline opacity-90 transition-opacity flex items-center space-x-2">
+                <span>View the Full 14-Step Blueprint</span>
+                <ArrowRight className="h-4 w-4" />
+            </Link>
+          </motion.div>
+        </CardFooter>
+      </Card>
+    </motion.div>
+  );
+}
+
+
+export function ProcessCallout() {
+  return (
+    <section className="w-full py-20 bg-white">
+      <div className="container px-4 md:px-8 mx-auto">
+        
+        {/* Animated Headline */}
+        <motion.div 
+          className="text-center mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" as const }}
+          viewport={{ once: true }}
+        >
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-foreground">
+            Your Damage Fixed. Your Warranty Protected.
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+             We follow a rigorous, transparent 14-step process that guarantees a factory-spec finish and complete peace of mind.
+          </p>
+        </motion.div>
+
+        {/* --- NEW BENTO GRID LAYOUT --- */}
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-fr gap-6" // auto-rows-fr makes all rows equal height
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+            {/* The 2x2 CTA Card */}
+            <CTACard />
+            
+            {/* The 4 1x1 Step Cards */}
+            {keySteps.map((step) => (
+                <ProcessCard key={step.step} {...step} />
+            ))}
+        </motion.div>
+        
+      </div>
+    </section>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\ProcessFlowLine.tsx--------------------------------------------------------------------------------```tsx// src/components/layout/ProcessFlowLine.tsx
+
+import { ArrowRight } from "lucide-react";
+
+/**
+ * A Server Component that renders the visual flow line and arrows 
+ * to connect the steps in the ProcessCallout.
+ * It's designed to align perfectly with the grid in ProcessCallout.tsx
+ * to reinforce the sequential nature of the 14-step process.
+ */
+export function ProcessFlowLine() {
+  return (
+    // This div needs to match the structure of the grid below it (grid-cols-4)
+    // but only needs to render the separators in the gaps.
+    <div className="hidden md:grid grid-cols-4 gap-8 mb-6 relative px-8">
+      
+      {/* Container for the horizontal line */}
+      <div className="absolute top-1/2 left-0 right-0 -translate-y-1/2 h-px bg-muted/40"></div>
+      
+      {/* Column 1: Empty to align with the first Step */}
+      <div className="col-span-1" />
+
+      {/* Separator 1 (Between Step 1 and 2) */}
+      <div className="relative flex justify-center items-center h-full">
+        <ArrowRight className="h-6 w-6 text-primary z-10 bg-muted/30 p-1 rounded-full border-2 border-muted/30" />
+      </div>
+
+      {/* Separator 2 (Between Step 2 and 3) */}
+      <div className="relative flex justify-center items-center h-full">
+        <ArrowRight className="h-6 w-6 text-primary z-10 bg-muted/30 p-1 rounded-full border-2 border-muted/30" />
+      </div>
+
+      {/* Separator 3 (Between Step 3 and 4) */}
+      <div className="relative flex justify-center items-center h-full">
+        <ArrowRight className="h-6 w-6 text-primary z-10 bg-muted/30 p-1 rounded-full border-2 border-muted/30" />
+      </div>
+
+      {/* Column 5: Not rendered, as the structure is relative to the ProcessCallout grid */}
+    </div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\TestimonialsSection.tsx--------------------------------------------------------------------------------```tsx// Professional Testimonials Section
+
+import { Card, CardContent } from "@/components/ui/card";
+import { Star, Quote } from "lucide-react";
+
+const testimonials = [
+  {
+    name: "J. Smith",
+    location: "Mtubatuba",
+    rating: 5,
+    text: "Rhino Panelbeaters fixed my Toyota Hilux after an accident. The work was perfect, and they handled everything with my insurance. Highly professional and trustworthy.",
+  },
+  {
+    name: "M. Khumalo",
+    location: "St Lucia",
+    rating: 5,
+    text: "Had a breakdown on the N2 and called their 24/7 towing. They towed my car and handled the repair. One call, one solution. Excellent service!",
+  },
+  {
+    name: "P. van der Merwe",
+    location: "Richards Bay",
+    rating: 5,
+    text: "The paintwork on my BMW was flawless. Three-year warranty gives me complete peace of mind. SAMBRA accreditation shows they're serious about quality.",
+  },
+];
+
+export function TestimonialsSection() {
+  return (
+    <section className="w-full py-20 bg-muted/30">
+      <div className="container px-4 md:px-8 mx-auto">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-foreground">
+            Trusted by Our Customers
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Real reviews from real customers across Mtubatuba and the Zululand region
+          </p>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <Card key={index} className="border-2 border-border hover:border-primary/20 transition-all duration-300 bg-white">
+              <CardContent className="p-6 space-y-4">
+                <Quote className="h-8 w-8 text-primary/20" />
+                <div className="flex space-x-1">
+                  {[...Array(testimonial.rating)].map((_, i) => (
+                    <Star key={i} className="h-5 w-5 fill-accent text-accent" />
+                  ))}
+                </div>
+                <p className="text-muted-foreground leading-relaxed">
+                  &ldquo;{testimonial.text}&rdquo;
+                </p>
+                <div className="pt-4 border-t border-border">
+                  <p className="font-semibold text-foreground">{testimonial.name}</p>
+                  <p className="text-sm text-muted-foreground">{testimonial.location}</p>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\TrustBar.tsx--------------------------------------------------------------------------------```tsx// Professional Trust Bar Component
+
+import { Shield, Award, CheckCircle2 } from "lucide-react";
+
+export function TrustBar() {
+  return (
+    <section className="w-full bg-[#1f1f1f] py-12 md:py-16 border-y border-border"> {/* <-- THIS LINE IS UPDATED */}
+      <div className="container px-4 md:px-8 mx-auto">
+        
+        {/* UPDATED: Converted to a 3-column "Bento-style" grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          {/* Card 1 */}
+          <div className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow border-2 border-transparent hover:border-primary/20 hover:shadow-lg transition-all">
+            <Shield className="h-10 w-10 text-primary mb-4" />
+            <h3 className="text-xl font-semibold text-foreground">
+              SAMBRA Accredited
+            </h3>
+            <p className="text-sm text-muted-foreground text-center mt-1">
+              Adherence to the highest ethical and service standards.
+            </p>
+          </div>
+          
+          {/* Card 2 */}
+          <div className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow border-2 border-transparent hover:border-primary/20 hover:shadow-lg transition-all">
+            <Award className="h-10 w-10 text-primary mb-4" />
+            <h3 className="text-xl font-semibold text-foreground">
+              RMI Member
+            </h3>
+            <p className="text-sm text-muted-foreground text-center mt-1">
+              Part of the premier motor industry association.
+            </p>
+          </div>
+          
+          {/* Card 3 */}
+          <div className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow border-2 border-transparent hover:border-primary/20 hover:shadow-lg transition-all">
+            <CheckCircle2 className="h-10 w-10 text-primary mb-4" />
+            <h3 className="text-xl font-semibold text-foreground">
+              Insurance Approved
+            </h3>
+            <p className="text-sm text-muted-foreground text-center mt-1">
+              We handle claims for all major insurance partners.
+            </p>
+          </div>
+          
+        </div>
+        
+        {/* === Divider and LogoScroller section REMOVED === */}
+
+      </div>
+    </section>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\services\ServiceCard.tsx--------------------------------------------------------------------------------```tsx// Professional Service Card Component
+
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
+import { Service } from "./ServicesGrid";
+
+interface ServiceCardProps {
+  service: Service;
+  highlighted?: boolean;
+}
+
+export function ServiceCard({ service, highlighted = false }: ServiceCardProps) {
+  return (
+    <Card 
+      className={`flex flex-col h-full hover:shadow-lg transition-all duration-300 border-2 hover:border-primary/20 bg-white group overflow-hidden ${
+        highlighted ? "border-accent/20 bg-accent/5" : ""
+      }`}
+    >
+      {/* Service Image - Above the content */}
+      {service.imageUrl && (
+        <div className="relative w-full h-48 overflow-hidden bg-muted">
+          <Image
+            src={service.imageUrl}
+            alt={service.title}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            loading="lazy"
+            quality={85}
+            placeholder="blur"
+            blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAIAAoDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+          />
+        </div>
+      )}
+      
+      <CardHeader className="flex-row items-start space-x-4 pb-4">
+        <div className={`p-3 rounded-lg flex-shrink-0 group-hover:bg-primary group-hover:text-white transition-colors duration-300 ${
+          highlighted ? "bg-accent/20 text-accent" : "bg-primary/10 text-primary"
+        }`}>
+          {service.icon}
+        </div>
+        <div className="flex-1">
+          <CardTitle className="text-xl font-bold mb-2">{service.title}</CardTitle>
+        </div>
+      </CardHeader>
+      <CardContent className="flex-grow pt-0">
+        <CardDescription className="text-base leading-relaxed">
+          {service.description}
+        </CardDescription>
+      </CardContent>
+      <CardFooter className="pt-4">
+        <Button asChild variant="outline" className="w-full group/btn">
+          <Link href={service.href} className="flex items-center justify-center space-x-2">
+            <span>Learn More</span>
+            <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+          </Link>
+        </Button>
+      </CardFooter>
+    </Card>
+  );
+}
+
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\services\ServicesGrid.tsx--------------------------------------------------------------------------------```tsx"use client"; 
+
+// Professional Services Grid Component
+
+import {
+  Car,
+  Paintbrush,
+  Hammer,
+  CarFront,
+  Wrench,
+  Shield,
+  Truck,
+  Layers,
+  GlassWater,
+  SparklesIcon,
+  AlertCircle,
+  MapPin,
+  Zap,
+  Phone,
+} from "lucide-react";
+import { ServiceCard } from "./ServiceCard";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { LogoScroller } from "@/components/layout/LogoScroller";
+
+// === 1. CREATE THE MOTION-WRAPPED BUTTON ===
+const MotionButton = motion(Button);
+
+export interface Service {
+  title: string;
+  description: string;
+  icon: React.ReactNode;
+  href: string;
+  category: "repair" | "towing" | "specialty";
+  imageUrl: string;
+}
+
+const services: Service[] = [
+  // ... (all your services)
+  {
+    title: "Collision Repair",
+    description: "Expert collision repair services for all vehicle types. Factory-spec repairs that protect your warranty and restore your vehicle to pre-accident condition.",
+    icon: <Car className="h-6 w-6" />,
+    href: "/services/collision-repair",
+    category: "repair",
+    imageUrl: "/images/collision-repair-chassis-welding-mtubatuba-kzn.png",
+  },
+  {
+    title: "Spray Painting",
+    description: "Professional spray painting with 3-year warranty guarantee. Computer-matched color mixing and professional spray booth finishing.",
+    icon: <Paintbrush className="h-6 w-6" />,
+    href: "/services/spray-painting",
+    category: "repair",
+    imageUrl: "/images/car-spray-painting-finish-kzn.png",
+  },
+  {
+    title: "Scratch Repair",
+    description: "Professional removal of surface scratches and paint scuffs. We restore your vehicle's finish, making blemishes disappear.",
+    icon: <SparklesIcon className="h-6 w-6" />,
+    href: "/services/scratch-repair",
+    category: "repair",
+    imageUrl: "/images/car-scratch-repair-buffing-kzn.png",
+  },
+  {
+    title: "Paintless Dent Removal (PDR)",
+    description: "Advanced paintless dent removal for minor dents and hail damage. No paint required, preserving your vehicle's original finish.",
+    icon: <Hammer className="h-6 w-6" />,
+    href: "/services/dent-removal",
+    category: "repair",
+    imageUrl: "/images/paintless-dent-removal-close-up-pdr.png",
+  },
+  {
+    title: "Bumper Repair & Replacement",
+    description: "Expert bumper repair and replacement services. OEM and aftermarket options available with factory-spec fitment.",
+    icon: <CarFront className="h-6 w-6" />,
+    href: "/services/bumper-repair",
+    category: "repair",
+    imageUrl: "/images/bumper-plastic-welding-repair-mtubatuba.png",
+  },
+  {
+    title: "Chassis Straightening",
+    description: "Professional chassis and frame straightening services. Advanced equipment ensures precise structural repairs.",
+    icon: <Wrench className="h-6 w-6" />,
+    href: "/services/chassis-straightening",
+    category: "repair",
+    imageUrl: "/images/chassis-straightening-rig-alignment-kzn.png",
+  },
+  {
+    title: "Hail Damage Repair",
+    description: "Specialized hail damage repair services. Paintless dent removal and respray options for comprehensive hail damage restoration.",
+    icon: <Shield className="h-6 w-6" />,
+    href: "/services/hail-damage-repair",
+    category: "repair",
+    imageUrl: "/images/hail-damage-inspection-dent-kzn.png",
+  },
+  {
+    title: "Panel Replacement",
+    description: "Expert panel replacement services for damaged body panels. OEM and quality aftermarket parts available.",
+    icon: <Layers className="h-6 w-6" />,
+    href: "/services/panel-replacement",
+    category: "repair",
+    imageUrl: "/images/car-panel-replacement-fitment.png",
+  },
+  {
+    title: "Auto Glass Repair",
+    description: "Windshield and auto glass repair and replacement services. Quality glass with proper installation and sealing.",
+    icon: <GlassWater className="h-6 w-6" />,
+    href: "/services/auto-glass",
+    category: "repair",
+    imageUrl: "/images/auto-glass-windshield-sealant-installation.png",
+  },
+  {
+    title: "Auto Detailing",
+    description: "Professional auto detailing services. Interior and exterior cleaning, polishing, and protection treatments.",
+    icon: <SparklesIcon className="h-6 w-6" />,
+    href: "/services/auto-detailing",
+    category: "specialty",
+    imageUrl: "", // No image provided
+  },
+  {
+    title: "24/7 Emergency Towing",
+    description: "Round-the-clock emergency towing services for Mtubatuba and the N2 corridor. Fast response times for accidents and breakdowns.",
+    icon: <AlertCircle className="h-6 w-6" />,
+    href: "/services/emergency-towing",
+    category: "towing",
+    imageUrl: "", // No image provided
+  },
+  {
+    title: "N2 Truck & Commercial",
+    description: "Heavy vehicle and commercial fleet repair services. Specialized expertise for trucks, bakkies, and commercial vehicles on the N2 route.",
+    icon: <Truck className="h-6 w-6" />,
+    href: "/services/commercial-repair",
+    category: "specialty",
+    imageUrl: "", // No image provided
+  },
+  {
+    title: "4x4 & Safari Vehicles",
+    description: "Expert repairs for 4x4 and safari vehicles from St Lucia and Hluhluwe. Specialized knowledge of off-road vehicle requirements.",
+    icon: <MapPin className="h-6 w-6" />,
+    href: "/services/4x4-repair",
+    category: "specialty",
+    imageUrl: "", // No image provided
+  },
+  {
+    title: "Cash & Taxi Repairs",
+    description: "Affordable, high-volume repair services for the local Mtubatuba community. Quality repairs at competitive prices.",
+    icon: <Zap className="h-6 w-6" />,
+    href: "/services/cash-repairs",
+    category: "specialty",
+    imageUrl: "", // No image provided
+  },
+];
+
+export function ServicesGrid() {
+  // Group services by category
+  const repairServices = services.filter((s) => s.category === "repair");
+  const specialtyServices = services.filter((s) => s.category === "specialty");
+  
+  // Manually define the towing service data for our new CTA
+  const towingService = {
+      title: "24/7 Emergency Towing & Recovery",
+      description: "Round-the-clock emergency towing services for Mtubatuba and the N2 corridor. Fast response times for accidents and breakdowns.",
+      phone: "072 311 5870", // <-- UPDATED
+      href: "/services/emergency-towing"
+  };
+
+  return (
+    <section className="w-full py-20 bg-white">
+      <div className="container px-4 md:px-8 mx-auto space-y-16">
+        
+        {/* Panelbeating Services */}
+        <div>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-foreground">
+              Panelbeating Services
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+               Comprehensive collision repair and bodywork services with factory-spec quality and 3-year warranty guarantee
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {repairServices.map((service) => (
+              <ServiceCard key={service.title} service={service} />
+            ))}
+          </div>
+        </div>
+
+        {/* Logo Scroller Section */}
+        <div className="w-full">
+          <div className="h-px bg-border w-1/2 mx-auto"></div>
+          <div className="min-h-[4rem] mt-12">
+            <p className="text-center text-sm font-medium text-muted-foreground mb-4">
+              OEM Approved Repairer for Leading Brands
+            </p>
+            <LogoScroller />
+          </div>
+        </div>
+
+        {/* Full-Width Emergency CTA Block */}
+        <div className="w-full p-8 md:p-12 flex flex-col lg:flex-row items-center justify-between rounded-2xl bg-destructive text-destructive-foreground shadow-2xl">
+            
+            <div className="flex items-center space-x-4 mb-6 lg:mb-0 lg:w-2/3">
+                <AlertCircle className="h-16 w-16 shrink-0" />
+                <div>
+                    <h2 className="text-3xl md:text-4xl font-extrabold mb-2">
+                        {towingService.title}
+                    </h2>
+                    <p className="text-lg opacity-90">
+                        {towingService.description}
+                    </p>
+                </div>
+            </div>
+
+            <Button 
+              asChild 
+              size="xl" 
+              variant="secondary"
+              className="w-full lg:w-auto h-16 text-lg font-bold shadow-lg hover:shadow-xl transition-all"
+            >
+                <a href={`tel:${towingService.phone.replace(/\s/g, '')}`} className="flex items-center justify-center space-x-3">
+                    <Phone className="h-6 w-6" />
+                    <span>CALL 24/7: {towingService.phone}</span>
+                </a>
+            </Button>
+            
+        </div>
+
+        {/* Specialty Services */}
+        <div>
+          <div className="text-center mb-12">
+            <h2 className="text-4xl md:text-5xl font-extrabold mb-4 text-foreground">
+              Specialty Services
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+              Specialized services tailored to the Zululand market and regional needs
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {specialtyServices.map((service) => (
+              <ServiceCard key={service.title} service={service} />
+            ))}
+          </div>
+        </div>
+
+        {/* === REVAMPED CTA BLOCK === */}
+        <motion.div
+          className="text-center pt-8"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          viewport={{ once: true }}
+        >
+          <div className="inline-flex flex-col items-center space-y-6 p-8 bg-primary text-primary-foreground rounded-2xl shadow-2xl max-w-2xl mx-auto">
+            <h3 className="text-3xl font-extrabold">
+              Ready to Get Started?
+            </h3>
+            <p className="text-lg opacity-90">
+              Get a free digital quote in minutes. No need to bring your car in!
+            </p>
+            
+            {/* === 2. USE THE NEW MOTIONBUTTON === */}
+            <MotionButton
+              asChild // This prop is for the Button component
+              size="lg"
+              variant="secondary"
+              className="h-14 px-8 text-base font-bold"
+              // These props are for framer-motion
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link href="/quote">
+                Get Free Digital Quote
+              </Link>
+            </MotionButton>
+            
+          </div>
+        </motion.div>
+        {/* === END OF REVAMPED BLOCK === */}
+
+      </div>
+    </section>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\ui\button.tsx--------------------------------------------------------------------------------```tsximport * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const buttonVariants = cva(
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-primary text-primary-foreground shadow hover:bg-primary/90",
+        destructive:
+          "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
+        outline:
+          "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",
+        secondary:
+          "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
+        ghost: "hover:bg-accent hover:text-accent-foreground",
+        link: "text-primary underline-offset-4 hover:underline",
+      },
+      size: {
+        default: "h-9 px-4 py-2",
+        sm: "h-8 rounded-md px-3 text-xs",
+        lg: "h-10 rounded-md px-8",
+        xl: "h-14 rounded-md px-10 text-lg",
+        icon: "h-9 w-9",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+)
+
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean
+}
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, variant, size, asChild = false, ...props }, ref) => {
+    const Comp = asChild ? Slot : "button"
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
+)
+Button.displayName = "Button"
+
+export { Button, buttonVariants }
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\ui\card.tsx--------------------------------------------------------------------------------```tsximport * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+const Card = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "rounded-xl border bg-card text-card-foreground shadow",
+      className
+    )}
+    {...props}
+  />
+))
+Card.displayName = "Card"
+
+const CardHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex flex-col space-y-1.5 p-6", className)}
+    {...props}
+  />
+))
+CardHeader.displayName = "CardHeader"
+
+const CardTitle = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("font-semibold leading-none tracking-tight", className)}
+    {...props}
+  />
+))
+CardTitle.displayName = "CardTitle"
+
+const CardDescription = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("text-sm text-muted-foreground", className)}
+    {...props}
+  />
+))
+CardDescription.displayName = "CardDescription"
+
+const CardContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn("p-6 pt-0", className)} {...props} />
+))
+CardContent.displayName = "CardContent"
+
+const CardFooter = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex items-center p-6 pt-0", className)}
+    {...props}
+  />
+))
+CardFooter.displayName = "CardFooter"
+
+export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\ui\input.tsx--------------------------------------------------------------------------------```tsximport * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
+  ({ className, type, ...props }, ref) => {
+    return (
+      <input
+        type={type}
+        className={cn(
+          "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+          className
+        )}
+        ref={ref}
+        {...props}
+      />
+    )
+  }
+)
+Input.displayName = "Input"
+
+export { Input }
+```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\lib\utils.ts--------------------------------------------------------------------------------```tsimport { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+```
+

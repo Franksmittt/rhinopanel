@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-
 const config: Config = {
     darkMode: ["class"],
     content: [
@@ -32,7 +31,13 @@ const config: Config = {
   				DEFAULT: 'hsl(var(--muted))',
   				foreground: 'hsl(var(--muted-foreground))'
   			},
-  			accent: {
+            // Professional Brand Colors
+            'brand-blue': '#3B82F6',      // Primary blue
+            'brand-blue-dark': '#2563EB', // Darker blue
+            'brand-orange': '#F97316',    // Emergency/CTA orange
+            'brand-gray': '#1F2937',      // Dark gray
+            'brand-gray-light': '#F3F4F6', // Light gray
+ 			accent: {
   				DEFAULT: 'hsl(var(--accent))',
   				foreground: 'hsl(var(--accent-foreground))'
   			},
@@ -55,7 +60,14 @@ const config: Config = {
   			lg: 'var(--radius)',
   			md: 'calc(var(--radius) - 2px)',
   			sm: 'calc(var(--radius) - 4px)'
-  		}
+  		},
+        size: {
+          default: "h-9 px-4 py-2",
+          sm: "h-8 rounded-md px-3 text-xs",
+          lg: "h-10 rounded-md px-8",
+          xl: "h-14 px-10",
+          icon: "h-9 w-9",
+        }
   	}
   },
   plugins: [require("tailwindcss-animate")],

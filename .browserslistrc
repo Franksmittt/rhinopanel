@@ -1,0 +1,12 @@
+# Modern browsers only - ES2020+ support (removes legacy polyfills)
+# This targets browsers that natively support Array.at, Array.flat, Object.fromEntries, etc.
+> 0.5%
+last 2 versions
+Firefox ESR
+not dead
+not IE 9-11
+not op_mini all
+Chrome >= 92
+Firefox >= 90
+Safari >= 14.1
+Edge >= 92
