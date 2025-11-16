@@ -22,18 +22,20 @@ export function HeroSection() {
       </div>
 
       <div className="container relative px-4 md:px-8 mx-auto">
-         
+        
         {/* === REPLACED EMERGENCY BANNER BLOCK === */}
         <div className="mb-8 w-full p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col lg:flex-row items-center justify-between rounded-2xl bg-destructive text-destructive-foreground shadow-2xl">
             
             <div className="flex items-start md:items-center space-x-3 md:space-x-4 mb-4 sm:mb-6 lg:mb-0 lg:w-2/3 w-full">
-                <AlertCircle className="h-10 w-10 sm:h-12 sm:w-12 md:h-16 md:w-16 shrink-0 mt-1 md:mt-0" />
+                <AlertCircle className="h-10 w-10 sm:h-12 
+w-12 md:h-16 md:w-16 shrink-0 mt-1 md:mt-0" />
                 <div className="flex-1 min-w-0">
                     <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold mb-2 leading-tight">
                         24/7 Emergency Towing & Recovery
                     </h2>
                     <p className="text-sm sm:text-base md:text-lg opacity-90 leading-relaxed">
-                        Round-the-clock emergency towing services for Mtubatuba and the N2 corridor. Fast response times for accidents and breakdowns.
+                        Round-the-clock emergency towing services for Mtubatuba and the N2 corridor.
+Fast response times for accidents and breakdowns.
                     </p>
                 </div>
             </div>
@@ -45,8 +47,11 @@ export function HeroSection() {
               className="w-full lg:w-auto h-12 sm:h-14 md:h-16 text-sm sm:text-base md:text-lg font-bold shadow-lg hover:shadow-xl transition-all"
             >
                 <a href="tel:0723115870" className="flex items-center justify-center space-x-2 md:space-x-3">
-                    <Phone className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 shrink-0" />
-                    <span className="text-xs sm:text-sm md:text-base">CALL 24/7: 072 311 5870</span>
+                    {/* FIX: Wrapped children in a Fragment */}
+                    <>
+                        <Phone className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 shrink-0" />
+                        <span className="text-xs sm:text-sm md:text-base">CALL 24/7: 072 311 5870</span>
+                    </>
                 </a>
             </Button>
             
@@ -72,7 +77,8 @@ export function HeroSection() {
             
             {/* Sub-Headline */}
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg">
-              SAMBRA-accredited repairs for all major insurance partners. Factory-spec quality with a 3-year paint warranty. We get you back on the road, guaranteed.
+              SAMBRA-accredited repairs for all major insurance partners.
+Factory-spec quality with a 3-year paint warranty. We get you back on the road, guaranteed.
             </p>
 
             {/* Trust Points */}
@@ -80,36 +86,39 @@ export function HeroSection() {
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
                 <span>Warranty Protected Repairs</span>
-               </div>
+              </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
                 <span>3-Year Paint Guarantee</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                 <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
                 <span>SAMBRA & RMI Accredited</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
-                 <span>Digital Quote in Minutes</span>
+                <span>Digital Quote in Minutes</span>
               </div>
             </div>
 
             {/* Primary CTA Button */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button size="lg" asChild className="h-14 px-8 text-base font-bold shadow-lg hover:shadow-xl transition-all">
-                 <Link href="/quote" className="flex items-center space-x-2">
-                  <Zap className="h-5 w-5 shrink-0" />
-                  <span>Get Free Digital Quote</span>
-                  <ArrowRight className="h-5 w-5 shrink-0" />
+                  <Link href="/quote" className="flex items-center space-x-2">
+                    {/* FIX: Wrapped children in a Fragment */}
+                    <>
+                        <Zap className="h-5 w-5 shrink-0" />
+                        <span>Get Free Digital Quote</span>
+                        <ArrowRight className="h-5 w-5 shrink-0" />
+                    </>
                 </Link>
-               </Button>
+              </Button>
               <Button variant="outline" size="lg" asChild className="h-14 px-8 text-base">
                 <Link href="/process">
                   See Our Process
                 </Link>
               </Button>
-             </div>
+            </div>
           </div>
           
           {/* === RIGHT COLUMN: Quote Form === */}
@@ -117,7 +126,7 @@ export function HeroSection() {
             <div className="w-full max-w-md">
               <HeroQuoteForm />
             </div>
-           </div>
+          </div>
           
         </div>
       </div>
