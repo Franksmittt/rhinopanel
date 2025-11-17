@@ -18,12 +18,22 @@
 │   │   ├── 📄 layout.tsx
 │   │   ├── 📄 page.tsx
 │   │   ├── 📄 template.tsx
+│   │   ├── 📁 accreditations
+│   │   │   ├── 📄 page.tsx
+│   │   ├── 📁 contact
+│   │   │   ├── 📄 page.tsx
 │   │   ├── 📁 fonts
+│   │   ├── 📁 process
+│   │   │   ├── 📄 page.tsx
 │   │   ├── 📁 services
 │   │   │   ├── 📄 page.tsx
 │   ├── 📁 components
 │   │   ├── 📁 features
+│   │   │   ├── 📄 AccreditationCard.tsx
+│   │   │   ├── 📄 ContactDetails.tsx
+│   │   │   ├── 📄 ContactForm.tsx
 │   │   │   ├── 📄 HeroQuoteForm.tsx
+│   │   │   ├── 📄 ProcessTimeline.tsx
 │   │   │   ├── 📄 interactive-button.tsx
 │   │   ├── 📁 layout
 │   │   │   ├── 📄 FeatureCard.tsx
@@ -36,6 +46,7 @@
 │   │   │   ├── 📄 LazyMap.tsx
 │   │   │   ├── 📄 LocationAndCTA.tsx
 │   │   │   ├── 📄 LogoScroller.tsx
+│   │   │   ├── 📄 MobileNavOverlay.tsx
 │   │   │   ├── 📄 ProcessCallout.tsx
 │   │   │   ├── 📄 ProcessFlowLine.tsx
 │   │   │   ├── 📄 TestimonialsSection.tsx
@@ -47,6 +58,7 @@
 │   │   │   ├── 📄 button.tsx
 │   │   │   ├── 📄 card.tsx
 │   │   │   ├── 📄 input.tsx
+│   │   │   ├── 📄 textarea.tsx
 │   ├── 📁 lib
 │   │   ├── 📄 utils.ts
 
@@ -1866,6 +1878,335 @@ export default function Template({ children }: { children: React.ReactNode }) {
   );
 }```
 
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\accreditations\page.tsx--------------------------------------------------------------------------------```tsximport { Metadata } from "next";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { LocationAndCTA } from "@/components/layout/LocationAndCTA";
+import { AccreditationCard } from "@/components/features/AccreditationCard";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Shield, FileCheck, ArrowRight } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Accreditations & Insurance Partners | Rhino Panelbeaters",
+  description: "SAMBRA and RMI accredited panelbeaters in Mtubatuba. Approved by Santam, Hollard, and major insurers. Lifetime workmanship guarantee.",
+  keywords: "SAMBRA accredited panelbeater, RMI approved, Santam approved repairer Mtubatuba, insurance approved panel beaters KZN",
+};
+
+// Data derived from Research.txt
+const accreditations = [
+  {
+    title: "SAMBRA Accredited",
+    logoSrc: "/logos/sambra.png", 
+    description: "As a member of the South African Motor Body Repairers' Association, we adhere to the strictest industry standards for equipment, staff training, and ethical conduct.",
+    benefits: [
+      "Formal dispute resolution process",
+      "Regular quality inspections",
+      "Guaranteed workmanship standards",
+      "Consumer protection focus"
+    ]
+  },
+  {
+    title: "RMI Member",
+    logoSrc: "/logos/rmi.png",
+    description: "Membership in the Retail Motor Industry Organisation signals our status as a legitimate, tax-paying, and labor-law compliant business that you can trust.",
+    benefits: [
+      "Code of Conduct adherence",
+      "Qualified technical staff",
+      "Fair pricing guidelines",
+      "Industry-standard labor practices"
+    ]
+  },
+  {
+    title: "Santam Approved",
+    logoSrc: "/logos/santam.png",
+    description: "We are a direct authorized repairer for Santam. This allows us to process claims faster and bypass the need for multiple quotes.",
+    benefits: [
+      "Direct claims authorization",
+      "No obtaining 3 quotes needed",
+      "Lifetime warranty on paintwork",
+      "Manufacturer-spec parts only"
+    ]
+  }
+];
+
+export default function AccreditationsPage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+      
+      <main className="flex-grow">
+        
+        {/* === HERO SECTION === */}
+        <section className="w-full py-16 md:py-24 bg-foreground text-background relative overflow-hidden">
+           <div className="container px-4 md:px-8 mx-auto relative z-10">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-primary/20 text-primary-foreground text-sm font-medium mb-6 border border-primary/30">
+                    <Shield className="h-4 w-4" />
+                    <span>Official Industry Certifications</span>
+                </div>
+                
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                  Your Safety is <br />
+                  <span className="text-primary">Officially Certified</span>
+                </h1>
+                
+                <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-8 leading-relaxed">
+                  In the auto repair industry, trust isn't given—it's earned through rigorous audits. We hold the highest accreditations in South Africa to guarantee your peace of mind.
+                </p>
+              </div>
+           </div>
+        </section>
+
+        {/* === MAIN ACCREDITATION GRID === */}
+        <section className="w-full py-20 bg-white">
+            <div className="container px-4 md:px-8 mx-auto">
+                <div className="text-center max-w-3xl mx-auto mb-16">
+                    <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                        Why Our Badges Matter to You
+                    </h2>
+                    <p className="text-lg text-muted-foreground">
+                        These aren't just logos. They are your guarantee of recourse, quality, and safety.
+                    </p>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
+                    {accreditations.map((item) => (
+                        <AccreditationCard key={item.title} {...item} />
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        {/* === INSURANCE PARTNERS SECTION === */}
+        <section className="w-full py-20 bg-muted/30 border-y border-border">
+            <div className="container px-4 md:px-8 mx-auto">
+                <div className="grid lg:grid-cols-2 gap-16 items-center">
+                    
+                    {/* Content */}
+                    <div className="space-y-6">
+                        <div className="inline-flex items-center justify-center p-3 bg-primary/10 text-primary rounded-xl">
+                            <FileCheck className="h-8 w-8" />
+                        </div>
+                        <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
+                            Approved by South Africa's Leading Insurers
+                        </h2>
+                        <p className="text-lg text-muted-foreground leading-relaxed">
+                            We simplify the accident aftermath. As an approved repairer, we integrate directly with your insurance provider's digital systems.
+                        </p>
+                        
+                        <div className="space-y-4 pt-4">
+                            <div className="p-4 bg-white rounded-lg border border-border shadow-sm">
+                                <h4 className="font-bold text-foreground mb-1">Faster Claims Processing</h4>
+                                <p className="text-sm text-muted-foreground">Direct digital links to Santam, Hollard, and Old Mutual mean authorizations happen in hours, not days.</p>
+                            </div>
+                            <div className="p-4 bg-white rounded-lg border border-border shadow-sm">
+                                <h4 className="font-bold text-foreground mb-1">No "Three Quote" Hassle</h4>
+                                <p className="text-sm text-muted-foreground">For most approved partners, you can bring your vehicle directly to us without needing to shop around.</p>
+                            </div>
+                        </div>
+
+                        <div className="pt-6">
+                            <Button asChild size="lg" className="h-14 px-8 text-base font-bold shadow-md">
+                                <Link href="/quote">
+                                    Upload Your Insurance Claim Info
+                                    <ArrowRight className="ml-2 h-5 w-5" />
+                                </Link>
+                            </Button>
+                        </div>
+                    </div>
+
+                    {/* Logo Grid (Visual Representation) */}
+                    <div className="grid grid-cols-2 gap-4">
+                        {/* Placeholder Boxes for Logos - Replace with actual brand assets */}
+                        <div className="aspect-video bg-white rounded-xl border border-border flex items-center justify-center shadow-sm p-6">
+                             <span className="text-xl font-bold text-muted-foreground">Hollard</span>
+                        </div>
+                        <div className="aspect-video bg-white rounded-xl border border-border flex items-center justify-center shadow-sm p-6">
+                             <span className="text-xl font-bold text-muted-foreground">Santam</span>
+                        </div>
+                        <div className="aspect-video bg-white rounded-xl border border-border flex items-center justify-center shadow-sm p-6">
+                             <span className="text-xl font-bold text-muted-foreground">Old Mutual</span>
+                        </div>
+                        <div className="aspect-video bg-white rounded-xl border border-border flex items-center justify-center shadow-sm p-6">
+                             <span className="text-xl font-bold text-muted-foreground">Discovery</span>
+                        </div>
+                        <div className="col-span-2 aspect-[3/1] bg-white rounded-xl border border-border flex items-center justify-center shadow-sm p-6">
+                             <span className="text-lg font-medium text-muted-foreground">And most other major SA Insurers...</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        {/* === FINAL CTA === */}
+        <LocationAndCTA />
+        
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\contact\page.tsx--------------------------------------------------------------------------------```tsximport { Metadata } from "next";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { LazyMap } from "@/components/layout/LazyMap";
+import { ContactForm } from "@/components/features/ContactForm";
+import { ContactDetails } from "@/components/features/ContactDetails";
+import { Phone } from "lucide-react";
+
+// Metadata optimized for Local SEO
+export const metadata: Metadata = {
+  title: "Contact Rhino Panelbeaters Mtubatuba | Address & Phone",
+  description: "Contact Rhino Panelbeaters in Mtubatuba. Find our address, workshop phone number (035 550 0211), and 24/7 emergency towing line (072 311 5870).",
+  keywords: "contact panelbeater Mtubatuba, panelbeater address, rhino panelbeaters phone number, 24/7 towing Mtubatuba",
+};
+
+// Map URL from LocationAndCTA.tsx
+const MAP_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.7497989346457!2d32.186301974730945!3d-28.426805558160726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1efa4f69fb506301%3A0x3816aedcd1d65990!2sRhino%20Panelbeaters%20and%20Towing!5e0!3m2!1sen!2sza!4v1763116439280!5m2!1sen!2sza";
+
+export default function ContactPage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+      
+      <main className="flex-grow">
+        
+        {/* === HERO SECTION === */}
+        <section className="w-full py-16 md:py-24 bg-secondary text-secondary-foreground">
+           <div className="container px-4 md:px-8 mx-auto text-center">
+              <div className="inline-flex items-center justify-center p-3 bg-primary rounded-xl text-primary-foreground mb-6">
+                <Phone className="h-8 w-8" />
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
+                Get in Touch
+              </h1>
+              
+              <p className="text-lg md:text-xl text-secondary-foreground/80 max-w-2xl mx-auto leading-relaxed">
+                We&apos;re here to help. Contact our workshop for bookings or call our 24/7 line for immediate emergency assistance.
+              </p>
+           </div>
+        </section>
+
+        {/* === CONTACT & MAP SECTION === */}
+        <section className="w-full py-16 md:py-24 bg-white">
+            <div className="container px-4 md:px-8 mx-auto">
+                
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                    
+                    {/* COLUMN 1: Contact Details */}
+                    <div className="flex flex-col space-y-8">
+                        <ContactDetails />
+                    </div>
+
+                    {/* COLUMN 2: Form */}
+                    <div className="flex flex-col space-y-8">
+                         <ContactForm />
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        {/* === MAP SECTION === */}
+        <section className="w-full pb-16 md:pb-24 -mt-8 md:-mt-12">
+            <div className="container px-4 md:px-8 mx-auto">
+                 <div className="relative w-full rounded-2xl overflow-hidden shadow-xl border-2 border-border h-96 md:h-[500px]">
+                    <LazyMap
+                      src={MAP_EMBED_URL}
+                      className="w-full h-full"
+                      ariaLabel="Google Map showing the location of Rhino Panelbeaters on Jacaranda Ave."
+                    />
+                </div>
+            </div>
+        </section>
+        
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\process\page.tsx--------------------------------------------------------------------------------```tsximport { Metadata } from "next";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { TrustBar } from "@/components/layout/TrustBar";
+import { LocationAndCTA } from "@/components/layout/LocationAndCTA";
+import { ProcessTimeline } from "@/components/features/ProcessTimeline";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { ArrowRight, ShieldCheck } from "lucide-react";
+
+// Metadata optimized for "Process" and "Transparency" keywords 
+export const metadata: Metadata = {
+  title: "Our Repair Process | Rhino Panelbeaters Mtubatuba",
+  description: "Understand the 7-step collision repair process at Rhino Panelbeaters. From insurance authorization to final quality control, we guarantee transparency.",
+  keywords: "panelbeating process, collision repair steps, insurance claim process, car repair timeline Mtubatuba",
+};
+
+export default function ProcessPage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+      
+      <main className="flex-grow">
+        
+        {/* === HERO SECTION === */}
+        <section className="w-full py-16 md:py-24 bg-secondary text-secondary-foreground relative overflow-hidden">
+           {/* Abstract Background Pattern */}
+           <div className="absolute inset-0 opacity-10 pointer-events-none">
+              <div className="absolute right-0 top-0 h-96 w-96 bg-primary rounded-full blur-3xl transform translate-x-1/2 -translate-y-1/2"></div>
+              <div className="absolute left-0 bottom-0 h-64 w-64 bg-accent rounded-full blur-3xl transform -translate-x-1/2 translate-y-1/2"></div>
+           </div>
+
+           <div className="container px-4 md:px-8 mx-auto relative z-10 text-center">
+              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-white/10 text-white text-sm font-medium mb-6 border border-white/20">
+                <ShieldCheck className="h-4 w-4" />
+                <span>Lifetime Workmanship Guarantee</span>
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6">
+                Demystifying the <span className="text-primary">Repair Process</span>
+              </h1>
+              
+              <p className="text-lg md:text-xl text-secondary-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed">
+                We know accidents are stressful. That's why we follow a rigid, transparent 7-stage protocol to get you back on the road with zero surprises.
+              </p>
+
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <Button asChild size="lg" className="h-14 px-8 text-lg font-bold shadow-lg hover:scale-105 transition-transform">
+                  <Link href="/quote">
+                    Start Your Repair Now
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+              </div>
+           </div>
+        </section>
+
+        {/* === TRUST BAR === */}
+        {/* Reusing the reusable component [cite: 191] */}
+        <TrustBar />
+
+        {/* === TIMELINE SECTION === */}
+        <ProcessTimeline />
+
+        {/* === FINAL CTA & LOCATION === */}
+        <LocationAndCTA />
+        
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}```
+
 --------------------------------------------------------------------------------📄 FILE PATH: src\app\services\page.tsx--------------------------------------------------------------------------------```tsx"use client"; // <-- ADDED: This file now uses client-side animations
 
 import { Header } from "@/components/layout/Header";
@@ -1944,6 +2285,217 @@ export default function ServicesPage() {
   );
 }```
 
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\features\AccreditationCard.tsx--------------------------------------------------------------------------------```tsx"use client";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CheckCircle2 } from "lucide-react";
+import Image from "next/image";
+
+interface AccreditationProps {
+  title: string;
+  logoSrc: string; // Path to logo image
+  description: string;
+  benefits: string[];
+}
+
+export function AccreditationCard({ title, logoSrc, description, benefits }: AccreditationProps) {
+  return (
+    <Card className="h-full border-2 border-muted hover:border-primary/20 transition-all duration-300 bg-white flex flex-col">
+      <CardHeader className="pb-4 flex flex-col items-center text-center border-b border-muted/30">
+        {/* Logo Placeholder - In production, use real images */}
+        <div className="relative w-32 h-24 mb-4 grayscale hover:grayscale-0 transition-all duration-500">
+           <div className="flex items-center justify-center w-full h-full bg-muted/10 rounded-lg">
+             {/* Fallback text if image is missing, or use actual Image component */}
+             <span className="text-xs font-bold text-muted-foreground">{title} LOGO</span>
+           </div>
+           {/* Uncomment this when you have real logos in public/logos/ */}
+           {/* <Image src={logoSrc} alt={title} fill className="object-contain" /> */}
+        </div>
+        <CardTitle className="text-xl font-bold text-foreground">{title}</CardTitle>
+      </CardHeader>
+      
+      <CardContent className="pt-6 flex-grow flex flex-col">
+        <p className="text-muted-foreground mb-6 text-sm leading-relaxed text-center">
+          {description}
+        </p>
+        
+        <div className="mt-auto space-y-3">
+          <h4 className="text-sm font-semibold text-primary uppercase tracking-wide mb-3">
+            Customer Protection:
+          </h4>
+          <ul className="space-y-2">
+            {benefits.map((benefit, index) => (
+              <li key={index} className="flex items-start space-x-2 text-sm text-foreground/80">
+                <CheckCircle2 className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                <span>{benefit}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\features\ContactDetails.tsx--------------------------------------------------------------------------------```tsximport { MapPin, Clock, Phone, Wrench, AlertCircle, Map } from "lucide-react";
+
+// CRITICAL SEO DATA - Must match GBP
+const OFFICE_PHONE = "035 550 0211";
+const TOWING_NUMBER = "072 311 5870";
+const ADDRESS = "Jacaranda Ave, Mtubatuba, 3935";
+const HOURS = "Mon-Fri: 7:30 am - 5:00 pm";
+
+// From Research.txt [cite: 160]
+const serviceAreas = [
+  "Mtubatuba",
+  "St. Lucia",
+  "Richards Bay",
+  "Hluhluwe",
+  "KZN North Coast"
+];
+
+export function ContactDetails() {
+  return (
+    <div className="space-y-8">
+      
+      {/* Workshop Office Details */}
+      <div className="space-y-4">
+        <h3 className="text-2xl font-bold flex items-center space-x-2 text-foreground">
+          <Wrench className="h-6 w-6 text-primary shrink-0" />
+          <span>Workshop Office</span>
+        </h3>
+        <p className="text-muted-foreground text-lg">
+          For quotes, bookings, and all non-emergency inquiries.
+        </p>
+        
+        <div className="space-y-4 text-base pt-2">
+          <div className="flex items-start space-x-3">
+            <MapPin className="h-5 w-5 text-primary shrink-0 mt-1" />
+            <span className="text-foreground font-semibold">{ADDRESS}</span>
+          </div>
+          <div className="flex items-center space-x-3">
+            <Clock className="h-5 w-5 text-primary shrink-0" />
+            <span className="text-foreground font-semibold">{HOURS}</span>
+          </div>
+          <div className="flex items-center space-x-3">
+            <Phone className="h-5 w-5 text-primary shrink-0" />
+            <a href={`tel:${OFFICE_PHONE.replace(/\s/g, '')}`} className="font-bold text-lg text-foreground hover:text-primary transition-colors">
+              {OFFICE_PHONE}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Emergency Towing Section */}
+      <div className="space-y-4 pt-6 border-t border-border">
+        <h3 className="text-2xl font-bold flex items-center space-x-2 text-destructive">
+          <AlertCircle className="h-6 w-6 shrink-0" />
+          <span>24/7 Emergency Towing</span>
+        </h3>
+         <p className="text-muted-foreground text-lg">
+          For immediate accident & breakdown assistance only.
+        </p>
+        <div className="flex items-center space-x-3">
+          <Phone className="h-6 w-6 text-destructive shrink-0" />
+          <a href={`tel:${TOWING_NUMBER.replace(/\s/g, '')}`} className="text-2xl font-extrabold text-destructive hover:underline break-all">
+            {TOWING_NUMBER}
+          </a>
+        </div>
+      </div>
+
+      {/* Service Area Section (Good for SEO) */}
+      <div className="space-y-4 pt-6 border-t border-border">
+        <h3 className="text-2xl font-bold flex items-center space-x-2 text-foreground">
+          <Map className="h-6 w-6 text-primary shrink-0" />
+          <span>Our Service Area</span>
+        </h3>
+        <p className="text-muted-foreground text-lg">
+          We proudly serve the entire Zululand region, including:
+        </p>
+        <div className="flex flex-wrap gap-2">
+          {serviceAreas.map((area) => (
+            <div key={area} className="px-3 py-1 bg-muted text-muted-foreground text-sm font-medium rounded-full">
+              {area}
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\features\ContactForm.tsx--------------------------------------------------------------------------------```tsx"use client";
+
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea"; // The new component
+import { Send } from "lucide-react";
+
+export function ContactForm() {
+  
+  // This would be handled by a server action or API route in a real app
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Simulate form submission
+    alert("Thank you! Your general inquiry has been sent.");
+  };
+
+  return (
+    <Card className="w-full border-2 border-muted/30 shadow-lg bg-white">
+      <CardHeader className="space-y-2 pb-4">
+        <CardTitle className="text-2xl font-bold text-foreground">
+          Send a General Inquiry
+        </CardTitle>
+        <CardDescription>
+          For general questions only. For damage estimates, please use our{' '}
+          <a href="/quote" className="text-primary font-medium hover:underline">
+            Free Digital Quote
+          </a>{' '}
+          form.
+        </CardDescription>
+      </CardHeader>
+      
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="space-y-3">
+            <Input 
+              placeholder="Your Name" 
+              aria-label="Your Name"
+              className="h-12"
+              required
+            />
+            <Input 
+              placeholder="Your Phone Number" 
+              aria-label="Phone Number"
+              className="h-12"
+              required
+            />
+             <Input 
+              type="email"
+              placeholder="Your Email Address" 
+              aria-label="Email Address"
+              className="h-12"
+              required
+            />
+            <Textarea 
+              placeholder="Your Message or Question..."
+              aria-label="Your Message"
+              required
+            />
+          </div>
+          
+          <Button type="submit" className="w-full h-12 text-base font-bold shadow-lg hover:shadow-xl transition-all">
+            <Send className="h-5 w-5 mr-2" />
+            Send Inquiry
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}```
+
 --------------------------------------------------------------------------------📄 FILE PATH: src\components\features\HeroQuoteForm.tsx--------------------------------------------------------------------------------```tsx"use client"; // Client component for form logic
 
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
@@ -2019,6 +2571,144 @@ export function HeroQuoteForm() {
   );
 }
 ```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\features\ProcessTimeline.tsx--------------------------------------------------------------------------------```tsx"use client";
+
+import { motion } from "framer-motion";
+import { 
+  FileText, 
+  Search, 
+  Wrench, 
+  Hammer, 
+  Paintbrush, 
+  CheckCircle2, 
+  Car,
+  ArrowDown
+} from "lucide-react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+// Data derived from Research.txt Part 3.4 
+const processSteps = [
+  {
+    id: 1,
+    title: "Vehicle Drop-off & Assessment",
+    description: "Your vehicle enters our secure facility. We perform a 360-degree damage mapping and strip-down analysis to identify both visible and hidden structural damage.",
+    icon: Search,
+    phase: "Intake"
+  },
+  {
+    id: 2,
+    title: "Quote & Insurance Authorisation",
+    description: "We generate a comprehensive Audatex quote and submit it directly to your insurer (Santam, Hollard, etc.). We handle the negotiation to ensure all OEM parts are approved.",
+    icon: FileText,
+    phase: "Admin"
+  },
+  {
+    id: 3,
+    title: "Disassembly & Parts Ordering",
+    description: "Once authorized, we order genuine parts directly from manufacturers. We completely disassemble the damaged area to prepare for structural realignment.",
+    icon: Wrench,
+    phase: "Preparation"
+  },
+  {
+    id: 4,
+    title: "Structural Repair & Panelbeating",
+    description: "Using precision chassis straightening equipment, we restore your vehicle's frame to factory specifications. Certified artisans handle all panel replacement and dent repair.",
+    icon: Hammer,
+    phase: "Repair"
+  },
+  {
+    id: 5,
+    title: "Paint Preparation & Refinishing",
+    description: "Computer-matched color mixing ensures a perfect blend. Your vehicle enters our dust-free spray booth for a factory-grade finish, backed by our 3-year warranty.",
+    icon: Paintbrush,
+    phase: "Finish"
+  },
+  {
+    id: 6,
+    title: "Reassembly & Quality Control",
+    description: "All systems are reconnected, electronics are recalibrated, and a rigorous 20-point quality inspection is performed by our workshop manager.",
+    icon: CheckCircle2,
+    phase: "Quality"
+  },
+  {
+    id: 7,
+    title: "Final Wash & Handover",
+    description: "Your vehicle is professionally valeted. We walk you through the repairs, explain your warranty, and get you back on the road with total peace of mind.",
+    icon: Car,
+    phase: "Completion"
+  }
+];
+
+export function ProcessTimeline() {
+  return (
+    <section className="w-full py-12 md:py-20 bg-white">
+      <div className="container px-4 md:px-8 mx-auto">
+        
+        <div className="relative wrap overflow-hidden p-4 md:p-10 h-full">
+          {/* Vertical Timeline Line */}
+          <div 
+            className="border-2-2 absolute border-opacity-20 border-primary h-full border" 
+            style={{ left: "50%" }} 
+          ></div>
+
+          {processSteps.map((step, index) => {
+            const isEven = index % 2 === 0;
+            
+            return (
+              <motion.div 
+                key={step.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className={`mb-8 flex justify-between items-center w-full ${
+                  isEven ? "flex-row-reverse left-timeline" : "right-timeline"
+                }`}
+              >
+                {/* Empty Space for alternating layout */}
+                <div className="order-1 w-5/12"></div>
+                
+                {/* Center Icon Node */}
+                <div className="z-20 flex items-center order-1 bg-primary shadow-xl w-10 h-10 md:w-14 md:h-14 rounded-full justify-center border-4 border-white shrink-0">
+                  <step.icon className="w-5 h-5 md:w-7 md:h-7 text-white" />
+                </div>
+                
+                {/* Content Card */}
+                <div className={`order-1 w-[42%] md:w-5/12 px-1 py-4 ${isEven ? "text-right" : "text-left"}`}>
+                   <Card className="border-2 border-muted hover:border-primary/30 transition-colors shadow-md">
+                     <CardHeader className="pb-2">
+                       <div className={`text-xs font-bold uppercase tracking-wide text-primary mb-1 ${isEven ? "flex justify-end" : "flex justify-start"}`}>
+                         Phase {step.id}: {step.phase}
+                       </div>
+                       <CardTitle className="text-lg md:text-xl font-bold text-foreground">
+                         {step.title}
+                       </CardTitle>
+                     </CardHeader>
+                     <CardContent>
+                       <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                         {step.description}
+                       </p>
+                     </CardContent>
+                   </Card>
+                </div>
+              </motion.div>
+            );
+          })}
+          
+        </div>
+
+        {/* Bottom Connector */}
+        <div className="flex justify-center mt-8">
+            <div className="animate-bounce p-2 bg-primary/10 rounded-full text-primary">
+                <ArrowDown className="h-6 w-6" />
+            </div>
+        </div>
+
+      </div>
+    </section>
+  );
+}```
 
 --------------------------------------------------------------------------------📄 FILE PATH: src\components\features\interactive-button.tsx--------------------------------------------------------------------------------```tsx"use client"; // <--- This directive is the essential fix!
 
@@ -2293,9 +2983,10 @@ export function Footer() {
 // Professional Header Component
 
 import Link from "next/link";
-import { Wrench, Menu, X, Phone, AlertCircle } from "lucide-react";
+import { Wrench, Menu, X,} from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { HeaderNavigation } from "./HeaderNavigation"; 
+import { HeaderNavigation } from "./HeaderNavigation";
+import { MobileNavOverlay } from "./MobileNavOverlay";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 
@@ -2308,8 +2999,8 @@ const navItems = [
 ];
 
 // Key Strategic Data
-const TOWING_NUMBER = "072 311 5870";
-const PANELBEATING_NUMBER = "035 550 0211";
+/* REMOVED: const TOWING_NUMBER = "072 311 5870";
+   REMOVED: const PANELBEATING_NUMBER = "035 550 0211"; */
 
 // Logo component
 function Logo() {
@@ -2320,7 +3011,7 @@ function Logo() {
       </div>
       <span className="font-bold text-base md:text-xl inline-block text-secondary-foreground whitespace-nowrap overflow-hidden">
         <span className="text-primary">RHINO</span>
-        <span className="text-secondary-foreground hidden sm:inline"> PANELBEATERS</span> 
+        <span className="text-secondary-foreground"> PANELBEATERS</span> 
       </span>
     </Link>
   );
@@ -2328,8 +3019,9 @@ function Logo() {
 
 export function Header({ className }: { className?: string }) {
   const [mobileMenuOpen, setMobileMenuOpen] =useState(false);
+  const closeMobileMenu = () => setMobileMenuOpen(false);
 
-  // Close mobile menu when clicking outside or on escape key
+// Close mobile menu when clicking outside or on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -2362,14 +3054,17 @@ export function Header({ className }: { className?: string }) {
         <Logo />
 
         {/* 2. Main Navigation Links (Center) - Desktop Only */}
-        <nav className="hidden lg:flex flex-grow justify-center items-center">
+        <nav 
+          className="hidden lg:flex flex-grow justify-center items-center"
+        >
             <div className="flex space-x-1">
                 {navItems.map((item) => (
                     <Button 
                       key={item.name} 
-                      variant="ghost" 
+                      variant="ghost"
+                      size="default" 
                       asChild
-                      className="text-secondary-foreground hover:bg-white/10 hover:text-primary"
+                      className="text-base text-secondary-foreground hover:bg-white/10 hover:text-primary" 
                     >
                         <Link href={item.href}>{item.name}</Link>
                     </Button>
@@ -2399,74 +3094,21 @@ export function Header({ className }: { className?: string }) {
         </Button>
       </div>
 
-      {/* Mobile Menu Overlay */}
-      {mobileMenuOpen && (
-        <>
-           {/* Backdrop */}
-          <div 
-            className="lg:hidden fixed inset-0 top-20 bg-black/20 z-40"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-          
-          {/* Menu Panel */}
-          <div className="lg:hidden fixed inset-x-0 top-20 bottom-0 bg-secondary z-50 overflow-y-auto">
-           <div className="container px-4 py-8 mx-auto min-h-full flex flex-col">
-              {/* Navigation Links */}
-              <nav className="flex flex-col space-y-4 mb-8">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="text-lg font-semibold text-secondary-foreground hover:text-primary transition-colors py-3 border-b border-white/10"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                     {item.name}
-                  </Link>
-                ))}
-              </nav>
+      {/* Mobile Menu Overlay - Uses the new component */}
+      <MobileNavOverlay 
+        isOpen={mobileMenuOpen} 
+        onClose={closeMobileMenu} 
+      /> 
 
-              {/* Contact Buttons at Bottom - Sticky to bottom */}
-              <div className="mt-auto pt-8 border-t-2 border-white/10 space-y-4">
-                {/* Panel Beating Button */}
-                <Button 
-                  variant="default" 
-                  size="lg"
-                  asChild
-                  className="w-full h-14 text-base font-semibold"
-                >
-                  <a href={`tel:${PANELBEATING_NUMBER.replace(/\s/g, '')}`} onClick={() => setMobileMenuOpen(false)}>
-                    <Phone className="h-5 w-5 mr-2 shrink-0" />
-                    <span>Panel Beating: {PANELBEATING_NUMBER}</span>
-                  </a>
-                </Button>
-
-                {/* Towing Button */}
-                <Button 
-                  variant="destructive" 
-                  size="lg"
-                  asChild
-                  className="w-full h-14 text-base font-bold"
-                >
-                  <a href={`tel:${TOWING_NUMBER.replace(/\s/g, '')}`} onClick={() => setMobileMenuOpen(false)}>
-                    <AlertCircle className="h-5 w-5 mr-2 shrink-0" />
-                    <span>Towing 24/7: {TOWING_NUMBER}</span>
-                  </a>
-                </Button>
-              </div>
-            </div>
-       </div>
-        </>
-      )}
     </header>
   );
 }```
 
 --------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\HeaderNavigation.tsx--------------------------------------------------------------------------------```tsximport { Button } from "@/components/ui/button";
 import { Phone, AlertCircle } from "lucide-react";
-
 // Key Strategic Data
-const TOWING_NUMBER = "072 311 5870"; // <-- UPDATED
-const PANELBEATING_NUMBER = "035 550 0211"; // <-- CONFIRMED
+const TOWING_NUMBER = "072 311 5870";
+const PANELBEATING_NUMBER = "035 550 0211";
 
 export function HeaderNavigation() {
   return (
@@ -2474,12 +3116,12 @@ export function HeaderNavigation() {
       {/* Primary Action: Call Panelbeater (General Enquiries) */}
       <Button 
         variant="default" 
-        size="sm"
+        size="default" 
         asChild
         className="hidden sm:flex items-center space-x-1 font-semibold"
       >
         <a href={`tel:${PANELBEATING_NUMBER.replace(/\s/g, '')}`}>
-          <Phone className="h-4 w-4" />
+          <Phone className="h-5 w-5" />
           <span>Call Us</span>
         </a>
       </Button>
@@ -2487,12 +3129,13 @@ export function HeaderNavigation() {
       {/* Towing Action: Call Towing (24/7, High-Visibility) */}
       <Button 
         variant="destructive" 
-        size="sm"
+        size="default" 
         asChild
         className="flex items-center space-x-1 font-bold hover:scale-105 transition-transform"
       >
-        <a href={`tel:${TOWING_NUMBER.replace(/\s/g, '')}`}>
-          <AlertCircle className="h-4 w-4" />
+        <a 
+          href={`tel:${TOWING_NUMBER.replace(/\s/g, '')}`}>
+          <AlertCircle className="h-5 w-5" />
           <span className="hidden md:inline">Towing 24/7</span>
           <span className="md:hidden">24/7</span>
         </a>
@@ -2525,18 +3168,20 @@ export function HeroSection() {
       </div>
 
       <div className="container relative px-4 md:px-8 mx-auto">
-         
+        
         {/* === REPLACED EMERGENCY BANNER BLOCK === */}
         <div className="mb-8 w-full p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col lg:flex-row items-center justify-between rounded-2xl bg-destructive text-destructive-foreground shadow-2xl">
             
             <div className="flex items-start md:items-center space-x-3 md:space-x-4 mb-4 sm:mb-6 lg:mb-0 lg:w-2/3 w-full">
-                <AlertCircle className="h-10 w-10 sm:h-12 sm:w-12 md:h-16 md:w-16 shrink-0 mt-1 md:mt-0" />
+                <AlertCircle className="h-10 w-10 sm:h-12 
+w-12 md:h-16 md:w-16 shrink-0 mt-1 md:mt-0" />
                 <div className="flex-1 min-w-0">
                     <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold mb-2 leading-tight">
                         24/7 Emergency Towing & Recovery
                     </h2>
                     <p className="text-sm sm:text-base md:text-lg opacity-90 leading-relaxed">
-                        Round-the-clock emergency towing services for Mtubatuba and the N2 corridor. Fast response times for accidents and breakdowns.
+                        Round-the-clock emergency towing services for Mtubatuba and the N2 corridor.
+Fast response times for accidents and breakdowns.
                     </p>
                 </div>
             </div>
@@ -2548,8 +3193,11 @@ export function HeroSection() {
               className="w-full lg:w-auto h-12 sm:h-14 md:h-16 text-sm sm:text-base md:text-lg font-bold shadow-lg hover:shadow-xl transition-all"
             >
                 <a href="tel:0723115870" className="flex items-center justify-center space-x-2 md:space-x-3">
-                    <Phone className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 shrink-0" />
-                    <span className="text-xs sm:text-sm md:text-base">CALL 24/7: 072 311 5870</span>
+                    {/* FIX: Wrapped children in a Fragment */}
+                    <>
+                        <Phone className="h-4 w-4 sm:h-5 sm:w-5 md:h-6 md:w-6 shrink-0" />
+                        <span className="text-xs sm:text-sm md:text-base">CALL 24/7: 072 311 5870</span>
+                    </>
                 </a>
             </Button>
             
@@ -2575,7 +3223,8 @@ export function HeroSection() {
             
             {/* Sub-Headline */}
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg">
-              SAMBRA-accredited repairs for all major insurance partners. Factory-spec quality with a 3-year paint warranty. We get you back on the road, guaranteed.
+              SAMBRA-accredited repairs for all major insurance partners.
+Factory-spec quality with a 3-year paint warranty. We get you back on the road, guaranteed.
             </p>
 
             {/* Trust Points */}
@@ -2583,36 +3232,39 @@ export function HeroSection() {
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
                 <span>Warranty Protected Repairs</span>
-               </div>
+              </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
                 <span>3-Year Paint Guarantee</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                 <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
+                <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
                 <span>SAMBRA & RMI Accredited</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
-                 <span>Digital Quote in Minutes</span>
+                <span>Digital Quote in Minutes</span>
               </div>
             </div>
 
             {/* Primary CTA Button */}
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
               <Button size="lg" asChild className="h-14 px-8 text-base font-bold shadow-lg hover:shadow-xl transition-all">
-                 <Link href="/quote" className="flex items-center space-x-2">
-                  <Zap className="h-5 w-5 shrink-0" />
-                  <span>Get Free Digital Quote</span>
-                  <ArrowRight className="h-5 w-5 shrink-0" />
+                  <Link href="/quote" className="flex items-center space-x-2">
+                    {/* FIX: Wrapped children in a Fragment */}
+                    <>
+                        <Zap className="h-5 w-5 shrink-0" />
+                        <span>Get Free Digital Quote</span>
+                        <ArrowRight className="h-5 w-5 shrink-0" />
+                    </>
                 </Link>
-               </Button>
+              </Button>
               <Button variant="outline" size="lg" asChild className="h-14 px-8 text-base">
                 <Link href="/process">
                   See Our Process
                 </Link>
               </Button>
-             </div>
+            </div>
           </div>
           
           {/* === RIGHT COLUMN: Quote Form === */}
@@ -2620,7 +3272,7 @@ export function HeroSection() {
             <div className="w-full max-w-md">
               <HeroQuoteForm />
             </div>
-           </div>
+          </div>
           
         </div>
       </div>
@@ -2831,14 +3483,14 @@ import {
   Wrench, 
   Car, 
   FileText,
-  Star, // <-- ADDED
-  ExternalLink // <-- ADDED
+  Star, 
+  ExternalLink 
 } from "lucide-react";
 import { LazyMap } from "./LazyMap";
 
-const OFFICE_PHONE = "035 550 0211"; // <-- CONFIRMED
-const TOWING_NUMBER = "072 311 5870"; // <-- UPDATED
-const GMB_LINK = "https://share.google/UBoRn59KzPkWT48fK"; // <-- ADDED
+const OFFICE_PHONE = "035 550 0211";
+const TOWING_NUMBER = "072 311 5870";
+const GMB_LINK = "https://share.google/UBoRn59KzPkWT48fK";
 const MAP_EMBED_URL = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3508.7497989346457!2d32.186301974730945!3d-28.426805558160726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1efa4f69fb506301%3A0x3816aedcd1d65990!2sRhino%20Panelbeaters%20and%20Towing!5e0!3m2!1sen!2sza!4v1763116439280!5m2!1sen!2sza";
 
 export function LocationAndCTA() {
@@ -2851,7 +3503,7 @@ export function LocationAndCTA() {
             Find Us: Rhino Panelbeaters, Mtubatuba
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-             Visit our workshop or call us 24/7 for emergency towing
+           Visit our workshop or call us 24/7 for emergency towing
           </p>
         </div>
         
@@ -2859,12 +3511,12 @@ export function LocationAndCTA() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
             
             {/* COLUMN 1 & 2: Lazy-loaded Map */}
-             <div className="lg:col-span-2 relative w-full rounded-2xl overflow-hidden shadow-xl border-2 border-border">
+            <div className="lg:col-span-2 relative w-full rounded-2xl overflow-hidden shadow-xl border-2 border-border">
                 <LazyMap
                   src={MAP_EMBED_URL}
                   className="w-full h-96 rounded-2xl"
                   ariaLabel="Google Map showing the location of Rhino Panelbeaters on Jacaranda Ave."
-                 />
+                />
             </div>
 
             {/* COLUMN 3: Contact Details */}
@@ -2879,20 +3531,20 @@ export function LocationAndCTA() {
                     
                     <div className="space-y-4 text-base">
                         <div className="flex items-start space-x-3">
-                             <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                            <MapPin className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                             <span className="text-muted-foreground">Jacaranda Ave, Mtubatuba, 3935</span>
                         </div>
                         <div className="flex items-center space-x-3">
                             <Clock className="h-5 w-5 text-primary shrink-0" />
                             <span className="text-muted-foreground">Mon-Fri: 7:30 am - 5:00 pm</span>
                         </div>
-                         <div className="flex items-center space-x-3 pt-2">
+                        <div className="flex items-center space-x-3 pt-2">
                             <Phone className="h-5 w-5 text-primary shrink-0" />
                             <a href={`tel:${OFFICE_PHONE.replace(/\s/g, '')}`} className="font-bold text-foreground hover:text-primary transition-colors">
-                                 {OFFICE_PHONE}
+                                {OFFICE_PHONE}
                             </a>
                         </div>
-                        
+                      
                         {/* === NEW GMB LINK === */}
                         <div className="pt-2">
                           <Button asChild variant="outline" className="w-full">
@@ -2908,7 +3560,7 @@ export function LocationAndCTA() {
                     </div>
                  </div>
 
-                {/* Emergency Towing Section */}
+                 {/* Emergency Towing Section */}
                 <div className="space-y-3 pt-6 border-t border-border">
                     <h3 className="text-xl font-bold flex items-center space-x-2 text-destructive">
                         <Car className="h-6 w-6 shrink-0" />
@@ -2916,7 +3568,7 @@ export function LocationAndCTA() {
                     </h3>
                     <div className="flex items-center space-x-3">
                         <Phone className="h-5 w-5 md:h-6 md:w-6 text-destructive shrink-0" />
-                         <a href={`tel:${TOWING_NUMBER.replace(/\s/g, '')}`} className="text-xl md:text-2xl font-extrabold text-destructive hover:underline break-all">
+                        <a href={`tel:${TOWING_NUMBER.replace(/\s/g, '')}`} className="text-xl md:text-2xl font-extrabold text-destructive hover:underline break-all">
                             {TOWING_NUMBER}
                         </a>
                     </div>
@@ -2930,18 +3582,23 @@ export function LocationAndCTA() {
         {/* === FINAL CONVERSION CTA BAR === */}
         <div className="w-full p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-center justify-between rounded-2xl bg-primary text-primary-foreground shadow-2xl">
             
-            <div className="flex items-center space-x-3 md:space-x-4 mb-6 md:mb-0 w-full md:w-auto">
+            <div className="flex items-center space-x-3 
+md:space-x-4 mb-6 md:mb-0 w-full md:w-auto">
                 <FileText className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 shrink-0" />
                 <div className="min-w-0 flex-1">
                     <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 leading-tight">Ready to Start Your Repair?</h3>
-                    <p className="text-sm sm:text-base md:text-lg opacity-90">Start your claim immediately with our digital quote engine.</p>
+                    <p className="text-sm sm:text-base 
+md:text-lg opacity-90">Start your claim immediately with our digital quote engine.</p>
                  </div>
             </div>
 
             <Button asChild size="xl" variant="secondary" className="w-full md:w-auto h-12 md:h-14 text-sm md:text-lg font-bold shadow-lg hover:shadow-xl transition-all">
                 <Link href="/quote" className="flex items-center justify-center space-x-2">
-                    <span className="text-xs sm:text-sm md:text-base">BEGIN FREE DIGITAL QUOTE</span>
-                     <ArrowRight className="h-4 w-4 md:h-5 md:w-5 shrink-0" />
+                    {/* FIX: Wrapped children in a Fragment */}
+                    <>
+                        <span className="text-xs sm:text-sm md:text-base">BEGIN FREE DIGITAL QUOTE</span>
+                        <ArrowRight className="h-4 w-4 md:h-5 md:w-5 shrink-0" />
+                    </>
                 </Link>
             </Button>
             
@@ -3004,6 +3661,105 @@ export function LogoScroller() {
   );
 }
 ```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\MobileNavOverlay.tsx--------------------------------------------------------------------------------```tsx"use client";
+
+import Link from "next/link";
+import { Phone, AlertCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+// Navigation Items defined in Header.tsx
+const navItems = [
+  { name: "Services", href: "/services" },
+  { name: "Our Process", href: "/process" },
+  { name: "Accreditations", href: "/accreditations" },
+  { name: "Contact", href: "/contact" },
+];
+
+// Key Strategic Data
+const TOWING_NUMBER = "072 311 5870";
+const PANELBEATING_NUMBER = "035 550 0211";
+
+interface MobileNavOverlayProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+export function MobileNavOverlay({ isOpen, onClose }: MobileNavOverlayProps) {
+  if (!isOpen) {
+    return null;
+  }
+
+  return (
+    <>
+      {/* Backdrop */}
+      <div 
+        className="lg:hidden fixed inset-0 top-20 bg-black/50 z-40"
+        onClick={onClose}
+      />
+      
+      {/* Menu Panel */}
+      <div className="lg:hidden fixed inset-x-0 top-20 bottom-0 bg-secondary z-50 overflow-y-auto transform transition-transform ease-in-out duration-300">
+        <div className="container px-4 py-8 mx-auto min-h-full flex flex-col">
+          
+          {/* Navigation Links */}
+          <nav className="flex flex-col space-y-4 mb-8">
+            {navItems.map((item) => (
+              <Button
+                key={item.name}
+                variant="ghost" 
+                asChild
+                className="w-full justify-start text-lg font-semibold text-secondary-foreground hover:text-primary transition-colors py-3 border-b border-white/10 h-auto"
+              >
+                <Link 
+                  href={item.href}
+                  onClick={onClose}
+                >
+                  {item.name}
+                </Link>
+              </Button>
+            ))}
+          </nav>
+
+          {/* Contact Buttons at Bottom */}
+          <div className="mt-auto pt-8 border-t-2 border-white/10 space-y-4">
+            
+            {/* Panel Beating Button - FIX: Wrapped children in fragment */}
+            <Button 
+              variant="default" 
+              size="lg"
+              asChild
+              className="w-full h-14 text-base font-semibold"
+            >
+              <a href={`tel:${PANELBEATING_NUMBER.replace(/\s/g, '')}`} onClick={onClose}>
+                <>
+                  <Phone className="h-5 w-5 mr-2 shrink-0" />
+                  <span>Panel Beating: {PANELBEATING_NUMBER}</span>
+                </>
+              </a>
+            </Button>
+
+            {/* Towing Button - FIX: Wrapped children in fragment */}
+            <Button 
+              variant="destructive" 
+              size="lg"
+              asChild
+              className="w-full h-14 text-base font-bold"
+            >
+              <a href={`tel:${TOWING_NUMBER.replace(/\s/g, '')}`} onClick={onClose}>
+                <>
+                  <AlertCircle className="h-5 w-5 mr-2 shrink-0" />
+                  <span>Towing 24/7: {TOWING_NUMBER}</span>
+                </>
+              </a>
+            </Button>
+            
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}```
 
 --------------------------------------------------------------------------------📄 FILE PATH: src\components\layout\ProcessCallout.tsx--------------------------------------------------------------------------------```tsx"use client"; 
 
@@ -3857,6 +4613,29 @@ Input.displayName = "Input"
 
 export { Input }
 ```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\ui\textarea.tsx--------------------------------------------------------------------------------```tsximport * as React from "react"
+
+import { cn } from "@/lib/utils"
+
+const Textarea = React.forwardRef<
+  HTMLTextAreaElement,
+  React.ComponentProps<"textarea">
+>(({ className, ...props }, ref) => {
+  return (
+    <textarea
+      className={cn(
+        "flex min-h-[120px] w-full rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 md:text-sm",
+        className
+      )}
+      ref={ref}
+      {...props}
+    />
+  )
+})
+Textarea.displayName = "Textarea"
+
+export { Textarea }```
 
 --------------------------------------------------------------------------------📄 FILE PATH: src\lib\utils.ts--------------------------------------------------------------------------------```tsimport { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
