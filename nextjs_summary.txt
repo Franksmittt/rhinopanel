@@ -14,24 +14,51 @@
 ├── 📄 tsconfig.json
 ├── 📁 src
 │   ├── 📁 app
+│   │   ├── 📄 error.tsx
 │   │   ├── 📄 globals.css
 │   │   ├── 📄 layout.tsx
+│   │   ├── 📄 loading.tsx
+│   │   ├── 📄 not-found.tsx
 │   │   ├── 📄 page.tsx
+│   │   ├── 📄 robots.ts
+│   │   ├── 📄 sitemap.ts
 │   │   ├── 📄 template.tsx
+│   │   ├── 📁 about
+│   │   │   ├── 📄 page.tsx
+│   │   ├── 📁 accident-recovery-n2
+│   │   │   ├── 📄 page.tsx
 │   │   ├── 📁 accreditations
 │   │   │   ├── 📄 page.tsx
 │   │   ├── 📁 contact
 │   │   │   ├── 📄 page.tsx
+│   │   ├── 📁 emergency-towing
+│   │   │   ├── 📄 page.tsx
 │   │   ├── 📁 fonts
+│   │   ├── 📁 gallery
+│   │   │   ├── 📄 page.tsx
+│   │   ├── 📁 panelbeating-hluhluwe
+│   │   │   ├── 📄 page.tsx
+│   │   ├── 📁 panelbeating-st-lucia
+│   │   │   ├── 📄 page.tsx
+│   │   ├── 📁 privacy
+│   │   │   ├── 📄 page.tsx
 │   │   ├── 📁 process
 │   │   │   ├── 📄 page.tsx
+│   │   ├── 📁 quote
+│   │   │   ├── 📄 page.tsx
 │   │   ├── 📁 services
+│   │   │   ├── 📄 page.tsx
+│   │   │   ├── 📁 [slug]
+│   │   │   │   ├── 📄 page.tsx
+│   │   ├── 📁 terms
 │   │   │   ├── 📄 page.tsx
 │   ├── 📁 components
 │   │   ├── 📁 features
 │   │   │   ├── 📄 AccreditationCard.tsx
 │   │   │   ├── 📄 ContactDetails.tsx
 │   │   │   ├── 📄 ContactForm.tsx
+│   │   │   ├── 📄 FullQuoteForm.tsx
+│   │   │   ├── 📄 GalleryGrid.tsx
 │   │   │   ├── 📄 HeroQuoteForm.tsx
 │   │   │   ├── 📄 ProcessTimeline.tsx
 │   │   │   ├── 📄 interactive-button.tsx
@@ -57,9 +84,12 @@
 │   │   ├── 📁 ui
 │   │   │   ├── 📄 button.tsx
 │   │   │   ├── 📄 card.tsx
+│   │   │   ├── 📄 checkbox.tsx
 │   │   │   ├── 📄 input.tsx
+│   │   │   ├── 📄 label.tsx
 │   │   │   ├── 📄 textarea.tsx
 │   ├── 📁 lib
+│   │   ├── 📄 service-data.ts
 │   │   ├── 📄 utils.ts
 
 
@@ -1457,6 +1487,8 @@ export default nextConfig;
     "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-checkbox": "^1.3.3",
+    "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-slot": "^1.2.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -1595,6 +1627,79 @@ export default config;```
   "exclude": ["node_modules"]
 }
 ```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\error.tsx--------------------------------------------------------------------------------```tsx"use client"; // Error components must be Client Components
+
+import { useEffect } from "react";
+import { Button } from "@/components/ui/button";
+import { AlertTriangle, RefreshCcw, Phone } from "lucide-react";
+
+// Key Strategic Data
+const OFFICE_PHONE = "035 550 0211";
+
+export default function Error({
+  error,
+  reset,
+}: {
+  error: Error & { digest?: string };
+  reset: () => void;
+}) {
+  
+  useEffect(() => {
+    // Log the error to an error reporting service (e.g., Sentry)
+    console.error("Application Error:", error);
+  }, [error]);
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[60vh] px-4 text-center bg-muted/10">
+      
+      <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border-2 border-destructive/10 max-w-lg w-full">
+        <div className="inline-flex items-center justify-center p-4 bg-destructive/10 rounded-full mb-6">
+            <AlertTriangle className="h-12 w-12 text-destructive" />
+        </div>
+        
+        <h1 className="text-3xl font-extrabold text-foreground mb-4">
+            Something went wrong!
+        </h1>
+        
+        <p className="text-muted-foreground mb-8 text-lg leading-relaxed">
+            We encountered an unexpected error while loading this page. Our technical team has been notified.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            {/* Attempt to recover by trying to re-render the segment */}
+            <Button 
+                onClick={() => reset()}
+                size="lg"
+                className="h-12 font-bold shadow-md"
+            >
+                <RefreshCcw className="mr-2 h-4 w-4" />
+                Try Again
+            </Button>
+            
+            {/* Fallback for urgent users */}
+            <Button 
+                variant="outline" 
+                size="lg"
+                className="h-12"
+                asChild
+            >
+                <a href={`tel:${OFFICE_PHONE.replace(/\s/g, '')}`}>
+                    <Phone className="mr-2 h-4 w-4" />
+                    Call Support
+                </a>
+            </Button>
+        </div>
+
+        {/* Debug info for developers (hidden in production ideally, but useful for now) */}
+        <p className="mt-8 text-xs text-muted-foreground/50 font-mono">
+            Error Digest: {error.digest || "Unknown Error"}
+        </p>
+      </div>
+
+    </div>
+  );
+}```
 
 --------------------------------------------------------------------------------📄 FILE PATH: src\app\globals.css--------------------------------------------------------------------------------```css@tailwind base;
 @tailwind components;
@@ -1812,6 +1917,84 @@ export default function RootLayout({
 }
 ```
 
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\loading.tsx--------------------------------------------------------------------------------```tsximport { Loader2, Wrench } from "lucide-react";
+
+export default function Loading() {
+  return (
+    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-white/80 backdrop-blur-sm transition-all">
+      
+      <div className="relative flex flex-col items-center">
+        {/* Brand Icon (Static) */}
+        <div className="bg-primary p-3 rounded-xl shadow-xl mb-6">
+            <Wrench className="h-8 w-8 text-white" />
+        </div>
+
+        {/* Spinner (Animated) */}
+        <div className="relative">
+            <Loader2 className="h-12 w-12 animate-spin text-primary" />
+            
+            {/* Secondary pulsing ring for visual polish */}
+            <div className="absolute inset-0 h-12 w-12 rounded-full border-4 border-primary/20 animate-ping opacity-20"></div>
+        </div>
+
+        <h2 className="mt-6 text-lg font-semibold text-foreground animate-pulse">
+            Loading...
+        </h2>
+        <p className="text-sm text-muted-foreground mt-1">
+            Getting you back on the road
+        </p>
+      </div>
+
+    </div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\not-found.tsx--------------------------------------------------------------------------------```tsximport Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { FileQuestion, Home, Phone } from "lucide-react";
+
+export default function NotFound() {
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center bg-muted/20 px-4 text-center">
+      
+      <div className="bg-white p-8 md:p-12 rounded-2xl shadow-xl border-2 border-border max-w-lg w-full">
+        <div className="inline-flex items-center justify-center p-4 bg-primary/10 rounded-full mb-6">
+            <FileQuestion className="h-12 w-12 text-primary" />
+        </div>
+        
+        <h1 className="text-4xl font-extrabold text-foreground mb-2">Page Not Found</h1>
+        <p className="text-muted-foreground mb-8 text-lg">
+            Sorry, we couldn't find the page you're looking for. It might have been moved or deleted.
+        </p>
+
+        <div className="space-y-3">
+            <Button asChild size="lg" className="w-full h-12 text-base font-bold">
+                <Link href="/">
+                    <Home className="mr-2 h-5 w-5" />
+                    Back to Homepage
+                </Link>
+            </Button>
+            
+            <Button asChild variant="outline" size="lg" className="w-full h-12 text-base">
+                <Link href="/contact">
+                    <Phone className="mr-2 h-5 w-5" />
+                    Contact Us
+                </Link>
+            </Button>
+        </div>
+        
+        <div className="mt-8 pt-8 border-t border-border">
+            <p className="text-sm text-muted-foreground mb-2">Need immediate assistance?</p>
+            <a href="tel:0723115870" className="text-xl font-black text-destructive hover:underline">
+                Call 24/7 Towing: 072 311 5870
+            </a>
+        </div>
+      </div>
+
+    </div>
+  );
+}```
+
 --------------------------------------------------------------------------------📄 FILE PATH: src\app\page.tsx--------------------------------------------------------------------------------```tsx// Professional Homepage with Dual-Funnel Strategy
 
 import { Header } from "@/components/layout/Header"; 
@@ -1859,6 +2042,66 @@ export default function Home() {
 }
 ```
 
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\robots.ts--------------------------------------------------------------------------------```tsimport { MetadataRoute } from 'next';
+
+export default function robots(): MetadataRoute.Robots {
+  const baseUrl = 'https://rhinopanelbeaters.co.za'; // Replace with your actual production domain
+
+  return {
+    rules: {
+      userAgent: '*',
+      allow: '/',
+      disallow: [
+        '/api/',      // Hide API routes
+        '/admin/',    // Hide admin routes (if you add them later)
+        '/private/',  // Hide private folders
+      ],
+    },
+    sitemap: `${baseUrl}/sitemap.xml`,
+  };
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\sitemap.ts--------------------------------------------------------------------------------```tsimport { MetadataRoute } from 'next';
+import { serviceData } from '@/lib/service-data';
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const baseUrl = 'https://rhinopanelbeaters.co.za'; // Replace with your actual domain in production
+
+  // 1. Define Static Routes
+  const staticRoutes = [
+    '',
+    '/about',
+    '/contact',
+    '/quote',
+    '/services',
+    '/process',
+    '/accreditations',
+    '/gallery',
+    '/emergency-towing',
+    '/panelbeating-st-lucia',
+    '/panelbeating-hluhluwe',
+    '/accident-recovery-n2',
+    '/privacy',
+    '/terms',
+  ].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: route === '' ? 1.0 : 0.8,
+  }));
+
+  // 2. Generate Dynamic Service Routes from service-data.ts
+  const serviceRoutes = Object.keys(serviceData).map((slug) => ({
+    url: `${baseUrl}/services/${slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.9, // High priority for SEO silos
+  }));
+
+  // 3. Combine and Return
+  return [...staticRoutes, ...serviceRoutes];
+}```
+
 --------------------------------------------------------------------------------📄 FILE PATH: src\app\template.tsx--------------------------------------------------------------------------------```tsx"use client";
 
 // This component uses the exact "Awwwards-Style Page Transitions" 
@@ -1875,6 +2118,259 @@ export default function Template({ children }: { children: React.ReactNode }) {
     >
       {children}
     </motion.div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\about\page.tsx--------------------------------------------------------------------------------```tsximport { Metadata } from "next";
+import Image from "next/image";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { TrustBar } from "@/components/layout/TrustBar";
+import { LocationAndCTA } from "@/components/layout/LocationAndCTA";
+import { CheckCircle2, Award, Users, ShieldCheck } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "About Rhino Panelbeaters | Our Story & Team",
+  description: "Family-owned panelbeaters serving Mtubatuba. Meet the team committed to honest, SAMBRA-accredited repairs and lifetime workmanship guarantees.",
+  keywords: "Rhino Panelbeaters owner, auto body shop history, SAMBRA accredited Mtubatuba, RMI member KZN",
+};
+
+export default function AboutPage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+      
+      <main className="flex-grow">
+        
+        {/* === HERO SECTION === */}
+        <section className="w-full py-16 md:py-24 bg-secondary text-secondary-foreground">
+           <div className="container px-4 md:px-8 mx-auto">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-primary/20 text-primary-foreground text-sm font-medium mb-6 border border-primary/30">
+                    <Users className="h-4 w-4" />
+                    <span>Family Owned & Operated</span>
+                </div>
+                
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                  More Than Just <br/>
+                  <span className="text-primary">Panelbeating</span>
+                </h1>
+                
+                <p className="text-lg md:text-xl text-secondary-foreground/80 max-w-2xl mb-8 leading-relaxed">
+                  We are a team of qualified artisans, dedicated to restoring safety and value to your vehicle. We don't just fix cars; we help people get back on the road.
+                </p>
+              </div>
+           </div>
+        </section>
+
+        {/* === OUR STORY & MISSION === */}
+        <section className="w-full py-20 bg-white">
+            <div className="container px-4 md:px-8 mx-auto grid lg:grid-cols-2 gap-16 items-center">
+                
+                {/* UPDATED: Real Image */}
+                <div className="relative h-[500px] bg-muted rounded-2xl overflow-hidden border-2 border-border shadow-xl">
+                     <Image 
+                        src="/images/team-workshop-tools-background.png" 
+                        fill 
+                        alt="Rhino Panelbeaters Workshop and Team" 
+                        className="object-cover"
+                        placeholder="blur"
+                        blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+                     />
+                </div>
+
+                <div className="space-y-8">
+                    <div>
+                        <h2 className="text-3xl font-bold text-foreground mb-4">Our Story</h2>
+                        <p className="text-muted-foreground leading-relaxed">
+                            Founded with a single tow truck and a passion for mechanics, Rhino Panelbeaters & Towing has grown into Mtubatuba's premier collision repair centre. We recognized a need in the Zululand region for a repairer that didn't compromise on quality. 
+                        </p>
+                        <p className="text-muted-foreground leading-relaxed mt-4">
+                            Today, we serve the entire KZN North Coast, combining old-school craftsmanship with modern chassis straightening technology and waterborne paint systems.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h3 className="text-xl font-bold text-foreground mb-4 flex items-center gap-2">
+                            <Award className="h-6 w-6 text-primary" />
+                            Our Core Values
+                        </h3>
+                        <ul className="space-y-3">
+                            <li className="flex items-start gap-3">
+                                <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                                <div>
+                                    <span className="font-semibold text-foreground block">Transparency</span>
+                                    <span className="text-sm text-muted-foreground">No hidden costs. We explain every step of the repair process.</span>
+                                </div>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                                <div>
+                                    <span className="font-semibold text-foreground block">Safety First</span>
+                                    <span className="text-sm text-muted-foreground">We never cut corners on structural integrity. Your safety is our license to operate.</span>
+                                </div>
+                            </li>
+                            <li className="flex items-start gap-3">
+                                <CheckCircle2 className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                                <div>
+                                    <span className="font-semibold text-foreground block">Customer Advocacy</span>
+                                    <span className="text-sm text-muted-foreground">We fight for your right to OEM parts and quality repairs with insurance assessors.</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        {/* === ACCREDITATION DEEP DIVE === */}
+        <section className="w-full py-20 bg-muted/30 border-y border-border">
+            <div className="container px-4 md:px-8 mx-auto text-center max-w-4xl">
+                <div className="inline-block p-4 rounded-full bg-primary/10 mb-6">
+                    <ShieldCheck className="h-10 w-10 text-primary" />
+                </div>
+                <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-6">
+                    The "Workmanship Guarantee"
+                </h2>
+                <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
+                    We stand behind our work. Every structural repair is backed by our lifetime guarantee, and all paintwork carries a minimum 3-year warranty against peeling or fading.
+                </p>
+                
+                <div className="grid md:grid-cols-2 gap-6 text-left">
+                    <div className="bg-white p-6 rounded-xl border border-border shadow-sm">
+                        <h4 className="font-bold text-lg mb-2 text-foreground">What SAMBRA Means for You</h4>
+                        <p className="text-sm text-muted-foreground">
+                            As a SAMBRA accredited shop, we are subject to random quality audits. This gives you, the consumer, recourse and protection that unaccredited "backyard" shops cannot offer.
+                        </p>
+                    </div>
+                    <div className="bg-white p-6 rounded-xl border border-border shadow-sm">
+                        <h4 className="font-bold text-lg mb-2 text-foreground">RMI Code of Conduct</h4>
+                        <p className="text-sm text-muted-foreground">
+                            Our RMI membership ensures we adhere to fair labor practices and ethical business conduct. You are dealing with a legitimate, tax-paying entity committed to the local economy.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {/* === REUSED TRUST BAR === */}
+        <TrustBar />
+
+        {/* === LOCATION CTA === */}
+        <LocationAndCTA />
+
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\accident-recovery-n2\page.tsx--------------------------------------------------------------------------------```tsximport { Metadata } from "next";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { LocationAndCTA } from "@/components/layout/LocationAndCTA";
+import { Button } from "@/components/ui/button";
+import { AlertTriangle, Phone, Clock, Shield, Truck } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "N2 Accident Recovery & Towing | Mtubatuba to Richards Bay",
+  description: "Immediate accident response for the N2 highway. Serving the corridor between Hluhluwe, Mtubatuba, and Richards Bay. Rollback towing and accident scene clearance.",
+  keywords: "N2 accident recovery, N2 towing service, breakdown N2 Mtubatuba, accident towing Richards Bay, N2 emergency services",
+};
+
+const TOWING_NUMBER = "072 311 5870";
+
+export default function N2RecoveryPage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+      
+      <main className="flex-grow">
+        
+        {/* === HIGH URGENCY HERO === */}
+        <section className="w-full py-20 bg-destructive text-destructive-foreground text-center">
+           <div className="container px-4 mx-auto max-w-4xl">
+              <div className="inline-flex items-center justify-center p-4 bg-white/20 rounded-full mb-6 animate-pulse">
+                <AlertTriangle className="h-12 w-12 text-white" />
+              </div>
+              <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight mb-6">
+                N2 Accident Response Unit
+              </h1>
+              <p className="text-xl md:text-2xl font-medium opacity-90 mb-10 max-w-2xl mx-auto">
+                Rapid deployment for collisions and breakdowns on the N2 Highway (Hluhluwe - Mtubatuba - Richards Bay).
+              </p>
+              
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a 
+                    href={`tel:${TOWING_NUMBER.replace(/\s/g, '')}`} 
+                    className="flex items-center gap-3 bg-white text-destructive px-8 py-6 rounded-xl font-black text-2xl shadow-2xl hover:bg-gray-50 transition-transform hover:scale-105"
+                >
+                    <Phone className="h-8 w-8 fill-current" />
+                    CALL NOW: {TOWING_NUMBER}
+                </a>
+              </div>
+              <p className="mt-4 text-white/80 text-sm font-medium">
+                Average response time: &lt; 45 Minutes
+              </p>
+           </div>
+        </section>
+
+        {/* === SERVICE DETAILS === */}
+        <section className="w-full py-20 bg-white">
+            <div className="container px-4 mx-auto">
+                <div className="grid md:grid-cols-3 gap-8">
+                    {/* Feature 1 */}
+                    <div className="p-6 border-2 border-border rounded-xl bg-muted/10">
+                        <Clock className="h-10 w-10 text-destructive mb-4" />
+                        <h3 className="text-xl font-bold mb-2">24/7 Highway Patrol</h3>
+                        <p className="text-muted-foreground">
+                            Our fleet is stationed strategically in Mtubatuba to provide equal coverage North (towards Hluhluwe) and South (towards Richards Bay).
+                        </p>
+                    </div>
+
+                    {/* Feature 2 */}
+                    <div className="p-6 border-2 border-border rounded-xl bg-muted/10">
+                        <Truck className="h-10 w-10 text-destructive mb-4" />
+                        <h3 className="text-xl font-bold mb-2">Rollback & Rigging</h3>
+                        <p className="text-muted-foreground">
+                            We utilize flatbed rollbacks to ensure accident-damaged vehicles are recovered without causing further structural damage.
+                        </p>
+                    </div>
+
+                    {/* Feature 3 */}
+                    <div className="p-6 border-2 border-border rounded-xl bg-muted/10">
+                        <Shield className="h-10 w-10 text-destructive mb-4" />
+                        <h3 className="text-xl font-bold mb-2">Insurance Approved</h3>
+                        <p className="text-muted-foreground">
+                            We are authorized to tow for major insurance panels. We can recover your vehicle directly to our accredited repair centre, simplifying your claim.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        {/* === COVERAGE MAP TEXT === */}
+        <section className="w-full py-16 bg-secondary text-secondary-foreground">
+            <div className="container px-4 mx-auto text-center">
+                <h2 className="text-3xl font-bold mb-8">N2 Coverage Zones</h2>
+                <div className="flex flex-wrap justify-center gap-3">
+                    {["Kwambonambi", "Teza", "Mtubatuba Offramp", "Charters Creek", "Hluhluwe Turnoff", "Bushlands", "Nyalazi"].map((zone) => (
+                        <span key={zone} className="px-4 py-2 bg-white/10 rounded-full border border-white/20 text-sm font-medium">
+                            📍 {zone}
+                        </span>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <LocationAndCTA />
+
+      </main>
+      
+      <Footer />
+    </div>
   );
 }```
 
@@ -1952,7 +2448,7 @@ export default function AccreditationsPage() {
                 </h1>
                 
                 <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-8 leading-relaxed">
-                  In the auto repair industry, trust isn't given—it's earned through rigorous audits. We hold the highest accreditations in South Africa to guarantee your peace of mind.
+                  In the auto repair industry, trust isn&rsquo;t given&mdash;it&rsquo;s earned through rigorous audits. We hold the highest accreditations in South Africa to guarantee your peace of mind.
                 </p>
               </div>
            </div>
@@ -1966,7 +2462,7 @@ export default function AccreditationsPage() {
                         Why Our Badges Matter to You
                     </h2>
                     <p className="text-lg text-muted-foreground">
-                        These aren't just logos. They are your guarantee of recourse, quality, and safety.
+                        These aren&rsquo;t just logos. They are your guarantee of recourse, quality, and safety.
                     </p>
                 </div>
 
@@ -1989,10 +2485,10 @@ export default function AccreditationsPage() {
                             <FileCheck className="h-8 w-8" />
                         </div>
                         <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-tight">
-                            Approved by South Africa's Leading Insurers
+                            Approved by South Africa&rsquo;s Leading Insurers
                         </h2>
                         <p className="text-lg text-muted-foreground leading-relaxed">
-                            We simplify the accident aftermath. As an approved repairer, we integrate directly with your insurance provider's digital systems.
+                            We simplify the accident aftermath. As an approved repairer, we integrate directly with your insurance provider&rsquo;s digital systems.
                         </p>
                         
                         <div className="space-y-4 pt-4">
@@ -2001,7 +2497,7 @@ export default function AccreditationsPage() {
                                 <p className="text-sm text-muted-foreground">Direct digital links to Santam, Hollard, and Old Mutual mean authorizations happen in hours, not days.</p>
                             </div>
                             <div className="p-4 bg-white rounded-lg border border-border shadow-sm">
-                                <h4 className="font-bold text-foreground mb-1">No "Three Quote" Hassle</h4>
+                                <h4 className="font-bold text-foreground mb-1">No &ldquo;Three Quote&rdquo; Hassle</h4>
                                 <p className="text-sm text-muted-foreground">For most approved partners, you can bring your vehicle directly to us without needing to shop around.</p>
                             </div>
                         </div>
@@ -2133,6 +2629,509 @@ export default function ContactPage() {
   );
 }```
 
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\emergency-towing\page.tsx--------------------------------------------------------------------------------```tsximport { Metadata } from "next";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { Phone, ArrowLeft, MapPin, CheckCircle2, AlertTriangle } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "24/7 EMERGENCY TOWING | Mtubatuba & N2",
+  description: "IMMEDIATE RESPONSE. Call 072 311 5870 for accident recovery and towing in Mtubatuba, St Lucia, and N2. 24/7 Service.",
+  keywords: "towing Mtubatuba, emergency towing N2, breakdown service St Lucia, accident recovery KZN",
+};
+
+const TOWING_NUMBER = "072 311 5870";
+
+export default function EmergencyTowingPage() {
+  return (
+    <div className="min-h-screen flex flex-col bg-white">
+      
+      {/* === SIMPLIFIED HEADER === */}
+      <header className="py-4 px-4 border-b flex items-center justify-between bg-white sticky top-0 z-50">
+        <Link href="/" className="flex items-center text-muted-foreground hover:text-foreground transition-colors">
+            <ArrowLeft className="h-5 w-5 mr-1" />
+            <span className="font-medium">Back to Home</span>
+        </Link>
+        <div className="font-bold text-lg">RHINO TOWING</div>
+      </header>
+
+      <main className="flex-grow flex flex-col">
+        
+        {/* === CRISIS HERO (RED ZONE) === */}
+        <section className="bg-destructive text-destructive-foreground py-12 px-4 text-center flex-grow flex flex-col justify-center items-center">
+            <div className="bg-white/20 p-4 rounded-full mb-6 animate-pulse">
+                <AlertTriangle className="h-12 w-12 md:h-16 md:w-16" />
+            </div>
+            
+            <h1 className="text-4xl md:text-6xl font-black mb-4 uppercase tracking-tight">
+                Emergency<br/>Assistance
+            </h1>
+            
+            <p className="text-xl md:text-2xl font-medium opacity-90 mb-8 max-w-md mx-auto">
+                Immediate Response for Accidents & Breakdowns in Mtubatuba & N2.
+            </p>
+
+            {/* GIANT CALL BUTTON */}
+            <a 
+                href={`tel:${TOWING_NUMBER.replace(/\s/g, '')}`} 
+                className="w-full max-w-md bg-white text-destructive hover:bg-gray-100 text-2xl md:text-4xl font-black py-8 rounded-2xl shadow-2xl flex items-center justify-center gap-4 transform transition-transform active:scale-95 border-4 border-destructive-foreground/10"
+            >
+                <Phone className="h-8 w-8 md:h-12 md:w-12 fill-current" />
+                <span>CLICK TO CALL</span>
+            </a>
+            
+            <p className="mt-6 text-lg font-bold tracking-widest">
+                {TOWING_NUMBER}
+            </p>
+        </section>
+
+        {/* === REASSURANCE SECTION === */}
+        <section className="py-12 px-4 bg-white text-center">
+            <div className="max-w-md mx-auto space-y-8">
+                <div className="space-y-4">
+                    <h2 className="text-2xl font-bold text-foreground">We Are On The Way</h2>
+                    <p className="text-muted-foreground">Our fleet is stationed in Mtubatuba for rapid response to:</p>
+                    <div className="flex flex-wrap justify-center gap-2">
+                        {["N2 Highway", "St Lucia Road (R618)", "Mtubatuba Town", "Hluhluwe", "Kwambonambi"].map(area => (
+                            <span key={area} className="inline-flex items-center px-3 py-1 rounded-full bg-muted text-sm font-medium">
+                                <MapPin className="h-3 w-3 mr-1 text-primary" />
+                                {area}
+                            </span>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-left">
+                    <h3 className="font-bold text-green-800 mb-3 flex items-center">
+                        <CheckCircle2 className="h-5 w-5 mr-2" />
+                        Why Trust Us?
+                    </h3>
+                    <ul className="space-y-2 text-green-700">
+                        <li>✓ Approved by major insurance companies</li>
+                        <li>✓ Secure storage facility for your vehicle</li>
+                        <li>✓ Seamless transfer to our Repair Centre</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+      </main>
+    </div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\gallery\page.tsx--------------------------------------------------------------------------------```tsximport { Metadata } from "next";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { LocationAndCTA } from "@/components/layout/LocationAndCTA";
+import { GalleryGrid } from "@/components/features/GalleryGrid";
+import { Camera } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Before & After Gallery | Rhino Panelbeaters Mtubatuba",
+  description: "View our portfolio of collision repairs, spray painting, and dent removal. See the difference factory-spec quality makes. Rhino Panelbeaters Mtubatuba.",
+  keywords: "panel beating before and after, car spray painting examples, collision repair gallery, rhino panelbeaters work",
+};
+
+export default function GalleryPage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+      
+      <main className="flex-grow">
+        
+        {/* === HERO SECTION === */}
+        <section className="w-full py-16 bg-secondary text-secondary-foreground">
+           <div className="container px-4 md:px-8 mx-auto text-center">
+              <div className="inline-flex items-center justify-center p-3 bg-primary rounded-xl text-primary-foreground mb-6">
+                <Camera className="h-8 w-8" />
+              </div>
+              
+              <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
+                Proof of Quality
+              </h1>
+              
+              <p className="text-lg md:text-xl text-secondary-foreground/80 max-w-2xl mx-auto leading-relaxed">
+                We let our work speak for itself. Browse our recent repairs to see the Rhino Panelbeaters difference.
+              </p>
+           </div>
+        </section>
+
+        {/* === GALLERY GRID === */}
+        <section className="w-full py-20 bg-white">
+            <div className="container px-4 md:px-8 mx-auto">
+                <GalleryGrid />
+            </div>
+        </section>
+
+        {/* === CTA === */}
+        <LocationAndCTA />
+
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\panelbeating-hluhluwe\page.tsx--------------------------------------------------------------------------------```tsximport { Metadata } from "next";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { TrustBar } from "@/components/layout/TrustBar";
+import { LocationAndCTA } from "@/components/layout/LocationAndCTA";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { MapPin, Truck, Phone, ArrowRight, ShieldCheck, Car } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Panelbeaters Serving Hluhluwe | 4x4 & Safari Specialists",
+  description: "Expert collision repair and spray painting for Hluhluwe residents and game lodges. We specialize in 4x4 and safari vehicle repairs. SAMBRA Accredited.",
+  keywords: "panelbeater Hluhluwe, auto body repair Hluhluwe, safari vehicle repair KZN, towing Hluhluwe, Toyota Land Cruiser repair Zululand",
+};
+
+const TOWING_NUMBER = "072 311 5870";
+
+export default function HluhluweLandingPage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+      
+      <main className="flex-grow">
+        
+        {/* === GEO-TARGETED HERO === */}
+        <section className="w-full py-16 md:py-24 bg-secondary text-secondary-foreground relative overflow-hidden">
+           <div className="container px-4 md:px-8 mx-auto relative z-10">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-primary/20 text-primary-foreground text-sm font-medium mb-6 border border-primary/30">
+                    <MapPin className="h-4 w-4" />
+                    <span>Serving Hluhluwe & The Elephant Coast</span>
+                </div>
+                
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                  Expert Collision Repair for<br/>
+                  <span className="text-primary">Hluhluwe & Game Lodges</span>
+                </h1>
+                
+                <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-8 leading-relaxed">
+                  Quality repair options in Hluhluwe are limited. We are the accredited hub for the northern corridor, specializing in heavy-duty 4x4s, safari viewers, and fleet vehicles.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button asChild size="lg" className="h-14 px-8 text-base font-bold shadow-lg">
+                    <Link href="/quote">
+                      Get an Estimate
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button asChild variant="destructive" size="lg" className="h-14 px-8 text-base font-bold shadow-lg">
+                    <a href={`tel:${TOWING_NUMBER.replace(/\s/g, '')}`}>
+                      <Truck className="mr-2 h-5 w-5" />
+                      Hluhluwe Towing: {TOWING_NUMBER}
+                    </a>
+                  </Button>
+                </div>
+              </div>
+           </div>
+        </section>
+
+        <TrustBar />
+
+        {/* === THE REGIONAL SOLUTION SECTION === */}
+        <section className="w-full py-20 bg-white">
+            <div className="container px-4 md:px-8 mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 className="text-3xl font-bold mb-6 text-foreground">Dedicated to the Northern Corridor</h2>
+                    <p className="text-lg text-muted-foreground mb-8">
+                        We understand that vehicles in Hluhluwe work harder. Whether it's a game viewer, a farm bakkie, or a family SUV, we restore it to factory specifications.
+                    </p>
+                    
+                    <div className="space-y-6">
+                        <div className="flex gap-4">
+                            <div className="p-3 bg-primary/10 text-primary rounded-lg h-fit">
+                                <Car className="h-6 w-6" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-lg">4x4 & Safari Expertise</h3>
+                                <p className="text-muted-foreground">We specialize in bodywork for Toyota Land Cruisers, Hiluxes, and Rangers. We handle chassis alignment and rust-proofing for vehicles exposed to bush conditions.</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <div className="p-3 bg-primary/10 text-primary rounded-lg h-fit">
+                                <Truck className="h-6 w-6" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-lg">N2 North Recovery</h3>
+                                <p className="text-muted-foreground">Our breakdown team services the N2 route from Mtubatuba to Hluhluwe daily. We are your fastest link to accredited repairs.</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <div className="p-3 bg-primary/10 text-primary rounded-lg h-fit">
+                                <ShieldCheck className="h-6 w-6" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-lg">SAMBRA Accredited</h3>
+                                <p className="text-muted-foreground">Don't risk your insurance claim with unaccredited backyard repairs. We are approved by major insurers for the Zululand region.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                {/* Visual Map Representation */}
+                <div className="bg-muted rounded-2xl p-8 text-center border-2 border-border">
+                    <h3 className="text-2xl font-bold mb-4 text-foreground">Worth the Short Drive</h3>
+                    <div className="space-y-4 text-lg">
+                        <div className="flex justify-between items-center border-b border-gray-300 pb-2">
+                            <span className="font-semibold">Hluhluwe</span>
+                            <span className="text-muted-foreground">0 km</span>
+                        </div>
+                        <div className="flex justify-between items-center border-b border-gray-300 pb-2 opacity-50">
+                            <span className="text-sm">N2 South Corridor</span>
+                            <ArrowRight className="h-4 w-4" />
+                        </div>
+                        <div className="flex justify-between items-center text-primary font-bold text-xl">
+                            <span>Rhino Panelbeaters</span>
+                            <span>50 km</span>
+                        </div>
+                    </div>
+                    <div className="mt-8">
+                        <p className="text-sm text-muted-foreground mb-4">
+                            We offer vehicle collection services for non-drivable vehicles in the Hluhluwe area.
+                        </p>
+                        <Button asChild variant="outline" className="w-full">
+                            <Link href="/contact">Get Directions</Link>
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <LocationAndCTA />
+
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\panelbeating-st-lucia\page.tsx--------------------------------------------------------------------------------```tsximport { Metadata } from "next";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { TrustBar } from "@/components/layout/TrustBar";
+import { LocationAndCTA } from "@/components/layout/LocationAndCTA";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import { MapPin, Truck, Phone, ArrowRight, ShieldCheck } from "lucide-react";
+
+// Highly targeted SEO metadata for the "Vacuum" strategy
+export const metadata: Metadata = {
+  title: "Expert Panelbeater for St Lucia KZN | Rhino Panelbeaters",
+  description: "Looking for a panelbeater in St Lucia? We are the closest SAMBRA accredited repairer (25km away). We offer vehicle collection & drop-off for St Lucia residents.",
+  keywords: "panelbeater St Lucia, collision repair St Lucia, towing St Lucia, auto body shop St Lucia KZN, R618 towing",
+};
+
+const TOWING_NUMBER = "072 311 5870";
+
+export default function StLuciaLandingPage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+      
+      <main className="flex-grow">
+        
+        {/* === GEO-TARGETED HERO === */}
+        <section className="w-full py-16 md:py-24 bg-secondary text-secondary-foreground relative overflow-hidden">
+           <div className="container px-4 md:px-8 mx-auto relative z-10">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-primary/20 text-primary-foreground text-sm font-medium mb-6 border border-primary/30">
+                    <MapPin className="h-4 w-4" />
+                    <span>Serving St Lucia & The Elephant Coast</span>
+                </div>
+                
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                  The Closest Accredited<br/>
+                  <span className="text-primary">Panelbeater to St Lucia</span>
+                </h1>
+                
+                <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-8 leading-relaxed">
+                  Struggling to find a repairer in St Lucia? We are just 25 minutes away on the R618. 
+                  We provide full collision repair, spray painting, and 4x4 restoration for the St Lucia community.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button asChild size="lg" className="h-14 px-8 text-base font-bold shadow-lg">
+                    <Link href="/quote">
+                      Get a Quote (We Collect)
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button asChild variant="destructive" size="lg" className="h-14 px-8 text-base font-bold shadow-lg">
+                    <a href={`tel:${TOWING_NUMBER.replace(/\s/g, '')}`}>
+                      <Truck className="mr-2 h-5 w-5" />
+                      R618 Towing: {TOWING_NUMBER}
+                    </a>
+                  </Button>
+                </div>
+              </div>
+           </div>
+        </section>
+
+        <TrustBar />
+
+        {/* === THE "VACUUM" SOLUTION SECTION === */}
+        <section className="w-full py-20 bg-white">
+            <div className="container px-4 md:px-8 mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 className="text-3xl font-bold mb-6 text-foreground">Why St Lucia Residents Choose Us</h2>
+                    <div className="space-y-6">
+                        <div className="flex gap-4">
+                            <div className="p-3 bg-primary/10 text-primary rounded-lg h-fit">
+                                <Truck className="h-6 w-6" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-lg">Vehicle Collection & Drop-off</h3>
+                                <p className="text-muted-foreground">Don't worry about the drive. For major repairs, we can arrange to collect your vehicle from St Lucia and return it once finished.</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <div className="p-3 bg-primary/10 text-primary rounded-lg h-fit">
+                                <MapPin className="h-6 w-6" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-lg">R618 & N2 Recovery</h3>
+                                <p className="text-muted-foreground">Breakdown on the way to the wetland park? Our tow trucks patrol the R618 daily. We are your quickest response for accidents on the St Lucia road.</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-4">
+                            <div className="p-3 bg-primary/10 text-primary rounded-lg h-fit">
+                                <ShieldCheck className="h-6 w-6" />
+                            </div>
+                            <div>
+                                <h3 className="font-bold text-lg">4x4 & Safari Specialists</h3>
+                                <p className="text-muted-foreground">We understand the specific needs of safari viewers and off-road vehicles common in St Lucia. We handle chassis repair and rust-proofing.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                {/* Visual Map Representation */}
+                <div className="bg-muted rounded-2xl p-8 text-center border-2 border-border">
+                    <h3 className="text-2xl font-bold mb-4 text-foreground">Just 25 Minutes Away</h3>
+                    <div className="space-y-4 text-lg">
+                        <div className="flex justify-between items-center border-b border-gray-300 pb-2">
+                            <span className="font-semibold">St Lucia</span>
+                            <span className="text-muted-foreground">0 km</span>
+                        </div>
+                        <div className="flex justify-between items-center border-b border-gray-300 pb-2 opacity-50">
+                            <span className="text-sm">R618 Corridor</span>
+                            <ArrowRight className="h-4 w-4" />
+                        </div>
+                        <div className="flex justify-between items-center text-primary font-bold text-xl">
+                            <span>Rhino Panelbeaters</span>
+                            <span>26 km</span>
+                        </div>
+                    </div>
+                    <div className="mt-8">
+                        <p className="text-sm text-muted-foreground mb-4">
+                            Stop searching for "panelbeaters near me" in a town without one. Come to the accredited experts in Mtubatuba.
+                        </p>
+                        <Button asChild variant="outline" className="w-full">
+                            <Link href="/contact">Get Directions</Link>
+                        </Button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <LocationAndCTA />
+
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\privacy\page.tsx--------------------------------------------------------------------------------```tsximport { Metadata } from "next";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+
+export const metadata: Metadata = {
+  title: "Privacy Policy | Rhino Panelbeaters",
+  description: "Our commitment to protecting your personal information in accordance with POPIA.",
+};
+
+export default function PrivacyPage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+      
+      <main className="flex-grow py-12 md:py-20">
+        <div className="container px-4 md:px-8 mx-auto max-w-3xl">
+          
+            <h1 className="text-4xl font-bold mb-8 text-foreground">Privacy Policy</h1>
+            <p className="text-sm text-muted-foreground mb-8">Last Updated: {new Date().toLocaleDateString()}</p>
+
+            <div className="prose prose-lg prose-blue max-w-none text-muted-foreground">
+                <p>
+                    Rhino Panelbeaters & Towing ("we", "us", or "our") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclosure, and safeguard your information when you visit our website or use our services.
+                </p>
+
+                <h3 className="text-foreground font-bold mt-8 mb-4">1. Information We Collect</h3>
+                <p>
+                    We collect personal information that you voluntarily provide to us when you request a quote or contact us. This includes:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li>Personal Identification (Name, Phone Number, Email Address)</li>
+                    <li>Vehicle Information (Make, Model, Registration Number, VIN)</li>
+                    <li>Insurance Details (Provider Name)</li>
+                    <li>Images of vehicle damage provided for assessment purposes</li>
+                </ul>
+
+                <h3 className="text-foreground font-bold mt-8 mb-4">2. How We Use Your Information</h3>
+                <p>
+                    We use the information we collect to:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li>Generate accurate repair estimates and quotes.</li>
+                    <li>Communicate with you regarding your vehicle's repair status.</li>
+                    <li>Liaise with insurance providers on your behalf (with your consent).</li>
+                    <li>Dispatch emergency towing services to your location.</li>
+                </ul>
+
+                <h3 className="text-foreground font-bold mt-8 mb-4">3. POPIA Compliance (South Africa)</h3>
+                <p>
+                    In accordance with the Protection of Personal Information Act (POPIA), we act as the responsible party for your data. We implement reasonable technical and organizational measures to secure your personal information against accidental or unlawful destruction, loss, alteration, or unauthorized access.
+                </p>
+
+                <h3 className="text-foreground font-bold mt-8 mb-4">4. Sharing of Information</h3>
+                <p>
+                    We do not sell your personal data. We may share your information with:
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li>Insurance companies (strictly for the purpose of claim authorization).</li>
+                    <li>Sub-contractors (e.g., specialized towing partners) only when necessary to fulfill a service request.</li>
+                </ul>
+
+                <h3 className="text-foreground font-bold mt-8 mb-4">5. Contact Us</h3>
+                <p>
+                    If you have questions about this privacy policy or wish to exercise your rights to access or delete your data, please contact our Information Officer at:
+                </p>
+                <p className="mt-4 font-medium text-foreground">
+                    Rhino Panelbeaters<br/>
+                    174 Jacaranda Ave, Mtubatuba, 3935<br/>
+                    035 550 0211
+                </p>
+            </div>
+
+        </div>
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}```
+
 --------------------------------------------------------------------------------📄 FILE PATH: src\app\process\page.tsx--------------------------------------------------------------------------------```tsximport { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -2176,7 +3175,7 @@ export default function ProcessPage() {
               </h1>
               
               <p className="text-lg md:text-xl text-secondary-foreground/80 max-w-2xl mx-auto mb-10 leading-relaxed">
-                We know accidents are stressful. That's why we follow a rigid, transparent 7-stage protocol to get you back on the road with zero surprises.
+                We know accidents are stressful. That&rsquo;s why we follow a rigid, transparent 7-stage protocol to get you back on the road with zero surprises.
               </p>
 
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -2200,6 +3199,88 @@ export default function ProcessPage() {
         {/* === FINAL CTA & LOCATION === */}
         <LocationAndCTA />
         
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\quote\page.tsx--------------------------------------------------------------------------------```tsximport { Metadata } from "next";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { FullQuoteForm } from "@/components/features/FullQuoteForm";
+import { CheckCircle2, Shield } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Get a Free Quote | Rhino Panelbeaters Mtubatuba",
+  description: "Request a free digital assessment for collision repair, spray painting, or dent removal. Upload photos for a faster quote. No obligation.",
+  keywords: "panel beating quote, car repair estimate Mtubatuba, collision repair quote online",
+};
+
+export default function QuotePage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+      
+      <main className="flex-grow bg-muted/10">
+        <div className="container px-4 md:px-8 mx-auto py-12 md:py-20">
+          
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+                <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground mb-6">
+                    Get Your <span className="text-primary">Free Assessment</span>
+                </h1>
+                <p className="text-xl text-muted-foreground">
+                    Skip the drive. Upload your details below and we'll get back to you with an initial estimate within 24 hours.
+                </p>
+            </div>
+
+            <div className="grid lg:grid-cols-3 gap-8 items-start">
+                {/* Main Form Area */}
+                <div className="lg:col-span-2">
+                    <FullQuoteForm />
+                </div>
+
+                {/* Sidebar Trust Signals */}
+                <div className="space-y-6">
+                    <div className="bg-white p-6 rounded-xl border shadow-sm">
+                        <h3 className="font-bold text-lg mb-4 flex items-center gap-2">
+                            <Shield className="h-5 w-5 text-primary" />
+                            Why Choose Us?
+                        </h3>
+                        <ul className="space-y-3">
+                            <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                                <CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                                <span>SAMBRA Accredited Quality</span>
+                            </li>
+                            <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                                <CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                                <span>Lifetime Workmanship Guarantee</span>
+                            </li>
+                            <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                                <CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                                <span>Approved by Major Insurers</span>
+                            </li>
+                            <li className="flex items-start gap-3 text-sm text-muted-foreground">
+                                <CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
+                                <span>3-Year Paint Warranty</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="bg-primary/5 p-6 rounded-xl border border-primary/20">
+                        <h3 className="font-bold text-lg mb-2 text-foreground">Prefer to call?</h3>
+                        <p className="text-sm text-muted-foreground mb-4">Our workshop office is open Mon-Fri, 7:30am - 5:00pm.</p>
+                        <a href="tel:0355500211" className="text-2xl font-bold text-primary hover:underline block">
+                            035 550 0211
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+          </div>
+        </div>
       </main>
       
       <Footer />
@@ -2285,20 +3366,239 @@ export default function ServicesPage() {
   );
 }```
 
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\services\[slug]\page.tsx--------------------------------------------------------------------------------```tsximport { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { serviceData } from "@/lib/service-data";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { TrustBar } from "@/components/layout/TrustBar";
+import { LocationAndCTA } from "@/components/layout/LocationAndCTA";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
+import Image from "next/image"; // <--- ADDED IMPORT
+import { ArrowRight, CheckCircle2, Phone } from "lucide-react";
+
+// 1. Generate Static Params for Build Time Optimization (SSG)
+export async function generateStaticParams() {
+  return Object.keys(serviceData).map((slug) => ({
+    slug: slug,
+  }));
+}
+
+// 2. Generate Dynamic SEO Metadata
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const service = serviceData[params.slug];
+  
+  if (!service) {
+    return {
+      title: "Service Not Found",
+    };
+  }
+
+  return {
+    title: `${service.title} in Mtubatuba | Rhino Panelbeaters`,
+    description: `${service.shortDescription} Serving Mtubatuba, St Lucia, and Zululand. SAMBRA accredited quality.`,
+    keywords: `${service.title}, panelbeater Mtubatuba, car repair KZN, ${service.id}`,
+  };
+}
+
+export default function ServiceDynamicPage({ params }: { params: { slug: string } }) {
+  const service = serviceData[params.slug];
+
+  // 404 if slug doesn't exist
+  if (!service) {
+    notFound();
+  }
+
+  const Icon = service.icon;
+
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+      
+      <main className="flex-grow">
+        
+        {/* === HERO SECTION === */}
+        <section className="w-full py-16 md:py-24 bg-secondary text-secondary-foreground relative overflow-hidden">
+           <div className="container px-4 md:px-8 mx-auto relative z-10">
+              <div className="max-w-3xl">
+                <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-primary/20 text-primary-foreground text-sm font-medium mb-6 border border-primary/30">
+                    <Icon className="h-4 w-4" />
+                    <span className="uppercase tracking-wide">Professional Service</span>
+                </div>
+                
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+                  {service.title}
+                </h1>
+                
+                <p className="text-lg md:text-xl text-gray-300 max-w-2xl mb-8 leading-relaxed">
+                  {service.fullDescription}
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4">
+                  <Button asChild size="lg" className="h-14 px-8 text-base font-bold shadow-lg">
+                    <Link href="/quote">
+                      Get a Quote for {service.title}
+                      <ArrowRight className="ml-2 h-5 w-5" />
+                    </Link>
+                  </Button>
+                  <Button asChild variant="outline" size="lg" className="h-14 px-8 text-base bg-transparent border-white/20 text-white hover:bg-white/10">
+                    <a href="tel:0355500211">
+                      <Phone className="mr-2 h-5 w-5" />
+                      Call Workshop
+                    </a>
+                  </Button>
+                </div>
+              </div>
+           </div>
+        </section>
+
+        {/* === TRUST BAR === */}
+        <TrustBar />
+
+        {/* === DETAILS & BENEFITS === */}
+        <section className="w-full py-20 bg-white">
+            <div className="container px-4 md:px-8 mx-auto grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 className="text-3xl font-bold mb-6 text-foreground">Why Choose Us for {service.title}?</h2>
+                    <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
+                        We don't cut corners. Every repair at Rhino Panelbeaters adheres to strict SAMBRA standards, ensuring your vehicle's safety and resale value are protected.
+                    </p>
+                    
+                    <div className="grid gap-4">
+                        {service.benefits.map((benefit, index) => (
+                            <div key={index} className="flex items-center space-x-3 p-4 rounded-lg bg-muted/30 border border-muted">
+                                <CheckCircle2 className="h-6 w-6 text-primary flex-shrink-0" />
+                                <span className="font-semibold text-foreground">{benefit}</span>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+                
+                {/* === UPDATED IMAGE CONTAINER === */}
+                <div className="relative h-[400px] bg-muted rounded-2xl overflow-hidden border-2 border-muted flex items-center justify-center">
+                    {service.imageUrl ? (
+                        <Image
+                            src={service.imageUrl}
+                            alt={`${service.title} - Rhino Panelbeaters`}
+                            fill
+                            className="object-cover hover:scale-105 transition-transform duration-700"
+                            placeholder="blur"
+                            blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
+                        />
+                    ) : (
+                        /* Fallback if image is missing from data */
+                        <div className="flex flex-col items-center text-muted-foreground/50">
+                            <Icon className="h-32 w-32 mb-4" />
+                            <p className="text-sm">Image unavailable</p>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </section>
+
+        {/* === LOCATION CTA === */}
+        <LocationAndCTA />
+
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\app\terms\page.tsx--------------------------------------------------------------------------------```tsximport { Metadata } from "next";
+import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+
+export const metadata: Metadata = {
+  title: "Terms of Service | Rhino Panelbeaters",
+  description: "Terms and conditions for Rhino Panelbeaters & Towing services, including repair warranties, payment terms, and storage policies.",
+};
+
+export default function TermsPage() {
+  return (
+    <div className="flex flex-col min-h-screen bg-white">
+      <Header />
+      
+      <main className="flex-grow py-12 md:py-20">
+        <div className="container px-4 md:px-8 mx-auto max-w-3xl">
+          
+            <h1 className="text-4xl font-bold mb-8 text-foreground">Terms of Service</h1>
+            <p className="text-sm text-muted-foreground mb-8">Last Updated: {new Date().toLocaleDateString()}</p>
+
+            <div className="prose prose-lg prose-blue max-w-none text-muted-foreground">
+                <p>
+                    Welcome to Rhino Panelbeaters & Towing. By using our website or engaging our services, you agree to the following terms and conditions.
+                </p>
+
+                <h3 className="text-foreground font-bold mt-8 mb-4">1. Repair Services & Quotes</h3>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li><strong>Estimates:</strong> Quotes provided via our digital assessment tool are estimates only. A final quote will be issued upon physical inspection of the vehicle at our workshop.</li>
+                    <li><strong>Authorization:</strong> No repair work will commence without written authorization from the vehicle owner or the relevant insurance provider.</li>
+                    <li><strong>Parts:</strong> We utilize OEM (Original Equipment Manufacturer) parts where specified by insurance policies. In other cases, high-quality approved aftermarket parts may be used with client consent.</li>
+                </ul>
+
+                <h3 className="text-foreground font-bold mt-8 mb-4">2. Towing & Recovery</h3>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li><strong>Emergency Response:</strong> While we strive for the fastest possible response times, arrival times may vary due to traffic, weather, and road conditions.</li>
+                    <li><strong>Indemnity:</strong> While all reasonable care is taken during recovery, Rhino Panelbeaters & Towing accepts no liability for further damage sustained during the recovery of vehicles from precarious positions (e.g., roll-overs, off-road extractions) unless due to gross negligence.</li>
+                    <li><strong>Personal Items:</strong> Please remove all valuables from your vehicle before towing. We are not responsible for the loss of personal items left inside the vehicle.</li>
+                </ul>
+
+                <h3 className="text-foreground font-bold mt-8 mb-4">3. Payment & Storage</h3>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li><strong>Payment Terms:</strong> For private (non-insurance) work, a 50% deposit is required before work commences, with the balance due upon collection.</li>
+                    <li><strong>Insurance Excess:</strong> The vehicle owner is responsible for paying any insurance excess directly to us before the vehicle can be released.</li>
+                    <li><strong>Storage Fees:</strong> Vehicles left at our premises for more than 3 days after notification of completion (or after assessment without repair authorization) may incur daily storage fees.</li>
+                </ul>
+
+                <h3 className="text-foreground font-bold mt-8 mb-4">4. Warranties</h3>
+                <p>
+                    We stand by our workmanship.
+                </p>
+                <ul className="list-disc pl-6 space-y-2">
+                    <li><strong>Paintwork:</strong> Guaranteed for a minimum of 3 years against peeling, blistering, or fading.</li>
+                    <li><strong>Workmanship:</strong> We offer a lifetime guarantee on our structural repair workmanship for as long as you own the vehicle.</li>
+                    <li><strong>Parts:</strong> Parts are covered by the respective manufacturer's warranty.</li>
+                </ul>
+
+                <h3 className="text-foreground font-bold mt-8 mb-4">5. Jurisdiction</h3>
+                <p>
+                    These terms are governed by the laws of the Republic of South Africa. Any disputes arising from these terms shall be subject to the jurisdiction of the courts of South Africa.
+                </p>
+
+                <h3 className="text-foreground font-bold mt-8 mb-4">6. Contact Information</h3>
+                <p>
+                    For any questions regarding these terms, please contact us at:
+                </p>
+                <p className="mt-4 font-medium text-foreground">
+                    Rhino Panelbeaters<br/>
+                    174 Jacaranda Ave, Mtubatuba, 3935<br/>
+                    035 550 0211
+                </p>
+            </div>
+
+        </div>
+      </main>
+      
+      <Footer />
+    </div>
+  );
+}```
+
 --------------------------------------------------------------------------------📄 FILE PATH: src\components\features\AccreditationCard.tsx--------------------------------------------------------------------------------```tsx"use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle2 } from "lucide-react";
-import Image from "next/image";
 
 interface AccreditationProps {
   title: string;
-  logoSrc: string; // Path to logo image
   description: string;
   benefits: string[];
 }
 
-export function AccreditationCard({ title, logoSrc, description, benefits }: AccreditationProps) {
+export function AccreditationCard({ title, description, benefits }: AccreditationProps) {
   return (
     <Card className="h-full border-2 border-muted hover:border-primary/20 transition-all duration-300 bg-white flex flex-col">
       <CardHeader className="pb-4 flex flex-col items-center text-center border-b border-muted/30">
@@ -2493,6 +3793,265 @@ export function ContactForm() {
         </form>
       </CardContent>
     </Card>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\features\FullQuoteForm.tsx--------------------------------------------------------------------------------```tsx"use client";
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox"; // Assuming you have this, or use native input type="checkbox"
+import { Label } from "@/components/ui/label"; // Assuming shadcn Label component
+import { Upload, Send, Loader2, Car } from "lucide-react";
+
+export function FullQuoteForm() {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    // Simulate API call
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    alert("Quote request submitted! We will contact you shortly.");
+    setIsSubmitting(false);
+  };
+
+  return (
+    <Card className="w-full border-2 border-primary/10 shadow-xl">
+      <CardHeader className="bg-muted/20 border-b border-border pb-6">
+        <CardTitle className="text-2xl md:text-3xl font-bold flex items-center gap-2">
+          <Car className="h-6 w-6 text-primary" />
+          Digital Assessment Form
+        </CardTitle>
+        <CardDescription className="text-base">
+          Fill in the details below. Uploading photos helps us give you an accurate estimate without a workshop visit.
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="pt-8">
+        <form onSubmit={handleSubmit} className="space-y-8">
+          
+          {/* 1. Personal Details */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold border-l-4 border-primary pl-3">1. Your Contact Details</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="name">Full Name *</Label>
+                <Input id="name" required placeholder="John Doe" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="email">Email Address *</Label>
+                <Input id="email" type="email" required placeholder="john@example.com" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="phone">Phone Number *</Label>
+                <Input id="phone" type="tel" required placeholder="082 123 4567" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="location">Your Location (Town)</Label>
+                <Input id="location" placeholder="e.g. Mtubatuba" />
+              </div>
+            </div>
+          </div>
+
+          {/* 2. Vehicle Details */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold border-l-4 border-primary pl-3">2. Vehicle Information</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="space-y-2">
+                <Label htmlFor="make">Make *</Label>
+                <Input id="make" required placeholder="e.g. Toyota" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="model">Model *</Label>
+                <Input id="model" required placeholder="e.g. Hilux" />
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="year">Year</Label>
+                <Input id="year" placeholder="e.g. 2019" />
+              </div>
+            </div>
+            <div className="space-y-2">
+                 <Label htmlFor="reg">Registration Number</Label>
+                 <Input id="reg" placeholder="e.g. NUF 12345" />
+            </div>
+          </div>
+
+          {/* 3. Damage Description */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold border-l-4 border-primary pl-3">3. Damage Details</h3>
+            <div className="space-y-2">
+                <Label htmlFor="description">Describe the damage *</Label>
+                <Textarea id="description" required placeholder="Please describe where the damage is and how it happened..." className="min-h-[100px]" />
+            </div>
+            
+            {/* Photo Upload Placeholder */}
+            <div className="space-y-2">
+                <Label>Upload Photos (Optional but Recommended)</Label>
+                <div className="border-2 border-dashed border-muted-foreground/25 hover:border-primary/50 transition-colors rounded-xl p-8 flex flex-col items-center justify-center text-center cursor-pointer bg-muted/5">
+                    <Upload className="h-10 w-10 text-muted-foreground mb-4" />
+                    <p className="font-medium text-foreground">Click or Drag photos here</p>
+                    <p className="text-sm text-muted-foreground mt-1">Up to 5 images (JPG, PNG)</p>
+                </div>
+            </div>
+          </div>
+
+          <Button type="submit" size="lg" className="w-full h-14 text-lg font-bold shadow-lg" disabled={isSubmitting}>
+            {isSubmitting ? (
+                <>
+                    <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                    Sending Assessment...
+                </>
+            ) : (
+                <>
+                    <Send className="mr-2 h-5 w-5" />
+                    Request Free Quote
+                </>
+            )}
+          </Button>
+
+        </form>
+      </CardContent>
+    </Card>
+  );
+}```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\features\GalleryGrid.tsx--------------------------------------------------------------------------------```tsx"use client";
+
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ImageIcon } from "lucide-react";
+import Image from "next/image";
+
+// UPDATED: Match exact filenames provided (PNGs)
+// Removed items 4, 5, 6 as images were not provided yet.
+const galleryItems = [
+  { 
+    id: 1, 
+    category: "Collision", 
+    title: "Toyota Hilux Front End", 
+    before: "/images/before-1.png", 
+    after: "/images/after-1.png" 
+  },
+  { 
+    id: 2, 
+    category: "Spray Painting", 
+    title: "BMW M3 Respray", 
+    before: "/images/before-2.png", 
+    after: "/images/after-2.png" 
+  },
+  { 
+    id: 3, 
+    category: "Dent Removal", 
+    title: "Hail Damage Repair", 
+    before: "/images/before-3.png", 
+    after: "/images/after-3.png" 
+  },
+];
+
+const categories = ["All", "Collision", "Spray Painting", "Dent Removal"];
+
+export function GalleryGrid() {
+  const [filter, setFilter] = useState("All");
+
+  const filteredItems = filter === "All" 
+    ? galleryItems 
+    : galleryItems.filter(item => item.category === filter);
+
+  return (
+    <div className="space-y-8">
+      
+      {/* Filter Buttons */}
+      <div className="flex flex-wrap justify-center gap-2 md:gap-4">
+        {categories.map((cat) => (
+          <Button
+            key={cat}
+            variant={filter === cat ? "default" : "outline"}
+            onClick={() => setFilter(cat)}
+            className="rounded-full px-6 transition-all"
+          >
+            {cat}
+          </Button>
+        ))}
+      </div>
+
+      {/* Gallery Grid */}
+      <motion.div 
+        layout
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+      >
+        <AnimatePresence>
+          {filteredItems.map((item) => (
+            <motion.div
+              key={item.id}
+              layout
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Card className="overflow-hidden border-2 border-border h-full bg-white hover:shadow-lg transition-shadow">
+                <CardContent className="p-0">
+                  
+                  {/* Image Container */}
+                  <div className="relative h-64 w-full bg-muted">
+                    {/* Before Image (Left Half) */}
+                    <div className="absolute left-0 top-0 bottom-0 w-1/2 overflow-hidden">
+                        <Image 
+                            src={item.before} 
+                            alt={`${item.title} Before`} 
+                            fill
+                            className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-black/10" /> {/* Slight darken for contrast */}
+                        <span className="absolute top-2 left-2 bg-black/70 text-white text-[10px] font-bold px-2 py-1 rounded z-10">
+                            BEFORE
+                        </span>
+                    </div>
+
+                    {/* After Image (Right Half) */}
+                    <div className="absolute right-0 top-0 bottom-0 w-1/2 overflow-hidden border-l-2 border-white">
+                        <Image 
+                            src={item.after} 
+                            alt={`${item.title} After`} 
+                            fill
+                            className="object-cover"
+                        />
+                        <span className="absolute top-2 right-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded z-10">
+                            AFTER
+                        </span>
+                    </div>
+                    
+                    {/* Center Badge */}
+                    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white px-2 py-1 rounded-full shadow-lg text-xs font-black border border-border z-20">
+                        VS
+                    </div>
+                    
+                    {/* Overlay Category Label */}
+                    <div className="absolute bottom-3 left-3 bg-black/60 text-white text-xs px-2 py-1 rounded z-20">
+                        {item.category}
+                    </div>
+                  </div>
+
+                  <div className="p-4">
+                    <h3 className="font-bold text-foreground">{item.title}</h3>
+                    <div className="mt-4 flex items-center justify-between text-sm text-muted-foreground">
+                        <span className="flex items-center gap-1">
+                            <ImageIcon className="h-4 w-4" /> 2 Photos
+                        </span>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
+    </div>
   );
 }```
 
@@ -4590,6 +6149,37 @@ CardFooter.displayName = "CardFooter"
 export { Card, CardHeader, CardFooter, CardTitle, CardDescription, CardContent }
 ```
 
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\ui\checkbox.tsx--------------------------------------------------------------------------------```tsx"use client"
+
+import * as React from "react"
+import * as CheckboxPrimitive from "@radix-ui/react-checkbox"
+import { Check } from "lucide-react"
+
+import { cn } from "@/lib/utils"
+
+const Checkbox = React.forwardRef<
+  React.ElementRef<typeof CheckboxPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof CheckboxPrimitive.Root>
+>(({ className, ...props }, ref) => (
+  <CheckboxPrimitive.Root
+    ref={ref}
+    className={cn(
+      "peer h-4 w-4 shrink-0 rounded-sm border border-primary ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground",
+      className
+    )}
+    {...props}
+  >
+    <CheckboxPrimitive.Indicator
+      className={cn("flex items-center justify-center text-current")}
+    >
+      <Check className="h-4 w-4" />
+    </CheckboxPrimitive.Indicator>
+  </CheckboxPrimitive.Root>
+))
+Checkbox.displayName = CheckboxPrimitive.Root.displayName
+
+export { Checkbox }```
+
 --------------------------------------------------------------------------------📄 FILE PATH: src\components\ui\input.tsx--------------------------------------------------------------------------------```tsximport * as React from "react"
 
 import { cn } from "@/lib/utils"
@@ -4614,6 +6204,33 @@ Input.displayName = "Input"
 export { Input }
 ```
 
+--------------------------------------------------------------------------------📄 FILE PATH: src\components\ui\label.tsx--------------------------------------------------------------------------------```tsx"use client"
+
+import * as React from "react"
+import * as LabelPrimitive from "@radix-ui/react-label"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/lib/utils"
+
+const labelVariants = cva(
+  "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+)
+
+const Label = React.forwardRef<
+  React.ElementRef<typeof LabelPrimitive.Root>,
+  React.ComponentPropsWithoutRef<typeof LabelPrimitive.Root> &
+    VariantProps<typeof labelVariants>
+>(({ className, ...props }, ref) => (
+  <LabelPrimitive.Root
+    ref={ref}
+    className={cn(labelVariants(), className)}
+    {...props}
+  />
+))
+Label.displayName = LabelPrimitive.Root.displayName
+
+export { Label }```
+
 --------------------------------------------------------------------------------📄 FILE PATH: src\components\ui\textarea.tsx--------------------------------------------------------------------------------```tsximport * as React from "react"
 
 import { cn } from "@/lib/utils"
@@ -4636,6 +6253,176 @@ const Textarea = React.forwardRef<
 Textarea.displayName = "Textarea"
 
 export { Textarea }```
+
+--------------------------------------------------------------------------------📄 FILE PATH: src\lib\service-data.ts--------------------------------------------------------------------------------```tsimport { 
+  Car, 
+  Paintbrush, 
+  SparklesIcon, 
+  Hammer, 
+  CarFront, 
+  Wrench, 
+  Shield, 
+  Layers, 
+  GlassWater, 
+  Truck, 
+  MapPin, 
+  Zap, 
+  AlertCircle 
+} from "lucide-react";
+
+export interface ServiceData {
+  id: string;
+  title: string;
+  shortDescription: string;
+  fullDescription: string;
+  benefits: string[];
+  icon: any; // Lucide icon type
+  category: "repair" | "towing" | "specialty";
+  imageUrl: string; // Ensure this is defined
+}
+
+export const serviceData: Record<string, ServiceData> = {
+  "collision-repair": {
+    id: "collision-repair",
+    title: "Collision Repair",
+    shortDescription: "Expert collision repair services for all vehicle types.",
+    fullDescription: "Our collision repair centre uses state-of-the-art chassis straightening technology and OEM-approved welding techniques to restore your vehicle's structural integrity. We handle major accident damage, ensuring your vehicle meets factory safety specifications before it leaves our workshop.",
+    benefits: ["Chassis Straightening", "OEM-Approved Welding", "Structural Integrity Check", "Lifetime Workmanship Guarantee"],
+    icon: Car,
+    category: "repair",
+    imageUrl: "/images/collision-repair-chassis-welding-mtubatuba-kzn.png"
+  },
+  "spray-painting": {
+    id: "spray-painting",
+    title: "Spray Painting",
+    shortDescription: "Professional spray painting with 3-year warranty guarantee.",
+    fullDescription: "We utilize computer-assisted color matching and a dust-free spray booth to ensure a flawless, factory-grade finish. Our waterborne paint systems are environmentally friendly and backed by a 3-year warranty against peeling or fading.",
+    benefits: ["Computer Color Matching", "Dust-Free Booth", "3-Year Paint Warranty", "Eco-Friendly Waterborne Paint"],
+    icon: Paintbrush,
+    category: "repair",
+    imageUrl: "/images/car-spray-painting-finish-kzn.png"
+  },
+  "scratch-repair": {
+    id: "scratch-repair",
+    title: "Scratch Repair",
+    shortDescription: "Professional removal of surface scratches and paint scuffs.",
+    fullDescription: "Don't let minor scratches devalue your vehicle. Our targeted scratch repair techniques blend perfectly with your existing paintwork, removing unsightly scuffs and restoring your vehicle's showroom shine.",
+    benefits: ["Cost-Effective", "Color Blending", "Quick Turnaround", "Surface Protection"],
+    icon: SparklesIcon,
+    category: "repair",
+    imageUrl: "/images/car-scratch-repair-buffing-kzn.png"
+  },
+  "dent-removal": {
+    id: "dent-removal",
+    title: "Paintless Dent Removal (PDR)",
+    shortDescription: "Advanced paintless dent removal for minor dents.",
+    fullDescription: "For dents where the paint surface isn't broken, we use Paintless Dent Removal (PDR). This specialized technique massages the metal back into shape without the need for fillers or repainting, preserving your original factory finish.",
+    benefits: ["No Filler Needed", "Retains Original Paint", "Faster Than Conventional Repair", "Cost-Effective"],
+    icon: Hammer,
+    category: "repair",
+    imageUrl: "/images/paintless-dent-removal-close-up-pdr.png"
+  },
+  "bumper-repair": {
+    id: "bumper-repair",
+    title: "Bumper Repair & Replacement",
+    shortDescription: "Expert bumper repair and plastic welding services.",
+    fullDescription: "Cracked or dented bumpers don't always need replacement. Our plastic welding experts can often repair your bumper to like-new condition. If replacement is necessary, we source high-quality OEM or approved aftermarket parts.",
+    benefits: ["Plastic Welding", "Color Matching", "Sensor Calibration", "OEM Part Sourcing"],
+    icon: CarFront,
+    category: "repair",
+    imageUrl: "/images/bumper-plastic-welding-repair-mtubatuba.png"
+  },
+  "chassis-straightening": {
+    id: "chassis-straightening",
+    title: "Chassis Straightening",
+    shortDescription: "Precision structural alignment for accident vehicles.",
+    fullDescription: "Using advanced laser measuring systems and hydraulic rigs, we pull your vehicle's frame back to within millimeters of factory specifications. This is critical for proper wheel alignment and safety system functionality.",
+    benefits: ["Laser Measuring", "Factory Spec Alignment", "Safety Certification", "Advanced Hydraulics"],
+    icon: Wrench,
+    category: "repair",
+    imageUrl: "/images/chassis-straightening-rig-alignment-kzn.png"
+  },
+  "hail-damage-repair": {
+    id: "hail-damage-repair",
+    title: "Hail Damage Repair",
+    shortDescription: "Specialized storm damage restoration.",
+    fullDescription: "We specialize in mass hail damage repair, coordinating directly with insurance assessment centers. We combine PDR and traditional panel beating to restore hundreds of dents efficiently.",
+    benefits: ["Insurance Assessment Support", "PDR Specialists", "Glass Replacement", "Respray Options"],
+    icon: Shield,
+    category: "repair",
+    imageUrl: "/images/hail-damage-inspection-dent-kzn.png"
+  },
+  "panel-replacement": {
+    id: "panel-replacement",
+    title: "Panel Replacement",
+    shortDescription: "Expert fitment of doors, bonnets, and fenders.",
+    fullDescription: "When a panel is beyond repair, we source and fit replacement parts with precision gap alignment. We ensure that doors close correctly, latches align, and the new panel blends seamlessly with the vehicle body.",
+    benefits: ["Precision Gap Alignment", "Corrosion Protection", "Sound Deadening", "OEM & Aftermarket Options"],
+    icon: Layers,
+    category: "repair",
+    imageUrl: "/images/car-panel-replacement-fitment.png"
+  },
+  "auto-glass": {
+    id: "auto-glass",
+    title: "Auto Glass Repair",
+    shortDescription: "Windshield and window replacement services.",
+    fullDescription: "We supply and fit SABS-approved automotive glass. Proper installation is vital for the structural integrity of the vehicle's cabin during a rollover.",
+    benefits: ["SABS Approved Glass", "Leak-Free Sealant", "Chip Repair", "Tinting Services"],
+    icon: GlassWater,
+    category: "repair",
+    imageUrl: "/images/auto-glass-windshield-sealant-installation.png"
+  },
+  "auto-detailing": {
+    id: "auto-detailing",
+    title: "Auto Detailing",
+    shortDescription: "Interior and exterior professional cleaning.",
+    fullDescription: "A full valet service that goes beyond a wash. We clean upholstery, polish paintwork, and detail engine bays to make your vehicle look as good as new.",
+    benefits: ["Paint Polishing", "Upholstery Cleaning", "Odor Removal", "Engine Bay Cleaning"],
+    icon: SparklesIcon,
+    category: "specialty",
+    imageUrl: "/images/auto-detailing-polish-interior.png" // <-- UPDATED
+  },
+  "emergency-towing": {
+    id: "emergency-towing",
+    title: "24/7 Emergency Towing",
+    shortDescription: "Round-the-clock accident and breakdown recovery.",
+    fullDescription: "Our fleet is on standby 24/7 to assist with breakdowns and accidents across Mtubatuba, St Lucia, and the N2 corridor. We offer rollback services for damage-free transportation.",
+    benefits: ["24/7 Availability", "Rollback Trucks", "Accident Scene Clearance", "Secure Storage"],
+    icon: AlertCircle,
+    category: "towing",
+    imageUrl: "/images/emergency-towing-winch-hook-n2.png" // <-- UPDATED
+  },
+  "commercial-repair": {
+    id: "commercial-repair",
+    title: "N2 Truck & Commercial",
+    shortDescription: "Heavy vehicle and fleet repair services.",
+    fullDescription: "We have the facilities to handle light commercial vehicles, bakkies, and trucks. We understand that fleet downtime costs money, so we prioritize fast turnaround times for business vehicles.",
+    benefits: ["Fleet Priority", "Heavy Duty Equipment", "Bakkie Specialists", "Fast Turnaround"],
+    icon: Truck,
+    category: "specialty",
+    imageUrl: "/images/commercial-truck-suspension-repair.png" // <-- UPDATED
+  },
+  "4x4-repair": {
+    id: "4x4-repair",
+    title: "4x4 & Safari Vehicles",
+    shortDescription: "Expert repairs for off-road vehicles.",
+    fullDescription: "Servicing the St Lucia and Hluhluwe tourism sector, we are experts in repairing safari viewers and 4x4s. We understand specialized accessories like bullbars, winches, and snorkels.",
+    benefits: ["Accessory Fitment", "Rust Proofing", "Chassis Repair", "Safari Viewer Mods"],
+    icon: MapPin,
+    category: "specialty",
+    imageUrl: "/images/safari-vehicle-bullbar-fitment.png" // <-- UPDATED
+  },
+  "cash-repairs": {
+    id: "cash-repairs",
+    title: "Cash & Taxi Repairs",
+    shortDescription: "Affordable repairs for non-insured vehicles.",
+    fullDescription: "We offer competitive pricing for cash customers and taxi operators. We focus on structural safety and cost-effective cosmetic solutions to get you back on the road affordably.",
+    benefits: ["Competitive Pricing", "Payment Options", "Quick Service", "Safety Focus"],
+    icon: Zap,
+    category: "specialty",
+    imageUrl: "/images/taxi-panel-sanding-prep.png" // <-- UPDATED
+  }
+};```
 
 --------------------------------------------------------------------------------📄 FILE PATH: src\lib\utils.ts--------------------------------------------------------------------------------```tsimport { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
