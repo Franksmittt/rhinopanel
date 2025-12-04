@@ -8,28 +8,31 @@ import Link from "next/link";
 import { Shield, FileCheck, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Accreditations & Insurance Partners | Rhino Panelbeaters",
-  description: "SAMBRA and RMI accredited panelbeaters in Mtubatuba. Approved by Santam, Hollard, and major insurers. Lifetime workmanship guarantee.",
-  keywords: "SAMBRA accredited panelbeater, RMI approved, Santam approved repairer Mtubatuba, insurance approved panel beaters KZN",
+  title: "Insurance Partners & Quality Standards | Rhino Panelbeaters",
+  description: "Insurance approved panelbeaters in Mtubatuba. Approved by Santam, Hollard, and major insurers. Lifetime workmanship guarantee and professional quality standards.",
+  keywords: "insurance approved panelbeater, Santam approved repairer Mtubatuba, insurance approved panel beaters KZN, professional auto repair",
+  alternates: {
+    canonical: '/accreditations',
+  },
 };
 
-// Data derived from Research.txt
+// Focus on insurance partnerships and quality standards
 const accreditations = [
   {
-    title: "SAMBRA Accredited",
-    logoSrc: "/logos/sambra.png", 
-    description: "As a member of the South African Motor Body Repairers' Association, we adhere to the strictest industry standards for equipment, staff training, and ethical conduct.",
+    title: "Professional Quality Standards",
+    logoSrc: "/logos/quality-standards.png", 
+    description: "We adhere to the strictest industry standards for equipment, staff training, and ethical conduct, ensuring every repair meets the highest quality benchmarks.",
     benefits: [
-      "Formal dispute resolution process",
-      "Regular quality inspections",
+      "Rigorous quality control processes",
+      "Regular workshop inspections",
       "Guaranteed workmanship standards",
       "Consumer protection focus"
     ]
   },
   {
-    title: "RMI Member",
-    logoSrc: "/logos/rmi.png",
-    description: "Membership in the Retail Motor Industry Organisation signals our status as a legitimate, tax-paying, and labor-law compliant business that you can trust.",
+    title: "Industry Excellence",
+    logoSrc: "/logos/excellence.png",
+    description: "Our commitment to excellence signals our status as a legitimate, tax-paying, and labor-law compliant business that you can trust with your vehicle.",
     benefits: [
       "Code of Conduct adherence",
       "Qualified technical staff",

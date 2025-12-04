@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next';
 import { serviceData } from '@/lib/service-data';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://rhinopanelbeaters.co.za'; // Replace with your actual domain in production
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://rhinopanelbeaters.co.za';
 
   // 1. Define Static Routes
   const staticRoutes = [

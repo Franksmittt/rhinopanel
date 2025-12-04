@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "N2 Accident Recovery & Towing | Mtubatuba to Richards Bay",
   description: "Immediate accident response for the N2 highway. Serving the corridor between Hluhluwe, Mtubatuba, and Richards Bay. Rollback towing and accident scene clearance.",
   keywords: "N2 accident recovery, N2 towing service, breakdown N2 Mtubatuba, accident towing Richards Bay, N2 emergency services",
+  alternates: {
+    canonical: '/accident-recovery-n2',
+  },
 };
 
 const TOWING_NUMBER = "072 311 5870";

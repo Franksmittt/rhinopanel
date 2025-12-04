@@ -15,9 +15,16 @@ const inter = Inter({
 
 // Metadata for SEO
 export const metadata: Metadata = {
-  title: "Rhino Panelbeaters & Towing | Mtubatuba | SAMBRA Accredited",
-  description: "Trusted panelbeaters in Mtubatuba. SAMBRA & RMI accredited, insurance approved. 24/7 emergency towing. Factory-spec repairs with 3-year warranty.",
-  keywords: "panelbeater Mtubatuba, towing Mtubatuba, collision repair, SAMBRA accredited",
+  title: "Rhino Panelbeaters & Towing | Mtubatuba | Professional Auto Repair",
+  description: "Trusted panelbeaters in Mtubatuba. Insurance approved, professional quality. 24/7 emergency towing. Factory-spec repairs with 3-year warranty.",
+  keywords: "panelbeater Mtubatuba, towing Mtubatuba, collision repair, professional auto body shop",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://rhinopanelbeaters.co.za'),
+  alternates: {
+    canonical: '/',
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION || '',
+  },
 };
 
 export default function RootLayout({

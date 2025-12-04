@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: "Before & After Gallery | Rhino Panelbeaters Mtubatuba",
   description: "View our portfolio of collision repairs, spray painting, and dent removal. See the difference factory-spec quality makes. Rhino Panelbeaters Mtubatuba.",
   keywords: "panel beating before and after, car spray painting examples, collision repair gallery, rhino panelbeaters work",
+  alternates: {
+    canonical: '/gallery',
+  },
 };
 
 export default function GalleryPage() {

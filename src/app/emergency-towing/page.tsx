@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "24/7 EMERGENCY TOWING | Mtubatuba & N2",
   description: "IMMEDIATE RESPONSE. Call 072 311 5870 for accident recovery and towing in Mtubatuba, St Lucia, and N2. 24/7 Service.",
   keywords: "towing Mtubatuba, emergency towing N2, breakdown service St Lucia, accident recovery KZN",
+  alternates: {
+    canonical: '/emergency-towing',
+  },
 };
 
 const TOWING_NUMBER = "072 311 5870";

@@ -14,7 +14,7 @@ export function TrustBar() {
           <div className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow border-2 border-transparent hover:border-primary/20 hover:shadow-lg transition-all">
             <Shield className="h-10 w-10 text-primary mb-4" />
             <h3 className="text-xl font-semibold text-foreground">
-              SAMBRA Accredited
+              Quality Guaranteed
             </h3>
             <p className="text-sm text-muted-foreground text-center mt-1">
               Adherence to the highest ethical and service standards.
@@ -25,10 +25,10 @@ export function TrustBar() {
           <div className="flex flex-col items-center justify-center p-6 bg-white rounded-xl shadow border-2 border-transparent hover:border-primary/20 hover:shadow-lg transition-all">
             <Award className="h-10 w-10 text-primary mb-4" />
             <h3 className="text-xl font-semibold text-foreground">
-              RMI Member
+              Professional Service
             </h3>
             <p className="text-sm text-muted-foreground text-center mt-1">
-              Part of the premier motor industry association.
+              Experienced team with industry-leading expertise.
             </p>
           </div>
           

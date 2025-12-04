@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Get a Free Quote | Rhino Panelbeaters Mtubatuba",
   description: "Request a free digital assessment for collision repair, spray painting, or dent removal. Upload photos for a faster quote. No obligation.",
   keywords: "panel beating quote, car repair estimate Mtubatuba, collision repair quote online",
+  alternates: {
+    canonical: '/quote',
+  },
 };
 
 export default function QuotePage() {
@@ -44,7 +47,7 @@ export default function QuotePage() {
                         <ul className="space-y-3">
                             <li className="flex items-start gap-3 text-sm text-muted-foreground">
                                 <CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
-                                <span>SAMBRA Accredited Quality</span>
+                                <span>Professional Quality Standards</span>
                             </li>
                             <li className="flex items-start gap-3 text-sm text-muted-foreground">
                                 <CheckCircle2 className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />

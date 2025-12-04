@@ -26,7 +26,7 @@ export function Footer() {
                 </p>
                 <div className="flex items-center space-x-2 text-primary font-semibold text-sm">
                     <Award className="h-4 w-4 shrink-0" />
-                    <span>SAMBRA & RMI Accredited</span>
+                    <span>Insurance Approved & Professional Quality</span>
                 </div>
             </div>
 

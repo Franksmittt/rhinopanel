@@ -27,8 +27,7 @@ export function HeroSection() {
         <div className="mb-8 w-full p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col lg:flex-row items-center justify-between rounded-2xl bg-destructive text-destructive-foreground shadow-2xl">
             
             <div className="flex items-start md:items-center space-x-3 md:space-x-4 mb-4 sm:mb-6 lg:mb-0 lg:w-2/3 w-full">
-                <AlertCircle className="h-10 w-10 sm:h-12 
-w-12 md:h-16 md:w-16 shrink-0 mt-1 md:mt-0" />
+                <AlertCircle className="h-10 w-10 sm:h-12 w-12 md:h-16 md:w-16 shrink-0 mt-1 md:mt-0" />
                 <div className="flex-1 min-w-0">
                     <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-extrabold mb-2 leading-tight">
                         24/7 Emergency Towing & Recovery
@@ -77,7 +76,7 @@ Fast response times for accidents and breakdowns.
             
             {/* Sub-Headline */}
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg">
-              SAMBRA-accredited repairs for all major insurance partners.
+              Professional repairs for all major insurance partners.
 Factory-spec quality with a 3-year paint warranty. We get you back on the road, guaranteed.
             </p>
 
@@ -93,7 +92,7 @@ Factory-spec quality with a 3-year paint warranty. We get you back on the road, 
               </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />
-                <span>SAMBRA & RMI Accredited</span>
+                <span>Insurance Approved</span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-muted-foreground">
                 <CheckCircle2 className="h-5 w-5 text-primary flex-shrink-0" />

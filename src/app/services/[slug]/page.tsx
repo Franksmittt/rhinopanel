@@ -29,8 +29,11 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 
   return {
     title: `${service.title} in Mtubatuba | Rhino Panelbeaters`,
-    description: `${service.shortDescription} Serving Mtubatuba, St Lucia, and Zululand. SAMBRA accredited quality.`,
+    description: `${service.shortDescription} Serving Mtubatuba, St Lucia, and Zululand. Professional quality standards.`,
     keywords: `${service.title}, panelbeater Mtubatuba, car repair KZN, ${service.id}`,
+    alternates: {
+      canonical: `/services/${params.slug}`,
+    },
   };
 }
 
@@ -94,7 +97,7 @@ export default function ServiceDynamicPage({ params }: { params: { slug: string 
                 <div>
                     <h2 className="text-3xl font-bold mb-6 text-foreground">Why Choose Us for {service.title}?</h2>
                     <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-                        We don&apos;t cut corners. Every repair at Rhino Panelbeaters adheres to strict SAMBRA standards, ensuring your vehicle&apos;s safety and resale value are protected.
+                        We don&apos;t cut corners. Every repair at Rhino Panelbeaters adheres to strict professional standards, ensuring your vehicle&apos;s safety and resale value are protected.
                     </p>
                     
                     <div className="grid gap-4">

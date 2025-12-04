@@ -29,8 +29,8 @@ const features = [
     icon: <Wrench className="h-6 w-6" />,
   },
   {
-    title: "SAMBRA & RMI Accredited",
-    description: "Our membership signals legitimacy, adherence to ethical service, and provides you with formal dispute resolution.",
+    title: "Professional Standards",
+    description: "We maintain the highest standards of quality, ethical service, and customer satisfaction with industry-leading expertise.",
     icon: <Award className="h-6 w-6" />,
   },
   {

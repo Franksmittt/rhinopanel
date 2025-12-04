@@ -9,8 +9,11 @@ import { MapPin, Truck, ArrowRight, ShieldCheck, Car } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Panelbeaters Serving Hluhluwe | 4x4 & Safari Specialists",
-  description: "Expert collision repair and spray painting for Hluhluwe residents and game lodges. We specialize in 4x4 and safari vehicle repairs. SAMBRA Accredited.",
+  description: "Expert collision repair and spray painting for Hluhluwe residents and game lodges. We specialize in 4x4 and safari vehicle repairs. Professional quality standards.",
   keywords: "panelbeater Hluhluwe, auto body repair Hluhluwe, safari vehicle repair KZN, towing Hluhluwe, Toyota Land Cruiser repair Zululand",
+  alternates: {
+    canonical: '/panelbeating-hluhluwe',
+  },
 };
 
 const TOWING_NUMBER = "072 311 5870";
@@ -93,7 +96,7 @@ export default function HluhluweLandingPage() {
                                 <ShieldCheck className="h-6 w-6" />
                             </div>
                             <div>
-                                <h3 className="font-bold text-lg">SAMBRA Accredited</h3>
+                                <h3 className="font-bold text-lg">Professional Quality Standards</h3>
                                 <p className="text-muted-foreground">Don&apos;t risk your insurance claim with unaccredited backyard repairs. We are approved by major insurers for the Zululand region.</p>
                             </div>
                         </div>

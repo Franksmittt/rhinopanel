@@ -10,8 +10,11 @@ import { MapPin, Truck, ArrowRight, ShieldCheck } from "lucide-react";
 // Highly targeted SEO metadata for the "Vacuum" strategy
 export const metadata: Metadata = {
   title: "Expert Panelbeater for St Lucia KZN | Rhino Panelbeaters",
-  description: "Looking for a panelbeater in St Lucia? We are the closest SAMBRA accredited repairer (25km away). We offer vehicle collection & drop-off for St Lucia residents.",
+  description: "Looking for a panelbeater in St Lucia? We are the closest professional repairer (25km away). We offer vehicle collection & drop-off for St Lucia residents.",
   keywords: "panelbeater St Lucia, collision repair St Lucia, towing St Lucia, auto body shop St Lucia KZN, R618 towing",
+  alternates: {
+    canonical: '/panelbeating-st-lucia',
+  },
 };
 
 const TOWING_NUMBER = "072 311 5870";

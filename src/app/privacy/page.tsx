@@ -5,6 +5,9 @@ import { Footer } from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "Privacy Policy | Rhino Panelbeaters",
   description: "Our commitment to protecting your personal information in accordance with POPIA.",
+  alternates: {
+    canonical: '/privacy',
+  },
 };
 
 export default function PrivacyPage() {

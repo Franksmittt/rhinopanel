@@ -5,6 +5,9 @@ import { Footer } from "@/components/layout/Footer";
 export const metadata: Metadata = {
   title: "Terms of Service | Rhino Panelbeaters",
   description: "Terms and conditions for Rhino Panelbeaters & Towing services, including repair warranties, payment terms, and storage policies.",
+  alternates: {
+    canonical: '/terms',
+  },
 };
 
 export default function TermsPage() {

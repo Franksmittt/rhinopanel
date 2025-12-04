@@ -8,8 +8,11 @@ import { CheckCircle2, Award, Users, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "About Rhino Panelbeaters | Our Story & Team",
-  description: "Family-owned panelbeaters serving Mtubatuba. Meet the team committed to honest, SAMBRA-accredited repairs and lifetime workmanship guarantees.",
-  keywords: "Rhino Panelbeaters owner, auto body shop history, SAMBRA accredited Mtubatuba, RMI member KZN",
+  description: "Family-owned panelbeaters serving Mtubatuba. Meet the team committed to honest, professional repairs and lifetime workmanship guarantees.",
+  keywords: "Rhino Panelbeaters owner, auto body shop history, professional panelbeater Mtubatuba, quality auto repair KZN",
+  alternates: {
+    canonical: '/about',
+  },
 };
 
 export default function AboutPage() {
@@ -116,15 +119,15 @@ export default function AboutPage() {
                 
                 <div className="grid md:grid-cols-2 gap-6 text-left">
                     <div className="bg-white p-6 rounded-xl border border-border shadow-sm">
-                        <h4 className="font-bold text-lg mb-2 text-foreground">What SAMBRA Means for You</h4>
+                        <h4 className="font-bold text-lg mb-2 text-foreground">Quality Assurance</h4>
                         <p className="text-sm text-muted-foreground">
-                            As a SAMBRA accredited shop, we are subject to random quality audits. This gives you, the consumer, recourse and protection that unaccredited &ldquo;backyard&rdquo; shops cannot offer.
+                            We maintain rigorous quality control standards with regular workshop inspections. This gives you, the consumer, confidence and protection that unaccredited &ldquo;backyard&rdquo; shops cannot offer.
                         </p>
                     </div>
                     <div className="bg-white p-6 rounded-xl border border-border shadow-sm">
-                        <h4 className="font-bold text-lg mb-2 text-foreground">RMI Code of Conduct</h4>
+                        <h4 className="font-bold text-lg mb-2 text-foreground">Professional Standards</h4>
                         <p className="text-sm text-muted-foreground">
-                            Our RMI membership ensures we adhere to fair labor practices and ethical business conduct. You are dealing with a legitimate, tax-paying entity committed to the local economy.
+                            We adhere to fair labor practices and ethical business conduct. You are dealing with a legitimate, tax-paying entity committed to the local economy and your satisfaction.
                         </p>
                     </div>
                 </div>

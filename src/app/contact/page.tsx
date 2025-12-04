@@ -11,6 +11,9 @@ export const metadata: Metadata = {
   title: "Contact Rhino Panelbeaters Mtubatuba | Address & Phone",
   description: "Contact Rhino Panelbeaters in Mtubatuba. Find our address, workshop phone number (035 550 0211), and 24/7 emergency towing line (072 311 5870).",
   keywords: "contact panelbeater Mtubatuba, panelbeater address, rhino panelbeaters phone number, 24/7 towing Mtubatuba",
+  alternates: {
+    canonical: '/contact',
+  },
 };
 
 // Map URL from LocationAndCTA.tsx

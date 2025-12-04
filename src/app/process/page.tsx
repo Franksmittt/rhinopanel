@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   title: "Our Repair Process | Rhino Panelbeaters Mtubatuba",
   description: "Understand the 7-step collision repair process at Rhino Panelbeaters. From insurance authorization to final quality control, we guarantee transparency.",
   keywords: "panelbeating process, collision repair steps, insurance claim process, car repair timeline Mtubatuba",
+  alternates: {
+    canonical: '/process',
+  },
 };
 
 export default function ProcessPage() {
