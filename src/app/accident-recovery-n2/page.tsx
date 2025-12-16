@@ -5,9 +5,9 @@ import { LocationAndCTA } from "@/components/layout/LocationAndCTA";
 import { AlertTriangle, Phone, Clock, Shield, Truck } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "N2 Accident Recovery & Towing | Mtubatuba to Richards Bay",
-  description: "Immediate accident response for the N2 highway. Serving the corridor between Hluhluwe, Mtubatuba, and Richards Bay. Rollback towing and accident scene clearance.",
-  keywords: "N2 accident recovery, N2 towing service, breakdown N2 Mtubatuba, accident towing Richards Bay, N2 emergency services",
+  title: "N2 Accident Recovery & Towing | Northern Route",
+  description: "Immediate accident response for the N2 highway. Serving the Northern Route from Hluhluwe, Mkhuze, Pongola, Ulundi, Nongoma up to Kosi Bay. Rollback towing and accident scene clearance.",
+  keywords: "N2 accident recovery, N2 towing service, breakdown N2 Mtubatuba, accident towing Northern Route, N2 emergency services, towing Hluhluwe, towing Kosi Bay",
   alternates: {
     canonical: '/accident-recovery-n2',
   },
@@ -32,7 +32,7 @@ export default function N2RecoveryPage() {
                 N2 Accident Response Unit
               </h1>
               <p className="text-xl md:text-2xl font-medium opacity-90 mb-10 max-w-2xl mx-auto">
-                Rapid deployment for collisions and breakdowns on the N2 Highway (Hluhluwe - Mtubatuba - Richards Bay).
+                Rapid deployment for collisions and breakdowns on the N2 Highway Northern Route (Hluhluwe, Mkhuze, Pongola, Ulundi, Nongoma, Kosi Bay).
               </p>
               
               <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -59,7 +59,7 @@ export default function N2RecoveryPage() {
                         <Clock className="h-10 w-10 text-destructive mb-4" />
                         <h3 className="text-xl font-bold mb-2">24/7 Highway Patrol</h3>
                         <p className="text-muted-foreground">
-                            Our fleet is stationed strategically in Mtubatuba to provide equal coverage North (towards Hluhluwe) and South (towards Richards Bay).
+                            Our fleet is stationed strategically in Mtubatuba to provide coverage along the Northern Route (Hluhluwe, Mkhuze, Pongola, Ulundi, Nongoma, up to Kosi Bay).
                         </p>
                     </div>
 

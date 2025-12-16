@@ -6,13 +6,16 @@ const TOWING_NUMBER = "072 311 5870";
 const ADDRESS = "Jacaranda Ave, Mtubatuba, 3935";
 const HOURS = "Mon-Fri: 7:30 am - 5:00 pm";
 
-// From Research.txt [cite: 160]
+// Service areas - Northern Route coverage
 const serviceAreas = [
   "Mtubatuba",
   "St. Lucia",
-  "Richards Bay",
   "Hluhluwe",
-  "KZN North Coast"
+  "Mkhuze",
+  "Pongola",
+  "Ulundi",
+  "Nongoma",
+  "Kosi Bay"
 ];
 
 export function ContactDetails() {

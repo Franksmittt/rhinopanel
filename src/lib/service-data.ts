@@ -151,7 +151,7 @@ export const serviceData: Record<string, ServiceData> = {
     id: "4x4-repair",
     title: "4x4 & Safari Vehicles",
     shortDescription: "Expert repairs for off-road vehicles.",
-    fullDescription: "Servicing the St Lucia and Hluhluwe tourism sector, we are experts in repairing safari viewers and 4x4s. We understand specialized accessories like bullbars, winches, and snorkels.",
+    fullDescription: "Servicing the Northern Route (St Lucia, Hluhluwe, Mkhuze, Pongola, Ulundi, Nongoma, up to Kosi Bay) tourism sector, we are experts in repairing safari viewers and 4x4s. We understand specialized accessories like bullbars, winches, and snorkels.",
     benefits: ["Accessory Fitment", "Rust Proofing", "Chassis Repair", "Safari Viewer Mods"],
     icon: MapPin,
     category: "specialty",

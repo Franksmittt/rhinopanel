@@ -13,6 +13,7 @@ import { useState, useEffect } from "react";
 // Navigation Items for the center
 const navItems = [
   { name: "Services", href: "/services" },
+  { name: "Towing", href: "/towing" },
   { name: "Our Process", href: "/process" },
   { name: "Accreditations", href: "/accreditations" },
   { name: "Contact", href: "/contact" }, 

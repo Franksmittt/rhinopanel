@@ -45,7 +45,7 @@ const features = [
   },
   {
     title: "Fleet & Commercial Focus",
-    description: "Expertise in heavy vehicle, bakkie, and commercial fleet repairs, targeting the industrial hubs of Richards Bay and Empangeni.",
+    description: "Expertise in heavy vehicle, bakkie, and commercial fleet repairs, serving the Northern Route from Hluhluwe to Kosi Bay.",
     icon: <Truck className="h-6 w-6" />,
   },
   {

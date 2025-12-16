@@ -86,6 +86,8 @@ export function GalleryGrid() {
                             alt={`${item.title} Before`} 
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                            loading="lazy"
                         />
                         <div className="absolute inset-0 bg-black/10" /> {/* Slight darken for contrast */}
                         <span className="absolute top-2 left-2 bg-black/70 text-white text-[10px] font-bold px-2 py-1 rounded z-10">
@@ -100,6 +102,8 @@ export function GalleryGrid() {
                             alt={`${item.title} After`} 
                             fill
                             className="object-cover"
+                            sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
+                            loading="lazy"
                         />
                         <span className="absolute top-2 right-2 bg-primary text-white text-[10px] font-bold px-2 py-1 rounded z-10">
                             AFTER

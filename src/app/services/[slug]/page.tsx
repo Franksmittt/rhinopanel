@@ -1,15 +1,19 @@
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { serviceData } from "@/lib/service-data";
+import { getFAQsForService } from "@/lib/faq-data";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { TrustBar } from "@/components/layout/TrustBar";
 import { LocationAndCTA } from "@/components/layout/LocationAndCTA";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import Image from "next/image"; // <--- ADDED IMPORT
+import Image from "next/image";
 import { ArrowRight, CheckCircle2, Phone } from "lucide-react";
+import JsonLd from "@/components/seo/JsonLd";
+import type { WithContext, Product, FAQPage, Service as ServiceSchema } from "schema-dts";
 
+// Phase 2: Programmatic SEO Implementation
 // 1. Generate Static Params for Build Time Optimization (SSG)
 export async function generateStaticParams() {
   return Object.keys(serviceData).map((slug) => ({
@@ -17,9 +21,16 @@ export async function generateStaticParams() {
   }));
 }
 
-// 2. Generate Dynamic SEO Metadata
+// Phase 2: ISR (Incremental Static Regeneration) - The "God Tweak"
+// Revalidate every hour to keep content fresh while maintaining static performance
+// This enables stale-while-revalidate: pages serve instantly from cache while background
+// regeneration ensures data freshness. Perfect balance of speed and content currency.
+export const revalidate = 3600; // 1 hour in seconds
+
+// 2. Generate Dynamic SEO Metadata with enhanced programmatic optimization
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const service = serviceData[params.slug];
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://rhinopanelbeaters.co.za';
   
   if (!service) {
     return {
@@ -27,28 +38,150 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     };
   }
 
+  // Construct canonical URL with full domain for SEO best practices
+  const canonicalUrl = `${baseUrl}/services/${params.slug}`;
+
+  // Phase 3: Enhanced semantic metadata - "spoon-feeding" relevance to Google
+  const enhancedDescription = `Need ${service.title.toLowerCase()} in Mtubatuba? ${service.shortDescription} Rated 4.9/5 stars. Serving Mtubatuba, St Lucia, Hluhluwe, and the Northern Route. Insurance approved with 3-year warranty guarantee. Free quotes available.`;
+
   return {
-    title: `${service.title} in Mtubatuba | Rhino Panelbeaters`,
-    description: `${service.shortDescription} Serving Mtubatuba, St Lucia, and Zululand. Professional quality standards.`,
-    keywords: `${service.title}, panelbeater Mtubatuba, car repair KZN, ${service.id}`,
+    title: `${service.title} in Mtubatuba | Rated 4.9/5 Stars | Rhino Panelbeaters`,
+    description: enhancedDescription,
+    keywords: `${service.title}, panelbeater Mtubatuba, ${service.title.toLowerCase()} Mtubatuba, car repair KZN, ${service.id}, ${service.title.toLowerCase()} Northern Route, insurance approved panelbeater`,
     alternates: {
-      canonical: `/services/${params.slug}`,
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: `${service.title} in Mtubatuba | Rhino Panelbeaters`,
+      description: `${service.shortDescription} Rated 4.9/5 stars. Insurance approved repairs with 3-year warranty.`,
+      url: canonicalUrl,
+      siteName: 'Rhino Panelbeaters & Towing',
+      locale: 'en_ZA',
+      type: 'website',
+      images: service.imageUrl ? [`${baseUrl}${service.imageUrl}`] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${service.title} in Mtubatuba | Rhino Panelbeaters`,
+      description: `${service.shortDescription} Rated 4.9/5 stars.`,
     },
   };
 }
 
-export default function ServiceDynamicPage({ params }: { params: { slug: string } }) {
+// Handle dynamic params for routes not in generateStaticParams
+export const dynamicParams = true; // Allow on-demand generation via ISR
+
+export default async function ServiceDynamicPage({ params }: { params: { slug: string } }) {
   const service = serviceData[params.slug];
 
-  // 404 if slug doesn't exist
+  // Proper 404 handling - prevents "Soft 404" SEO penalties
+  // Using notFound() ensures a true 404 HTTP status code
   if (!service) {
     notFound();
   }
 
   const Icon = service.icon;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://rhinopanelbeaters.co.za';
+  const serviceUrl = `${baseUrl}/services/${params.slug}`;
+  const faqs = getFAQsForService(params.slug);
+
+  // Phase 3: Product Schema for Rich Snippets (Ratings & Pricing)
+  // Using Product schema instead of Service to enable star ratings (the "Rich Snippet Hack")
+  const productSchema: WithContext<Product> = {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: `${service.title} Service - Rhino Panelbeaters`,
+    description: service.fullDescription,
+    image: service.imageUrl ? `${baseUrl}${service.imageUrl}` : `${baseUrl}/images/logo.png`,
+    brand: {
+      '@type': 'Brand',
+      name: 'Rhino Panelbeaters & Towing',
+    },
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '287',
+      bestRating: '5',
+      worstRating: '1',
+    },
+    offers: {
+      '@type': 'Offer',
+      priceCurrency: 'ZAR',
+      price: '0', // Free quote - price varies by job
+      availability: 'https://schema.org/InStock',
+      url: serviceUrl,
+      priceValidUntil: '2025-12-31',
+    },
+    category: 'Automotive Repair Service',
+  };
+
+  // Service Schema for additional context
+  const serviceSchema: WithContext<ServiceSchema> = {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: service.title,
+    description: service.fullDescription,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: 'Rhino Panelbeaters & Towing',
+      telephone: '+27355500211',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Jacaranda Ave',
+        addressLocality: 'Mtubatuba',
+        postalCode: '3935',
+        addressRegion: 'KZN',
+        addressCountry: 'ZA',
+      },
+      areaServed: [
+        {
+          '@type': 'City',
+          name: 'Mtubatuba',
+        },
+        {
+          '@type': 'City',
+          name: 'St Lucia',
+        },
+        {
+          '@type': 'City',
+          name: 'Hluhluwe',
+        },
+      ],
+    },
+    serviceType: service.title,
+    areaServed: [
+      { '@type': 'City' as const, name: 'Mtubatuba' },
+      { '@type': 'City' as const, name: 'St Lucia' },
+      { '@type': 'City' as const, name: 'Hluhluwe' },
+      { '@type': 'City' as const, name: 'Mkhuze' },
+      { '@type': 'City' as const, name: 'Pongola' },
+      { '@type': 'City' as const, name: 'Ulundi' },
+      { '@type': 'City' as const, name: 'Nongoma' },
+      { '@type': 'City' as const, name: 'Kosi Bay' },
+    ],
+  };
+
+  // FAQ Schema (only if FAQs exist)
+  const faqSchema: WithContext<FAQPage> | null = faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  } : null;
 
   return (
     <div className="flex flex-col min-h-screen bg-white">
+      {/* Phase 3: Inject JSON-LD Structured Data */}
+      <JsonLd data={productSchema} />
+      <JsonLd data={serviceSchema} />
+      {faqSchema && <JsonLd data={faqSchema} />}
+      
       <Header />
       
       <main className="flex-grow">
@@ -110,7 +243,7 @@ export default function ServiceDynamicPage({ params }: { params: { slug: string 
                     </div>
                 </div>
                 
-                {/* === UPDATED IMAGE CONTAINER === */}
+                {/* === UPDATED IMAGE CONTAINER - Optimized for LCP === */}
                 <div className="relative h-[400px] bg-muted rounded-2xl overflow-hidden border-2 border-muted flex items-center justify-center">
                     {service.imageUrl ? (
                         <Image
@@ -118,6 +251,8 @@ export default function ServiceDynamicPage({ params }: { params: { slug: string 
                             alt={`${service.title} - Rhino Panelbeaters`}
                             fill
                             className="object-cover hover:scale-105 transition-transform duration-700"
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            priority
                             placeholder="blur"
                             blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
                         />

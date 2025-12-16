@@ -1,0 +1,1156 @@
+================================================================================
+RHINO PANELBEATERS & TOWING - COMPREHENSIVE PROJECT DOCUMENTATION
+================================================================================
+
+Generated: 2024
+Project: Next.js Modern App - Panelbeaters Business Website
+Domain: rhinopanelbeaters.co.za
+
+================================================================================
+TABLE OF CONTENTS
+================================================================================
+
+1. PROJECT STRUCTURE
+2. TECHNOLOGY STACK
+3. STYLING SYSTEM & COLORS
+4. PAGE SUMMARIES
+5. COMPONENT LIBRARY
+6. LAYOUT SYSTEM
+7. SEO & METADATA CONFIGURATION
+8. BUILD CONFIGURATION
+
+================================================================================
+1. PROJECT STRUCTURE
+================================================================================
+
+nextjs-modern-app/
+├── public/                          # Static assets (images, logos, etc.)
+├── src/
+│   ├── app/                        # Next.js App Router (all routes)
+│   │   ├── layout.tsx              # Root layout (wraps entire app)
+│   │   ├── page.tsx                # Homepage
+│   │   ├── globals.css             # Global styles & CSS variables
+│   │   ├── robots.ts               # Dynamic robots.txt generator
+│   │   ├── sitemap.ts              # Dynamic sitemap.xml generator
+│   │   ├── about/                  # About Us page
+│   │   │   └── page.tsx
+│   │   ├── contact/                # Contact page
+│   │   │   └── page.tsx
+│   │   ├── quote/                  # Quote request page
+│   │   │   └── page.tsx
+│   │   ├── services/               # Services section
+│   │   │   ├── layout.tsx          # Services layout (metadata)
+│   │   │   ├── page.tsx            # Services listing page
+│   │   │   └── [slug]/             # Dynamic service pages
+│   │   │       └── page.tsx
+│   │   ├── process/                # Repair process page
+│   │   │   └── page.tsx
+│   │   ├── accreditations/         # Accreditations page
+│   │   │   └── page.tsx
+│   │   ├── gallery/                # Before/After gallery
+│   │   │   └── page.tsx
+│   │   ├── emergency-towing/       # 24/7 Emergency towing page
+│   │   │   └── page.tsx
+│   │   ├── accident-recovery-n2/   # N2 accident recovery page
+│   │   │   └── page.tsx
+│   │   ├── panelbeating-hluhluwe/  # Geo-targeted landing page
+│   │   │   └── page.tsx
+│   │   ├── panelbeating-st-lucia/  # Geo-targeted landing page
+│   │   │   └── page.tsx
+│   │   ├── privacy/                # Privacy policy page
+│   │   │   └── page.tsx
+│   │   ├── terms/                  # Terms of service page
+│   │   │   └── page.tsx
+│   │   ├── error.tsx               # Error boundary
+│   │   ├── not-found.tsx           # 404 page
+│   │   ├── loading.tsx             # Loading state
+│   │   └── template.tsx            # Route template
+│   │
+│   ├── components/
+│   │   ├── layout/                 # Structural/layout components
+│   │   │   ├── Header.tsx          # Main navigation header
+│   │   │   ├── HeaderNavigation.tsx # Header CTA buttons
+│   │   │   ├── MobileNavOverlay.tsx # Mobile menu overlay
+│   │   │   ├── Footer.tsx          # Site footer
+│   │   │   ├── HeroSection.tsx     # Homepage hero with dual CTAs
+│   │   │   ├── TrustBar.tsx        # Trust signals bar
+│   │   │   ├── FeatureGrid.tsx     # Feature grid component
+│   │   │   ├── FeatureCard.tsx     # Individual feature card
+│   │   │   ├── TestimonialsSection.tsx # Customer testimonials
+│   │   │   ├── ProcessCallout.tsx  # Process highlight section
+│   │   │   ├── InsuranceAndServiceHub.tsx # Insurance partners section
+│   │   │   ├── LocationAndCTA.tsx  # Location map & final CTA
+│   │   │   ├── LazyMap.tsx         # Lazy-loaded Google Maps
+│   │   │   ├── LogoScroller.tsx    # Insurance logo scroller
+│   │   │   └── ProcessFlowLine.tsx # Process visualization
+│   │   │
+│   │   ├── features/               # Feature-specific components
+│   │   │   ├── AccreditationCard.tsx # Accreditation display card
+│   │   │   ├── ContactDetails.tsx   # Contact information display
+│   │   │   ├── ContactForm.tsx      # General contact form
+│   │   │   ├── FullQuoteForm.tsx    # Complete quote request form
+│   │   │   ├── HeroQuoteForm.tsx    # Compact homepage quote form
+│   │   │   ├── GalleryGrid.tsx      # Before/After image gallery
+│   │   │   ├── ProcessTimeline.tsx  # 7-step process timeline
+│   │   │   └── interactive-button.tsx # Demo client component
+│   │   │
+│   │   ├── services/               # Service-related components
+│   │   │   ├── ServicesGrid.tsx    # Services grid display
+│   │   │   └── ServiceCard.tsx     # Individual service card
+│   │   │
+│   │   ├── seo/                    # SEO components
+│   │   │   └── StructuredData.tsx  # JSON-LD schema markup
+│   │   │
+│   │   └── ui/                     # shadcn/ui components
+│   │       ├── button.tsx          # Button component
+│   │       ├── card.tsx            # Card component
+│   │       ├── checkbox.tsx        # Checkbox component
+│   │       ├── input.tsx           # Input field component
+│   │       ├── label.tsx           # Label component
+│   │       └── textarea.tsx        # Textarea component
+│   │
+│   └── lib/                        # Utility functions & data
+│       ├── service-data.ts         # Service data structure
+│       └── utils.ts                # Utility functions (cn, etc.)
+
+================================================================================
+2. TECHNOLOGY STACK
+================================================================================
+
+FRAMEWORK & RUNTIME
+-------------------
+- Next.js 14.2.33 (App Router)
+  - Server-First Architecture
+  - Server Components by default
+  - Streaming SSR
+  - Static Site Generation (SSG)
+  - Incremental Static Regeneration (ISR)
+  - Dynamic routes with [slug]
+  - Image optimization
+  - Font optimization
+
+- React 18
+  - Server Components
+  - Client Components ("use client" directive)
+  - Concurrent features
+  - Suspense boundaries
+
+- TypeScript 5
+  - Full type safety
+  - Type checking in build process
+  - Strict mode enabled
+
+STYLING SYSTEM
+--------------
+- Tailwind CSS 3.4.1
+  - Utility-first CSS framework
+  - Zero runtime overhead
+  - JIT (Just-In-Time) compilation
+  - Custom color system via CSS variables
+  - Responsive breakpoints: sm, md, lg, xl
+  - Dark mode support (class-based)
+
+- tailwindcss-animate 1.0.7
+  - Animation utilities
+  - Transition effects
+
+- CSS Variables
+  - Theme customization
+  - Dynamic color switching
+  - HSL color format
+
+UI COMPONENT LIBRARY
+--------------------
+- shadcn/ui
+  - Architectural Sovereignty model
+  - Components are locally owned (not npm packages)
+  - Built on Radix UI primitives
+  - Fully customizable
+  - Style: "new-york"
+  - Base color: "stone"
+
+- Radix UI Primitives
+  - @radix-ui/react-slot
+  - @radix-ui/react-checkbox
+  - @radix-ui/react-label
+  - Accessible component primitives
+
+ANIMATIONS
+----------
+- framer-motion 12.23.24
+  - Client-side animations
+  - Page transitions
+  - Component animations
+  - Scroll-triggered animations
+
+ICONS
+-----
+- lucide-react 0.553.0
+  - Modern icon library
+  - Tree-shakable
+  - TypeScript support
+  - Consistent styling
+
+UTILITY LIBRARIES
+-----------------
+- class-variance-authority 0.7.1
+  - Component variant management
+  - Type-safe variants
+
+- clsx 2.1.1
+  - Conditional className utilities
+
+- tailwind-merge 3.4.0
+  - Merge Tailwind classes intelligently
+  - Resolve conflicts
+
+BUILD TOOLS
+-----------
+- SWC (Speedy Web Compiler)
+  - Fast compilation
+  - Minification
+  - Modern JavaScript transformation
+
+- PostCSS 8
+  - CSS processing
+  - Tailwind CSS integration
+
+- ESLint 8
+  - Code linting
+  - Next.js configuration
+  - TypeScript rules
+
+PACKAGE MANAGER
+---------------
+- npm (in use)
+- pnpm recommended for optimal performance
+
+================================================================================
+3. STYLING SYSTEM & COLORS
+================================================================================
+
+COLOR PALETTE
+-------------
+The color system uses HSL (Hue, Saturation, Lightness) format with CSS variables
+for easy theming and dark mode support.
+
+PRIMARY COLORS (Light Mode)
+----------------------------
+- Primary Blue: hsl(217, 91%, 60%) - #3B82F6
+  * Used for: Primary CTAs, brand elements, links
+  * Purpose: Trust, dependability, professionalism
+
+- Primary Foreground: hsl(0, 0%, 100%) - White
+  * Text on primary backgrounds
+
+- Secondary: hsl(215, 28%, 17%) - Dark gray-blue
+  * Used for: Headers, secondary backgrounds
+  * Purpose: Sophistication, depth
+
+- Secondary Foreground: hsl(0, 0%, 100%) - White
+  * Text on secondary backgrounds
+
+ACCENT COLORS
+-------------
+- Accent Orange: hsl(24, 95%, 53%) - #F97316
+  * Used for: Emergency CTAs, urgency elements
+  * Purpose: Attention, urgency, action
+
+- Destructive Red: hsl(0, 84%, 60%)
+  * Used for: Emergency towing CTAs, alerts
+  * Purpose: Critical actions, emergencies
+
+NEUTRAL COLORS
+--------------
+- Background: hsl(0, 0%, 100%) - Pure white
+- Foreground: hsl(222, 47%, 11%) - Deep blue-gray
+- Card: hsl(0, 0%, 100%) - White
+- Muted: hsl(210, 40%, 96%) - Light gray
+- Muted Foreground: hsl(215, 16%, 47%) - Medium gray
+- Border: hsl(214, 32%, 91%) - Light gray border
+- Input: hsl(214, 32%, 91%) - Form input borders
+
+DARK MODE COLORS
+----------------
+- Background: hsl(222, 47%, 11%) - Dark blue-gray
+- Foreground: hsl(210, 40%, 98%) - Near white
+- Card: hsl(222, 47%, 11%) - Dark blue-gray
+- Muted: hsl(217, 33%, 17%) - Darker gray
+- Border: hsl(217, 33%, 17%) - Dark border
+
+BRAND COLORS (Additional)
+--------------------------
+- Brand Blue: #3B82F6
+- Brand Blue Dark: #2563EB
+- Brand Orange: #F97316
+- Brand Gray: #1F2937
+- Brand Gray Light: #F3F4F6
+
+TYPOGRAPHY
+----------
+- Font Family: Inter (Google Fonts)
+  * Self-hosted by Next.js
+  * Variable font for performance
+  * Display: swap (prevents layout shift)
+  * Fallback: system-ui, arial
+
+- Font Optimization:
+  * Preload enabled
+  * Font fallback configured
+  * Size-adjust for layout stability
+
+SPACING SYSTEM
+--------------
+Uses Tailwind's default spacing scale (4px base unit):
+- xs: 0.5rem (8px)
+- sm: 0.75rem (12px)
+- base: 1rem (16px)
+- lg: 1.5rem (24px)
+- xl: 2rem (32px)
+- 2xl: 3rem (48px)
+- And custom spacing as needed
+
+BORDER RADIUS
+-------------
+- Default radius: 0.5rem (8px)
+- Small: calc(var(--radius) - 4px)
+- Medium: calc(var(--radius) - 2px)
+- Large: var(--radius)
+
+RESPONSIVE BREAKPOINTS
+----------------------
+- sm: 640px (Mobile landscape)
+- md: 768px (Tablet)
+- lg: 1024px (Desktop)
+- xl: 1280px (Large desktop)
+- 2xl: 1536px (Extra large)
+
+================================================================================
+4. PAGE SUMMARIES
+================================================================================
+
+HOMEPAGE (/)
+------------
+File: src/app/page.tsx
+Purpose: Main landing page with dual-funnel strategy
+Components:
+  - Header (with navigation)
+  - HeroSection (dual CTAs: Quote + Emergency Towing)
+  - TrustBar (quality assurance badges)
+  - FeatureGrid (8 key features)
+  - TestimonialsSection (customer reviews)
+  - ProcessCallout (repair process highlight)
+  - InsuranceAndServiceHub (insurance partners)
+  - LocationAndCTA (map + final CTA)
+  - Footer
+Metadata:
+  - Title: "Rhino Panelbeaters & Towing | Mtubatuba | Professional Auto Repair"
+  - Canonical: /
+  - Structured Data: LocalBusiness, AutomotiveBusiness, WebSite
+
+ABOUT PAGE (/about)
+-------------------
+File: src/app/about/page.tsx
+Purpose: Build trust, share company story
+Sections:
+  - Hero with "Family Owned" badge
+  - Our Story section with image
+  - Core Values (Transparency, Safety First, Customer Advocacy)
+  - Workmanship Guarantee section
+  - Quality Assurance & Professional Standards cards
+  - TrustBar
+  - LocationAndCTA
+Metadata:
+  - Title: "About Rhino Panelbeaters | Our Story & Team"
+  - Canonical: /about
+
+SERVICES LISTING PAGE (/services)
+----------------------------------
+File: src/app/services/page.tsx (Client Component)
+Layout: src/app/services/layout.tsx (Metadata)
+Purpose: Services overview and navigation hub
+Sections:
+  - Animated hero section
+  - TrustBar
+  - ServicesGrid (all services categorized)
+    - Panelbeating Services (9 services)
+    - Logo Scroller (OEM approvals)
+    - Emergency Towing CTA
+    - Specialty Services (4 services)
+    - Final CTA
+Metadata:
+  - Title: "Our Services | Rhino Panelbeaters & Towing | Mtubatuba"
+  - Canonical: /services
+
+DYNAMIC SERVICE PAGES (/services/[slug])
+-----------------------------------------
+File: src/app/services/[slug]/page.tsx
+Purpose: Individual service detail pages (SEO silos)
+Services (14 total):
+  1. collision-repair
+  2. spray-painting
+  3. scratch-repair
+  4. dent-removal
+  5. bumper-repair
+  6. chassis-straightening
+  7. hail-damage-repair
+  8. panel-replacement
+  9. auto-glass
+  10. auto-detailing
+  11. emergency-towing
+  12. commercial-repair
+  13. 4x4-repair
+  14. cash-repairs
+
+Each page includes:
+  - Service hero with icon
+  - TrustBar
+  - Service details and benefits
+  - Service image
+  - LocationAndCTA
+  - Dynamic metadata per service
+
+QUOTE PAGE (/quote)
+-------------------
+File: src/app/quote/page.tsx
+Purpose: Quote request form page
+Features:
+  - FullQuoteForm (complete form with file upload)
+  - Trust signals sidebar
+  - Phone contact option
+Metadata:
+  - Title: "Get a Free Quote | Rhino Panelbeaters Mtubatuba"
+  - Canonical: /quote
+
+CONTACT PAGE (/contact)
+-----------------------
+File: src/app/contact/page.tsx
+Purpose: Contact information and general inquiries
+Sections:
+  - ContactDetails component
+  - Lazy-loaded Google Maps
+  - ContactForm (general inquiries)
+  - LocationAndCTA
+Metadata:
+  - Title: "Contact Rhino Panelbeaters Mtubatuba | Address & Phone"
+  - Canonical: /contact
+  - Local SEO optimized
+
+PROCESS PAGE (/process)
+-----------------------
+File: src/app/process/page.tsx
+Purpose: Explain the 7-step repair process
+Sections:
+  - Hero with "Lifetime Workmanship Guarantee" badge
+  - TrustBar
+  - ProcessTimeline (7 steps visualized)
+  - LocationAndCTA
+Metadata:
+  - Title: "Our Repair Process | Rhino Panelbeaters Mtubatuba"
+  - Canonical: /process
+
+ACCREDITATIONS PAGE (/accreditations)
+--------------------------------------
+File: src/app/accreditations/page.tsx
+Purpose: Showcase insurance partnerships and quality standards
+Sections:
+  - Hero: "Your Safety is Officially Certified"
+  - Accreditation cards (3):
+    - Professional Quality Standards
+    - Industry Excellence
+    - Santam Approved
+  - Insurance Partners section
+  - LocationAndCTA
+Metadata:
+  - Title: "Insurance Partners & Quality Standards | Rhino Panelbeaters"
+  - Canonical: /accreditations
+
+GALLERY PAGE (/gallery)
+-----------------------
+File: src/app/gallery/page.tsx
+Purpose: Showcase before/after work
+Sections:
+  - Hero: "Proof of Quality"
+  - GalleryGrid (before/after images)
+  - LocationAndCTA
+Metadata:
+  - Title: "Before & After Gallery | Rhino Panelbeaters Mtubatuba"
+  - Canonical: /gallery
+
+EMERGENCY TOWING PAGE (/emergency-towing)
+-----------------------------------------
+File: src/app/emergency-towing/page.tsx
+Purpose: Crisis landing page for emergency towing
+Design: Mobile-first, trauma-informed UX
+Sections:
+  - Minimal header (back to home only)
+  - Large emergency CTA
+  - Service details
+  - Coverage areas
+Metadata:
+  - Title: "24/7 EMERGENCY TOWING | Mtubatuba & N2"
+  - Canonical: /emergency-towing
+
+N2 ACCIDENT RECOVERY PAGE (/accident-recovery-n2)
+--------------------------------------------------
+File: src/app/accident-recovery-n2/page.tsx
+Purpose: N2 highway accident recovery focus
+Sections:
+  - High-urgency hero
+  - 24/7 Highway Patrol features
+  - N2 Coverage Zones
+  - LocationAndCTA
+Metadata:
+  - Title: "N2 Accident Recovery & Towing | Mtubatuba to Richards Bay"
+  - Canonical: /accident-recovery-n2
+
+GEO-TARGETED PAGES
+------------------
+
+PANELBEATING HLUHLUWE (/panelbeating-hluhluwe)
+File: src/app/panelbeating-hluhluwe/page.tsx
+Purpose: Capture Hluhluwe market
+Sections:
+  - Geo-targeted hero
+  - 4x4 & Safari expertise
+  - Distance information
+  - Vehicle collection services
+Metadata:
+  - Title: "Panelbeaters Serving Hluhluwe | 4x4 & Safari Specialists"
+  - Canonical: /panelbeating-hluhluwe
+
+PANELBEATING ST LUCIA (/panelbeating-st-lucia)
+File: src/app/panelbeating-st-lucia/page.tsx
+Purpose: Capture St Lucia market
+Sections:
+  - "Closest Accredited Panelbeater" messaging
+  - Vehicle collection & drop-off
+  - R618 & N2 recovery
+  - Distance information
+Metadata:
+  - Title: "Expert Panelbeater for St Lucia KZN | Rhino Panelbeaters"
+  - Canonical: /panelbeating-st-lucia
+
+LEGAL PAGES
+-----------
+
+PRIVACY POLICY (/privacy)
+File: src/app/privacy/page.tsx
+Purpose: POPIA compliance documentation
+Content: Privacy policy text
+Metadata:
+  - Title: "Privacy Policy | Rhino Panelbeaters"
+  - Canonical: /privacy
+
+TERMS OF SERVICE (/terms)
+File: src/app/terms/page.tsx
+Purpose: Terms and conditions
+Content: Service terms, warranties, payment terms
+Metadata:
+  - Title: "Terms of Service | Rhino Panelbeaters"
+  - Canonical: /terms
+
+ERROR PAGES
+-----------
+- error.tsx: Error boundary component
+- not-found.tsx: Custom 404 page
+- loading.tsx: Loading state component
+
+================================================================================
+5. COMPONENT LIBRARY
+================================================================================
+
+LAYOUT COMPONENTS
+-----------------
+
+Header.tsx
+----------
+Type: Client Component ("use client")
+Purpose: Main site navigation
+Features:
+  - Sticky positioning
+  - Logo link to homepage
+  - Desktop navigation (Services, Process, Accreditations, Contact)
+  - HeaderNavigation (Call buttons)
+  - Mobile hamburger menu
+  - MobileNavOverlay integration
+  - Escape key to close mobile menu
+  - Body scroll lock when menu open
+
+HeaderNavigation.tsx
+--------------------
+Type: Server Component
+Purpose: Header CTA buttons
+Buttons:
+  - "Call Us" (035 550 0211) - default variant
+  - "Towing 24/7" (072 311 5870) - destructive variant
+
+MobileNavOverlay.tsx
+--------------------
+Type: Client Component ("use client")
+Purpose: Full-screen mobile navigation
+Features:
+  - Backdrop overlay
+  - Navigation links
+  - Contact buttons at bottom
+  - Auto-close on link click
+
+Footer.tsx
+----------
+Type: Server Component
+Purpose: Site footer with links and contact info
+Sections:
+  - Brand info & trust badge
+  - Quick links navigation
+  - Workshop details (hours, address, phone)
+  - Emergency towing CTA
+  - Copyright & legal links
+  - Endpoint Media credit
+
+HeroSection.tsx
+---------------
+Type: Server Component
+Purpose: Homepage hero with dual-funnel strategy
+Features:
+  - Emergency towing banner (destructive red)
+  - Trust badge ("INSURER & OEM APPROVED")
+  - Main headline
+  - Trust points grid
+  - Primary CTA: "Get Free Digital Quote"
+  - Secondary CTA: "See Our Process"
+  - HeroQuoteForm (compact quote form)
+
+TrustBar.tsx
+------------
+Type: Server Component
+Purpose: Trust signals display
+Layout: 3-column grid (Bento-style)
+Cards:
+  1. Quality Guaranteed
+  2. Professional Service
+  3. Insurance Approved
+
+FeatureGrid.tsx
+---------------
+Type: Server Component
+Purpose: Display key features
+Layout: 4-column grid (responsive)
+Features (8 total):
+  1. Warranty Protected Repairs
+  2. Digital Quote Engine
+  3. 3-Year Paintwork Guarantee
+  4. Professional Standards
+  5. N2 Emergency Response Hub
+  6. 24/7 Accident Towing
+  7. Fleet & Commercial Focus
+  8. Safe, Secure Vehicle Storage
+
+FeatureCard.tsx
+---------------
+Type: Server Component
+Purpose: Individual feature display card
+Props: title, description, icon
+
+TestimonialsSection.tsx
+-----------------------
+Type: Server Component
+Purpose: Customer testimonials carousel
+Layout: 3-column grid
+Features:
+  - Star ratings
+  - Customer name & location
+  - Testimonial quote
+
+ProcessCallout.tsx
+------------------
+Type: Client Component ("use client")
+Purpose: Highlight repair process
+Features:
+  - Animated headline
+  - Bento grid layout (2x2 CTA + 4 step cards)
+  - Framer Motion animations
+  - Key steps visualization
+
+InsuranceAndServiceHub.tsx
+--------------------------
+Type: Server Component
+Purpose: Insurance partners & market services
+Layout: 2-column grid
+Sections:
+  - Left: Insurance trust hub with logos
+  - Right: Market-specific services (4 cards)
+
+LocationAndCTA.tsx
+------------------
+Type: Server Component
+Purpose: Location map + final conversion CTA
+Features:
+  - Lazy-loaded Google Maps embed
+  - Workshop contact details
+  - Google Reviews link
+  - Emergency towing section
+  - Final conversion CTA bar
+
+LazyMap.tsx
+-----------
+Type: Server Component
+Purpose: Lazy-load Google Maps for performance
+Features:
+  - Intersection Observer
+  - Loading state
+  - Error handling
+
+LogoScroller.tsx
+----------------
+Type: Client Component ("use client")
+Purpose: Infinite scrolling insurance/OEM logos
+Features:
+  - Smooth animation
+  - Auto-scroll
+  - Pause on hover
+
+FEATURE COMPONENTS
+------------------
+
+AccreditationCard.tsx
+---------------------
+Type: Server Component
+Purpose: Display accreditation information
+Props: title, logoSrc, description, benefits[]
+Features:
+  - Logo display
+  - Benefits list
+  - Hover effects
+
+ContactDetails.tsx
+------------------
+Type: Server Component
+Purpose: Display contact information
+Features:
+  - Workshop phone
+  - Business hours
+  - Address
+  - Emergency towing number
+
+ContactForm.tsx
+---------------
+Type: Client Component ("use client")
+Purpose: General contact form
+Fields:
+  - Name
+  - Email
+  - Phone
+  - Message
+Features:
+  - Form validation
+  - Submit handler
+
+FullQuoteForm.tsx
+-----------------
+Type: Client Component ("use client")
+Purpose: Complete quote request form
+Fields:
+  - Personal info (name, email, phone)
+  - Vehicle info (make, model, year, registration)
+  - Insurance info (provider, claim number)
+  - Damage description
+  - Photo upload
+Features:
+  - File upload
+  - Form validation
+  - Multi-step form structure
+
+HeroQuoteForm.tsx
+-----------------
+Type: Client Component ("use client")
+Purpose: Compact homepage quote form
+Fields:
+  - Name
+  - Phone
+  - Brief message
+Features:
+  - Simplified for homepage
+  - Quick submission
+
+GalleryGrid.tsx
+---------------
+Type: Server Component
+Purpose: Before/after image gallery
+Layout: Responsive grid
+Features:
+  - Image optimization with next/image
+  - Lazy loading
+  - Modal/lightbox (if implemented)
+
+ProcessTimeline.tsx
+-------------------
+Type: Server Component
+Purpose: Visualize 7-step repair process
+Steps:
+  1. Initial Assessment & Quote
+  2. Insurance Authorization
+  3. Disassembly & Parts Ordering
+  4. Structural Repair & Panelbeating
+  5. Paint Preparation & Spray Painting
+  6. Reassembly & Quality Control
+  7. Final Wash, Polish & Handover
+
+SERVICE COMPONENTS
+------------------
+
+ServicesGrid.tsx
+----------------
+Type: Client Component ("use client")
+Purpose: Display all services in organized grid
+Sections:
+  - Panelbeating Services (9 services)
+  - Logo Scroller
+  - Emergency Towing CTA
+  - Specialty Services (4 services)
+  - Final CTA
+Features:
+  - Framer Motion animations
+  - Category filtering
+  - Service cards
+
+ServiceCard.tsx
+---------------
+Type: Server Component
+Purpose: Individual service display card
+Props: service object (title, description, icon, href, imageUrl)
+Features:
+  - Service image
+  - Icon display
+  - Description
+  - "Learn More" link
+  - Hover effects
+
+SEO COMPONENTS
+--------------
+
+StructuredData.tsx
+------------------
+Type: Server Component
+Purpose: JSON-LD schema markup for SEO
+Supported Types:
+  - LocalBusiness
+  - AutomotiveBusiness
+  - Service
+  - WebSite
+Features:
+  - XSS protection
+  - Dynamic data injection
+  - Type-safe schema generation
+
+UI COMPONENTS (shadcn/ui)
+--------------------------
+
+button.tsx
+----------
+Variants: default, destructive, outline, secondary, ghost, link
+Sizes: default, sm, lg, xl, icon
+Features: Radix UI Slot integration
+
+card.tsx
+--------
+Components: Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter
+
+checkbox.tsx
+------------
+Features: Accessible checkbox with Radix UI
+
+input.tsx
+---------
+Features: Styled input field with focus states
+
+label.tsx
+---------
+Features: Accessible label with Radix UI
+
+textarea.tsx
+------------
+Features: Multi-line text input
+
+================================================================================
+6. LAYOUT SYSTEM
+================================================================================
+
+CONTAINER SYSTEM
+----------------
+All pages use consistent container system:
+- Container class: "container px-4 md:px-8 mx-auto"
+- Max width: screen-2xl (default Tailwind container)
+- Responsive padding:
+  - Mobile: px-4 (16px)
+  - Desktop: px-8 (32px)
+
+GRID SYSTEM
+-----------
+Primary grid layouts:
+- 1 column: Mobile default
+- 2 columns: md:grid-cols-2 (tablet)
+- 3 columns: lg:grid-cols-3 (desktop)
+- 4 columns: lg:grid-cols-4 (large desktop)
+
+COMMON LAYOUT PATTERNS
+----------------------
+
+Hero Section Pattern
+--------------------
+- Full-width section
+- Padding: py-16 md:py-24
+- Background: Secondary color or gradient
+- Centered content with max-width constraint
+
+Content Section Pattern
+-----------------------
+- Full-width section
+- Padding: py-20
+- Background: White or muted
+- Container with grid layout
+
+CTA Section Pattern
+-------------------
+- Full-width section
+- Padding: py-20
+- Background: Primary or destructive color
+- High-contrast text
+- Centered or split layout
+
+SPACING CONSISTENCY
+-------------------
+- Section spacing: py-16 md:py-20 lg:py-24
+- Component spacing: mb-6, mb-8, mb-12
+- Grid gaps: gap-6, gap-8, gap-12
+
+RESPONSIVE DESIGN APPROACH
+--------------------------
+- Mobile-first design
+- Breakpoints used consistently:
+  - Base: Mobile (default)
+  - sm: 640px (mobile landscape)
+  - md: 768px (tablet)
+  - lg: 1024px (desktop)
+  - xl: 1280px (large desktop)
+
+================================================================================
+7. SEO & METADATA CONFIGURATION
+================================================================================
+
+ROOT LAYOUT METADATA
+--------------------
+File: src/app/layout.tsx
+- metadataBase: Environment variable (NEXT_PUBLIC_BASE_URL)
+- Title template: "Rhino Panelbeaters & Towing | Mtubatuba | Professional Auto Repair"
+- Description: Trusted panelbeaters description
+- Keywords: Primary SEO keywords
+- Verification: Google Search Console verification token
+- Canonical: /
+
+STRUCTURED DATA (JSON-LD)
+-------------------------
+File: src/components/seo/StructuredData.tsx
+Implemented on Homepage:
+- LocalBusiness schema
+  - Business name, address, phone
+  - Opening hours
+  - Geo coordinates
+  - Price range
+  - Area served
+
+- AutomotiveBusiness schema
+  - Service list
+  - Business description
+  - All LocalBusiness properties
+
+- WebSite schema
+  - Site name and URL
+  - SearchAction (if search implemented)
+
+ROBOTS.TXT
+----------
+File: src/app/robots.ts
+Configuration:
+- User Agent: * (all crawlers)
+- Allow: / (all pages)
+- Disallow:
+  - /api/ (API routes)
+  - /admin/ (admin routes)
+  - /private/ (private folders)
+- Sitemap: Dynamic generation with base URL
+
+SITEMAP.XML
+-----------
+File: src/app/sitemap.ts
+Includes:
+- Static routes (13 pages)
+- Dynamic service routes (14 services)
+- Priority settings:
+  - Homepage: 1.0
+  - Service pages: 0.9
+  - Other pages: 0.8
+- Change frequency: monthly
+- Last modified: Current date
+
+CANONICAL URLS
+--------------
+All pages have canonical URLs configured:
+- Prevents duplicate content issues
+- Consistent URL structure
+- Environment variable support
+
+METADATA ON ALL PAGES
+---------------------
+Every page includes:
+- Unique title
+- Unique description
+- Keywords (where relevant)
+- Canonical URL
+- Open Graph tags (homepage)
+- Twitter Card tags (homepage)
+
+================================================================================
+8. BUILD CONFIGURATION
+================================================================================
+
+NEXT.CONFIG.MJS
+---------------
+Optimizations:
+- Console removal in production
+- Image optimization (AVIF, WebP)
+- Package imports optimization (lucide-react, @radix-ui)
+- Compression enabled
+- SWC minification
+- React Strict Mode
+- Powered-by header removed
+- Font optimization
+
+Image Configuration:
+- Formats: AVIF, WebP
+- Device sizes: 640, 750, 828, 1080, 1200, 1920, 2048, 3840
+- Image sizes: 16, 32, 48, 64, 96, 128, 256, 384
+- SVG disabled
+- Content Security Policy enabled
+
+TAILWIND.CONFIG.TS
+------------------
+Configuration:
+- Dark mode: class-based
+- Content paths: All src directories
+- Custom colors: Brand colors + CSS variables
+- Border radius: Variable-based
+- Plugins: tailwindcss-animate
+
+FONT OPTIMIZATION
+-----------------
+- Inter font from Google Fonts
+- Self-hosted by Next.js
+- Variable font for performance
+- Display: swap (prevents FOIT)
+- Fallback fonts configured
+- Size-adjust for layout stability
+
+BUILD OUTPUT
+------------
+Production build generates:
+- 34 static pages
+- Optimized JavaScript bundles
+- Static assets (images, fonts)
+- robots.txt
+- sitemap.xml
+
+Bundle Sizes:
+- Homepage: 149 kB (First Load JS)
+- Services: 157 kB (First Load JS)
+- Average page: ~110-114 kB
+- Shared chunks: 87.1 kB
+
+ENVIRONMENT VARIABLES
+---------------------
+Required for production:
+- NEXT_PUBLIC_BASE_URL: Production domain URL
+- NEXT_PUBLIC_GOOGLE_VERIFICATION: Google Search Console token
+
+================================================================================
+9. KEY FEATURES & FUNCTIONALITY
+================================================================================
+
+DUAL-FUNNEL STRATEGY
+--------------------
+The website implements a dual-funnel approach:
+
+1. Crisis User Funnel (Emergency Towing)
+   - Immediate phone call conversion
+   - High-visibility emergency CTAs
+   - Mobile-first emergency pages
+   - Minimal friction
+
+2. Research User Funnel (Panelbeating)
+   - Trust building through content
+   - Digital quote forms
+   - Process transparency
+   - Social proof
+
+MOBILE RESPONSIVENESS
+---------------------
+- Mobile-first design approach
+- Touch-friendly button sizes
+- Responsive typography
+- Optimized image loading
+- Mobile navigation overlay
+- Scroll-lock on mobile menu
+
+PERFORMANCE OPTIMIZATIONS
+-------------------------
+- Server Components by default
+- Image optimization with next/image
+- Font optimization with next/font
+- Code splitting
+- Lazy loading
+- Static generation where possible
+- Bundle size optimization
+
+ACCESSIBILITY
+-------------
+- Semantic HTML
+- ARIA labels
+- Keyboard navigation
+- Focus states
+- Screen reader support
+- Color contrast compliance
+
+================================================================================
+10. CONTACT INFORMATION
+================================================================================
+
+BUSINESS DETAILS
+----------------
+- Name: Rhino Panelbeaters & Towing
+- Address: Jacaranda Ave, Mtubatuba, 3935
+- Workshop Phone: 035 550 0211
+- Emergency Towing: 072 311 5870
+- Business Hours: Mon-Fri 7:30 am - 5:00 pm
+- Emergency Service: 24/7
+
+SERVICE AREAS
+-------------
+- Primary: Mtubatuba
+- Extended: St Lucia, Hluhluwe, Richards Bay, Empangeni
+- Highway Coverage: N2 corridor
+
+================================================================================
+11. DEVELOPMENT COMMANDS
+================================================================================
+
+npm run dev        - Start development server (localhost:3000)
+npm run build      - Create production build
+npm run start      - Start production server
+npm run lint       - Run ESLint
+
+================================================================================
+END OF DOCUMENTATION
+================================================================================
+
+For questions or updates, refer to the codebase comments and component
+documentation within each file.
+

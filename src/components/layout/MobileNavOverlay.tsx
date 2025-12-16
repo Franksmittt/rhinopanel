@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 // Navigation Items defined in Header.tsx
 const navItems = [
   { name: "Services", href: "/services" },
+  { name: "Towing", href: "/towing" },
   { name: "Our Process", href: "/process" },
   { name: "Accreditations", href: "/accreditations" },
   { name: "Contact", href: "/contact" },

@@ -25,7 +25,7 @@ const processSteps = [
   {
     id: 2,
     title: "Quote & Insurance Authorisation",
-    description: "We generate a comprehensive Audatex quote and submit it directly to your insurer (Santam, Hollard, etc.). We handle the negotiation to ensure all OEM parts are approved.",
+    description: "We generate a comprehensive Audatex quote and submit it directly to your insurer (MiWay, Old Mutual, Agruma c/o King Price). We handle the negotiation to ensure all OEM parts are approved.",
     icon: FileText,
     phase: "Admin"
   },

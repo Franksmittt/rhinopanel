@@ -18,7 +18,7 @@ const testimonials = [
   },
   {
     name: "P. van der Merwe",
-    location: "Richards Bay",
+    location: "Hluhluwe",
     rating: 5,
     text: "The paintwork on my BMW was flawless. Three-year warranty gives me complete peace of mind. Professional quality standards show they're serious about quality.",
   },

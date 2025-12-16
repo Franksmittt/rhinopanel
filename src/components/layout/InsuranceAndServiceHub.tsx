@@ -4,18 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Zap, Wrench, ShieldCheck, Truck, Car } from "lucide-react";
 import Link from "next/link";
 
-// Placeholder data for key Zululand market trust signals:
+// Approved insurance panels:
 const insurerLogos = [
-  { name: "Santam", src: "/logos/santam.svg", alt: "Santam Approved" },
-  { name: "Hollard", src: "/logos/hollard.svg", alt: "Hollard Approved" },
-  { name: "Outsurance", src: "/logos/outsurance.svg", alt: "Outsurance Approved" },
-  { name: "Discovery", src: "/logos/discovery.svg", alt: "Discovery Insure Approved" },
+  { name: "MiWay", src: "/logos/miway.svg", alt: "MiWay Approved" },
+  { name: "Old Mutual", src: "/logos/oldmutual.svg", alt: "Old Mutual Approved" },
+  { name: "Agruma (c/o King Price)", src: "/logos/agruma.svg", alt: "Agruma Approved" },
 ];
 
-// Key services tailored to the 50km market radius:
+// Key services tailored to the Northern Route market:
 const marketServices = [
-  { title: "N2 Truck & Commercial", icon: Truck, description: "Heavy vehicle and fleet repair for Richards Bay & N2 traffic." },
-  { title: "4x4 & Safari Vehicles", icon: Car, description: "Expert repairs for tourist and safari 4x4s from St Lucia/Hluhluwe." },
+  { title: "N2 Truck & Commercial", icon: Truck, description: "Heavy vehicle and fleet repair for the N2 Northern Route traffic." },
+  { title: "4x4 & Safari Vehicles", icon: Car, description: "Expert repairs for tourist and safari 4x4s from St Lucia, Hluhluwe, Mkhuze, and the Northern Route." },
   { title: "Cash & Taxi Repairs", icon: Zap, description: "Affordable, high-volume repairs for the local Mtubatuba community." },
   { title: "Specialist Paint & Body", icon: Wrench, description: "Chassis straightening and factory-spec paintwork guarantee." },
 ];
@@ -42,12 +41,18 @@ export function InsuranceAndServiceHub() {
             <li>Rest assured that all work meets the stringent compliance and quality standards required by major insurance partners.</li>
           </ul>
 
-          <div className="flex flex-wrap items-center gap-x-8 gap-y-4 mb-10 p-6 bg-white rounded-lg border border-border">
+          <div className="flex flex-wrap items-center gap-x-8 gap-y-4 mb-6 p-6 bg-white rounded-lg border border-border">
             {insurerLogos.map((logo) => (
-              <div key={logo.name} className="h-12 w-28 flex items-center justify-center">
-                <span className="text-lg font-bold text-muted-foreground">{logo.name}</span>
+              <div key={logo.name} className="flex items-center justify-center">
+                <span className="text-lg font-bold text-muted-foreground text-center">{logo.name}</span>
               </div>
             ))}
+          </div>
+
+          <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg mb-10">
+            <p className="text-sm text-amber-800 leading-relaxed">
+              <strong>Non-Panel Insurance Work:</strong> We can also work with insurance companies not listed above. For non-panel insurers, clients will be required to sign an indemnity form before work commences.
+            </p>
           </div>
 
           <Button variant="default" asChild size="lg" className="h-12 px-8">

@@ -47,13 +47,15 @@ export default function AboutPage() {
         <section className="w-full py-20 bg-white">
             <div className="container px-4 md:px-8 mx-auto grid lg:grid-cols-2 gap-16 items-center">
                 
-                {/* UPDATED: Real Image */}
+                {/* UPDATED: Real Image - Optimized for LCP */}
                 <div className="relative h-[500px] bg-muted rounded-2xl overflow-hidden border-2 border-border shadow-xl">
                      <Image 
                         src="/images/team-workshop-tools-background.png" 
                         fill 
                         alt="Rhino Panelbeaters Workshop and Team" 
                         className="object-cover"
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        priority
                         placeholder="blur"
                         blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg=="
                      />
@@ -66,7 +68,7 @@ export default function AboutPage() {
                             Founded with a single tow truck and a passion for mechanics, Rhino Panelbeaters & Towing has grown into Mtubatuba&apos;s premier collision repair centre. We recognized a need in the Zululand region for a repairer that didn&apos;t compromise on quality. 
                         </p>
                         <p className="text-muted-foreground leading-relaxed mt-4">
-                            Today, we serve the entire KZN North Coast, combining old-school craftsmanship with modern chassis straightening technology and waterborne paint systems.
+                            Today, we serve the Northern Route (Hluhluwe, Mkhuze, Pongola, Ulundi, Nongoma, up to Kosi Bay), combining old-school craftsmanship with modern chassis straightening technology and waterborne paint systems.
                         </p>
                     </div>
 

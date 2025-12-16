@@ -9,8 +9,8 @@ import { Shield, FileCheck, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Insurance Partners & Quality Standards | Rhino Panelbeaters",
-  description: "Insurance approved panelbeaters in Mtubatuba. Approved by Santam, Hollard, and major insurers. Lifetime workmanship guarantee and professional quality standards.",
-  keywords: "insurance approved panelbeater, Santam approved repairer Mtubatuba, insurance approved panel beaters KZN, professional auto repair",
+  description: "Insurance approved panelbeaters in Mtubatuba. Approved by MiWay, Old Mutual, and Agruma (c/o King Price). Lifetime workmanship guarantee and professional quality standards.",
+  keywords: "insurance approved panelbeater, MiWay approved repairer Mtubatuba, Old Mutual approved panelbeatrs KZN, Agruma approved repairer, professional auto repair",
   alternates: {
     canonical: '/accreditations',
   },
@@ -41,9 +41,9 @@ const accreditations = [
     ]
   },
   {
-    title: "Santam Approved",
-    logoSrc: "/logos/santam.png",
-    description: "We are a direct authorized repairer for Santam. This allows us to process claims faster and bypass the need for multiple quotes.",
+    title: "MiWay Approved",
+    logoSrc: "/logos/miway.png",
+    description: "We are a direct authorized repairer for MiWay. This allows us to process claims faster and bypass the need for multiple quotes.",
     benefits: [
       "Direct claims authorization",
       "No obtaining 3 quotes needed",
@@ -121,11 +121,15 @@ export default function AccreditationsPage() {
                         <div className="space-y-4 pt-4">
                             <div className="p-4 bg-white rounded-lg border border-border shadow-sm">
                                 <h4 className="font-bold text-foreground mb-1">Faster Claims Processing</h4>
-                                <p className="text-sm text-muted-foreground">Direct digital links to Santam, Hollard, and Old Mutual mean authorizations happen in hours, not days.</p>
+                                <p className="text-sm text-muted-foreground">Direct digital links to MiWay, Old Mutual, and Agruma (c/o King Price) mean authorizations happen in hours, not days.</p>
                             </div>
                             <div className="p-4 bg-white rounded-lg border border-border shadow-sm">
                                 <h4 className="font-bold text-foreground mb-1">No &ldquo;Three Quote&rdquo; Hassle</h4>
-                                <p className="text-sm text-muted-foreground">For most approved partners, you can bring your vehicle directly to us without needing to shop around.</p>
+                                <p className="text-sm text-muted-foreground">For approved panel insurers, you can bring your vehicle directly to us without needing to shop around.</p>
+                            </div>
+                            <div className="p-4 bg-amber-50 border border-amber-200 rounded-lg shadow-sm">
+                                <h4 className="font-bold text-amber-800 mb-1">Non-Panel Insurance Work</h4>
+                                <p className="text-sm text-amber-700">We can also work with insurance companies not on our approved panel. For non-panel insurers, clients will be required to sign an indemnity form before work commences.</p>
                             </div>
                         </div>
 
@@ -141,21 +145,18 @@ export default function AccreditationsPage() {
 
                     {/* Logo Grid (Visual Representation) */}
                     <div className="grid grid-cols-2 gap-4">
-                        {/* Placeholder Boxes for Logos - Replace with actual brand assets */}
+                        {/* Approved Panel Insurers */}
                         <div className="aspect-video bg-white rounded-xl border border-border flex items-center justify-center shadow-sm p-6">
-                             <span className="text-xl font-bold text-muted-foreground">Hollard</span>
+                             <span className="text-xl font-bold text-muted-foreground text-center">MiWay</span>
                         </div>
                         <div className="aspect-video bg-white rounded-xl border border-border flex items-center justify-center shadow-sm p-6">
-                             <span className="text-xl font-bold text-muted-foreground">Santam</span>
-                        </div>
-                        <div className="aspect-video bg-white rounded-xl border border-border flex items-center justify-center shadow-sm p-6">
-                             <span className="text-xl font-bold text-muted-foreground">Old Mutual</span>
-                        </div>
-                        <div className="aspect-video bg-white rounded-xl border border-border flex items-center justify-center shadow-sm p-6">
-                             <span className="text-xl font-bold text-muted-foreground">Discovery</span>
+                             <span className="text-xl font-bold text-muted-foreground text-center">Old Mutual</span>
                         </div>
                         <div className="col-span-2 aspect-[3/1] bg-white rounded-xl border border-border flex items-center justify-center shadow-sm p-6">
-                             <span className="text-lg font-medium text-muted-foreground">And most other major SA Insurers...</span>
+                             <span className="text-lg font-bold text-muted-foreground text-center">Agruma<br/><span className="text-sm font-normal">c/o King Price</span></span>
+                        </div>
+                        <div className="col-span-2 aspect-[3/1] bg-amber-50 border border-amber-200 rounded-xl flex items-center justify-center shadow-sm p-4">
+                             <span className="text-sm font-medium text-amber-800 text-center">Non-panel insurers: Indemnity form required</span>
                         </div>
                     </div>
 
