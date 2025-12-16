@@ -1,11 +1,12 @@
 // Phase 4: Internal Spiderweb Component
 // Creates a dense mesh of internal links for programmatic SEO
-// Implements geospatial proximity, topical affinity, and hierarchical hub linking
+// Implements route-based proximity, topical affinity, and hierarchical hub linking
+// Phase 13: Enhanced with route-based linking (N2 Highway, R618, etc.)
 
 import Link from 'next/link';
 import { MapPin, Wrench, Building2 } from 'lucide-react';
 import { serviceData } from '@/lib/service-data';
-import { findNearestLocationsAdaptive } from '@/lib/geospatial';
+import { locations, LocationData, getLocationBySlug } from '@/lib/location-data';
 
 interface InternalSpiderwebProps {
   currentServiceSlug: string;
@@ -17,7 +18,54 @@ interface RelatedLink {
   slug: string;
   title: string;
   href: string;
-  type: 'geospatial' | 'topical' | 'hierarchical';
+  type: 'route-based' | 'topical' | 'hierarchical';
+}
+
+/**
+ * Find locations connected by routes (N2, R618, R66, R22)
+ * Phase 13: Route-based linking instead of random geospatial
+ * Logic: If on St Lucia, link to Mtubatuba (nearest hub via R618) and Hluhluwe (next tourist stop on N2)
+ */
+function findRouteConnectedLocations(currentLocationSlug: string): LocationData[] {
+  const currentLocation = getLocationBySlug(currentLocationSlug);
+  if (!currentLocation?.localContext?.routeReference) {
+    return [];
+  }
+
+  const currentRoutes = currentLocation.localContext.routeReference.split('&').map(r => r.trim());
+  const currentConnectingRoutes = currentLocation.localContext.connectingRoutes || [];
+  const allCurrentRoutes = [...currentRoutes, ...currentConnectingRoutes];
+
+  const connectedLocations: LocationData[] = [];
+
+  // Find locations that share routes
+  locations.forEach((loc) => {
+    if (loc.slug === currentLocationSlug) return;
+
+    const locRoutes = loc.localContext?.routeReference?.split('&').map(r => r.trim()) || [];
+    const locConnectingRoutes = loc.localContext?.connectingRoutes || [];
+    const allLocRoutes = [...locRoutes, ...locConnectingRoutes];
+
+    // Check if locations share any routes
+    const hasSharedRoute = allCurrentRoutes.some(route => 
+      allLocRoutes.some(locRoute => locRoute.includes(route) || route.includes(locRoute))
+    );
+
+    if (hasSharedRoute) {
+      connectedLocations.push(loc);
+    }
+  });
+
+  // Always prioritize primary location (Mtubatuba) as nearest hub
+  const primaryLocation = locations.find(loc => loc.tier === 'primary');
+  if (primaryLocation && primaryLocation.slug !== currentLocationSlug) {
+    // Remove primary if already added, then add to front
+    const withoutPrimary = connectedLocations.filter(loc => loc.slug !== primaryLocation.slug);
+    connectedLocations.length = 0;
+    connectedLocations.push(primaryLocation, ...withoutPrimary);
+  }
+
+  return connectedLocations.slice(0, 8); // Limit to top 8 route-connected locations
 }
 
 export function InternalSpiderweb({
@@ -30,17 +78,17 @@ export function InternalSpiderweb({
 
   const links: RelatedLink[] = [];
 
-  // Vector 1: Geospatial Proximity (Nearby Locations for Same Service)
-  // Phase 5: Support location-specific pages when locationSlug is provided
-  const nearbyLocations = findNearestLocationsAdaptive(currentLocationSlug, 10);
-  nearbyLocations.forEach((location) => {
-    // Phase 5: Link to location-specific pages for better local SEO
+  // Vector 1: Route-Based Proximity (Locations Connected by Routes)
+  // Phase 13: Link by route proximity (R618 connects St Lucia to Mtubatuba, N2 connects tourist stops)
+  const routeConnectedLocations = findRouteConnectedLocations(currentLocationSlug);
+  routeConnectedLocations.forEach((location) => {
+    // Link to location-specific pages for better local SEO
     const href = `/services/${currentServiceSlug}/${location.slug}`;
     links.push({
       slug: location.slug,
       title: `${currentService.title} in ${location.name}`,
       href: href,
-      type: 'geospatial',
+      type: 'route-based',
     });
   });
 
@@ -92,7 +140,7 @@ export function InternalSpiderweb({
   const limitedLinks = links.slice(0, maxLinks);
 
   // Group links by type for better organization
-  const geospatialLinks = limitedLinks.filter((link) => link.type === 'geospatial');
+  const routeBasedLinks = limitedLinks.filter((link) => link.type === 'route-based');
   const topicalLinks = limitedLinks.filter((link) => link.type === 'topical');
   const hierarchicalLinks = limitedLinks.filter((link) => link.type === 'hierarchical');
 
@@ -105,17 +153,18 @@ export function InternalSpiderweb({
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Geospatial Cluster: Nearby Locations */}
-            {geospatialLinks.length > 0 && (
+            {/* Route-Based Cluster: Locations Connected by Routes */}
+            {/* Phase 13: Links by route proximity (N2 Highway, R618, etc.) instead of random geospatial */}
+            {routeBasedLinks.length > 0 && (
               <div className="bg-white rounded-lg border border-border p-6 shadow-sm">
                 <div className="flex items-center space-x-2 mb-4">
                   <MapPin className="h-5 w-5 text-primary" />
                   <h3 className="font-bold text-lg text-foreground">
-                    {currentService.title} in Nearby Areas
+                    {currentService.title} Along Northern Route
                   </h3>
                 </div>
                 <ul className="space-y-2">
-                  {geospatialLinks.slice(0, 8).map((link) => (
+                  {routeBasedLinks.slice(0, 8).map((link) => (
                     <li key={link.slug}>
                       <Link
                         href={link.href}

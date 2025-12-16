@@ -13,7 +13,7 @@ export function Footer() {
       <div className="container px-4 md:px-8 mx-auto py-12">
         
         {/* === TOP SECTION: Content Grid === */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-x-8 gap-y-10 border-b border-border pb-10 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 md:gap-x-8 gap-y-10 border-b border-border pb-10 mb-8">
             
             {/* COLUMN 1: Brand Info & Trust */}
             <div className="col-span-1 sm:col-span-2 lg:col-span-1 space-y-4">
@@ -49,7 +49,32 @@ export function Footer() {
                 </nav>
             </div>
 
-            {/* COLUMN 3: Contact Info & Hours */}
+            {/* COLUMN 3: Areas We Serve - Critical Location Pages */}
+            <div className="col-span-1 space-y-4">
+                <h4 className="text-lg font-semibold text-foreground">Areas We Serve</h4>
+                <nav className="flex flex-col space-y-2 text-sm">
+                    <Link href="/services/collision-repair/mtubatuba" className="text-muted-foreground hover:text-primary transition-colors">
+                        Panel Beating Mtubatuba
+                    </Link>
+                    <Link href="/services/chassis-straightening/hluhluwe" className="text-muted-foreground hover:text-primary transition-colors">
+                        Chassis Straightening Hluhluwe
+                    </Link>
+                    <Link href="/services/spray-painting/mkhuze" className="text-muted-foreground hover:text-primary transition-colors">
+                        Spray Painting Mkhuze
+                    </Link>
+                    <Link href="/services/emergency-towing/pongola" className="text-muted-foreground hover:text-primary transition-colors">
+                        Towing Pongola
+                    </Link>
+                    <Link href="/services/collision-repair/ulundi" className="text-muted-foreground hover:text-primary transition-colors">
+                        Auto Body Ulundi
+                    </Link>
+                    <Link href="/services/dent-removal/richards-bay" className="text-muted-foreground hover:text-primary transition-colors">
+                        Dent Repair Richards Bay
+                    </Link>
+                </nav>
+            </div>
+
+            {/* COLUMN 4: Contact Info & Hours */}
             <div className="col-span-1 space-y-4">
                 <h4 className="text-lg font-semibold text-foreground">Workshop Details</h4>
                 <div className="flex flex-col space-y-3 text-sm pt-1">
@@ -70,7 +95,7 @@ export function Footer() {
                 </div>
             </div>
             
-            {/* COLUMN 4: Emergency CTA */}
+            {/* COLUMN 5: Emergency CTA */}
             <div className="col-span-1 sm:col-span-2 lg:col-span-1 space-y-4 lg:pl-4 lg:border-l border-border pt-4 lg:pt-0 border-t lg:border-t-0">
                 <h4 className="text-lg font-semibold text-destructive">TOWING 24/7</h4>
                 

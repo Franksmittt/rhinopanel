@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { LocalBusinessSchema } from "@/components/seo/LocalBusinessSchema";
 
 // Optimize font loading with display swap to prevent layout shifts
 // Next.js self-hosts fonts, so no need for preconnect to Google Fonts
@@ -41,6 +42,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://maps.googleapis.com" />
       </head>
       <body className={inter.className} suppressHydrationWarning>
+        <LocalBusinessSchema />
         {children}
       </body>
     </html>

@@ -11,14 +11,19 @@ export const config = {
   matcher: [
     /*
      * Match all request paths except for the ones starting with:
-     * - api (API routes)
+     * - api (API routes) - but we need /ingest which is not under /api
      * - _next/static (static files)
      * - _next/image (image optimization files)
      * - favicon.ico (favicon file)
      * - location (location-specific pages should not be rewritten)
      * - services (service pages should not be rewritten)
+     * 
+     * Phase 19: Analytics proxy routes (/ingest/*, /telemetry/*) are explicitly included
      */
     '/((?!api|_next/static|_next/image|favicon.ico|location|services).*)',
+    // Explicitly match analytics proxy routes
+    '/ingest/:path*',
+    '/telemetry/:path*',
   ],
 };
 
@@ -39,6 +44,39 @@ const cityToSlugMap: Record<string, string> = {
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  
+  // Phase 19: Dark Analytics - First-Party Proxy for Analytics
+  // Intercept analytics requests to bypass ad blockers
+  // Route pattern: /ingest/* (PostHog standard) or /telemetry/*
+  if (pathname.startsWith('/ingest') || pathname.startsWith('/telemetry')) {
+    const url = request.nextUrl.clone();
+    
+    // Determine destination based on path structure
+    // PostHog uses /ingest/e/ for events, /ingest/static/ for assets
+    const hostname = pathname.includes('/static/') 
+      ? 'us-assets.i.posthog.com' 
+      : 'us.i.posthog.com';
+    
+    // Construct the upstream URL
+    url.hostname = hostname;
+    url.protocol = 'https';
+    url.port = '';
+    // Strip the local proxy prefix
+    url.pathname = url.pathname.replace(/^\/(ingest|telemetry)/, '');
+    
+    // Clone and modify headers
+    const requestHeaders = new Headers(request.headers);
+    requestHeaders.set('host', hostname); // Essential to avoid 401 errors
+    
+    // Phase 19: Optional PII scrubbing - uncomment if needed
+    // requestHeaders.delete('cookie'); // Prevent leaking session tokens
+    
+    return NextResponse.rewrite(url, {
+      request: {
+        headers: requestHeaders,
+      },
+    });
+  }
   
   // Phase 6: Only intercept the root homepage for personalization
   // We do not want to rewrite internal pages or deep links unexpectedly

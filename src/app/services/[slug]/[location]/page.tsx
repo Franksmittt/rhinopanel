@@ -40,6 +40,7 @@ export async function generateStaticParams() {
 export const revalidate = 3600; // 1 hour
 
 // Phase 5: Generate dynamic, location-specific metadata
+// Phase 14: Noindex Shield - Quality control for programmatic pages
 export async function generateMetadata({ 
   params 
 }: { 
@@ -60,15 +61,59 @@ export async function generateMetadata({
   // Phase 5: Hyper-local metadata with location context
   const routeRef = location.localContext?.routeReference || '';
   
+  // Phase 14: Build localized content to calculate content length
+  const routeRefForContent = location.localContext?.routeReference || '';
+  const notableFeatures = location.localContext?.notableFeatures || [];
+  
+  const localizedIntro = location.localContext 
+    ? `${service.fullDescription} ${location.name}${notableFeatures.length > 0 ? `, known for ${notableFeatures[0]}${notableFeatures.length > 1 ? ` and ${notableFeatures[1]}` : ''}` : ''}, requires specialized automotive repair expertise.${routeRefForContent ? ` Our service vehicles regularly travel along the ${routeRefForContent}, ensuring quick response times.` : ''}`
+    : `${service.fullDescription} We proudly serve ${location.name} with the same high-quality standards and professional service.`;
+  
   const enhancedDescription = `Need ${service.title.toLowerCase()} in ${location.name}? ${service.shortDescription} Serving ${location.name}${routeRef ? ` on the ${routeRef}` : ''}. Rated 4.9/5 stars. Insurance approved with 3-year warranty. Free quotes.`;
 
-  return {
+  // Phase 14: Noindex Shield - Calculate content quality metrics
+  // Count words in the combined content (localized intro + description)
+  const combinedContent = `${localizedIntro} ${enhancedDescription}`;
+  const contentLength = combinedContent.split(/\s+/).length;
+  
+  // Phase 14: Reviews count check
+  // In a real system, this would query actual reviews from database
+  // For now, we use a fixed value (287 reviews) from the Product schema
+  // In production, this should be: const reviewsCount = await getReviewCount(service.id, location.slug);
+  const reviewsCount: number = 287; // This would come from actual data in production
+  
+  // Phase 14: Apply the Shield - noindex if content is thin OR no reviews
+  const isWeakContent = contentLength < 300 || reviewsCount === 0;
+  
+  // Phase 14: Base metadata object
+  const baseMetadata: Metadata = {
     title: `${service.title} in ${location.name} | Rated 4.9/5 | Rhino Panelbeaters`,
     description: enhancedDescription,
     keywords: `${service.title} ${location.name}, ${service.title.toLowerCase()} ${location.name}, panelbeater ${location.name}, car repair ${location.name}, ${location.keywords.join(', ')}`,
     alternates: {
       canonical: canonicalUrl,
     },
+  };
+
+  // Phase 14: Apply robots directive based on Shield logic
+  if (isWeakContent) {
+    // Phase 14: The Shield - Hide weak content from index
+    return {
+      ...baseMetadata,
+      robots: {
+        index: false,
+        follow: true, // Allow following links to discover other "soldier" pages
+        googleBot: {
+          index: false,
+          follow: true,
+        },
+      },
+    };
+  }
+
+  // Phase 14: The "Soldier" - Content is strong, allow indexing
+  return {
+    ...baseMetadata,
     openGraph: {
       title: `${service.title} in ${location.name} | Rhino Panelbeaters`,
       description: `${service.shortDescription} Serving ${location.name}. Rated 4.9/5 stars.`,
@@ -76,12 +121,25 @@ export async function generateMetadata({
       siteName: 'Rhino Panelbeaters & Towing',
       locale: 'en_ZA',
       type: 'website',
-      images: service.imageUrl ? [`${baseUrl}${service.imageUrl}`] : undefined,
+      // Phase 16: Use dynamic OG image route (Next.js will automatically use opengraph-image.tsx)
+      // The opengraph-image.tsx file in the same directory will be used automatically
+      images: [{ url: `${canonicalUrl}/opengraph-image` }],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${service.title} in ${location.name} | Rhino Panelbeaters`,
       description: `${service.shortDescription} Rated 4.9/5 stars.`,
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
     },
   };
 }
@@ -316,6 +374,15 @@ export default async function LocationServicePage({
           currentLocationSlug={params.location}
           maxLinks={25}
         />
+
+        {/* === TASK 3: CONTENT SHIELD - Dynamic Text === */}
+        <section className="w-full py-12 bg-muted/30">
+          <div className="container px-4 md:px-8 mx-auto max-w-4xl">
+            <p className="text-base md:text-lg text-muted-foreground leading-relaxed text-center">
+              Rhino Panelbeaters & Towing is proud to offer expert {service.title} services to the {location.name} community. Operating from the Northern Route, we understand the specific road conditions of {location.name} and provide lifetime workmanship guarantees on all repairs. Contact our team at 035 550 0211 for a quote in {location.name}.
+            </p>
+          </div>
+        </section>
 
         {/* === LOCATION CTA === */}
         <LocationAndCTA />
