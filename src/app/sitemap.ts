@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { serviceData } from '@/lib/service-data';
+import { getLocationsByTier, getAllLocationSlugs } from '@/lib/location-data';
 
 // Phase 2: Enhanced Sitemap with proper metadata and scalability
 // For future expansion: This structure supports index splitting via generateSitemaps if needed
@@ -110,7 +111,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
+  // Phase 5: Generate Location-Specific Service Routes (Local Nuke strategy)
+  // Only include top-tier locations in sitemap to keep it manageable
+  // Secondary/tertiary locations will be generated on-demand via ISR
+  const topLocations = getLocationsByTier('primary'); // Only primary locations for sitemap
+  const locationServiceRoutes: MetadataRoute.Sitemap = [];
+  
+  Object.keys(serviceData).forEach((serviceSlug) => {
+    topLocations.forEach((location) => {
+      locationServiceRoutes.push({
+        url: `${baseUrl}/services/${serviceSlug}/${location.slug}`,
+        lastModified: now,
+        changeFrequency: 'weekly',
+        priority: 0.85, // Slightly lower than general service pages, but still high
+      });
+    });
+  });
+
+  // Phase 6: Generate Location Landing Page Routes (Edge Dictatorship strategy)
+  // These are the explicit location pages that middleware rewrites to
+  // Important for SEO: Googlebot needs to discover these via sitemap/internal links
+  const allLocationSlugs = getAllLocationSlugs();
+  const locationLandingRoutes: MetadataRoute.Sitemap = allLocationSlugs.map((locationSlug) => ({
+    url: `${baseUrl}/location/${locationSlug}`,
+    lastModified: now,
+    changeFrequency: 'weekly',
+    priority: 0.9, // High priority - these are important for local SEO
+  }));
+
   // 3. Combine and Return
-  // Future: If this exceeds 50,000 URLs, implement generateSitemaps for index splitting
-  return [...staticRoutes, ...serviceRoutes];
+  // Phase 5 & 6: Total URLs = static + service + location-service + location-landing combinations
+  // For future: If this exceeds 50,000 URLs, implement generateSitemaps for index splitting
+  return [...staticRoutes, ...serviceRoutes, ...locationServiceRoutes, ...locationLandingRoutes];
 }

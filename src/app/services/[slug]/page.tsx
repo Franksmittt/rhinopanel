@@ -11,6 +11,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, CheckCircle2, Phone } from "lucide-react";
 import JsonLd from "@/components/seo/JsonLd";
+import { InternalSpiderweb } from "@/components/seo/InternalSpiderweb";
 import type { WithContext, Product, FAQPage, Service as ServiceSchema } from "schema-dts";
 
 // Phase 2: Programmatic SEO Implementation
@@ -134,18 +135,14 @@ export default async function ServiceDynamicPage({ params }: { params: { slug: s
         addressCountry: 'ZA',
       },
       areaServed: [
-        {
-          '@type': 'City',
-          name: 'Mtubatuba',
-        },
-        {
-          '@type': 'City',
-          name: 'St Lucia',
-        },
-        {
-          '@type': 'City',
-          name: 'Hluhluwe',
-        },
+        { '@type': 'City', name: 'Mtubatuba' },
+        { '@type': 'City', name: 'St Lucia' },
+        { '@type': 'City', name: 'Hluhluwe' },
+        { '@type': 'City', name: 'Mkhuze' },
+        { '@type': 'City', name: 'Pongola' },
+        { '@type': 'City', name: 'Ulundi' },
+        { '@type': 'City', name: 'Nongoma' },
+        { '@type': 'City', name: 'Kosi Bay' },
       ],
     },
     serviceType: service.title,
@@ -266,6 +263,14 @@ export default async function ServiceDynamicPage({ params }: { params: { slug: s
                 </div>
             </div>
         </section>
+
+        {/* === PHASE 4: INTERNAL SPIDERWEB === */}
+        {/* Dense mesh of internal links for programmatic SEO - creates crawl trap */}
+        <InternalSpiderweb 
+          currentServiceSlug={params.slug}
+          currentLocationSlug="mtubatuba"
+          maxLinks={25}
+        />
 
         {/* === LOCATION CTA === */}
         <LocationAndCTA />
